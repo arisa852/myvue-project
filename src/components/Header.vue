@@ -35,6 +35,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@use '../assets/style/variables' as *;
+
 .header {
   background-color: #fff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -110,10 +112,9 @@ export default {
 .login-btn {
   background-color: #f9f9f9;
   font-size: 1.25rem;
-  border: 2px solid #1aa6a6;
+  border: 2px solid $primary-color;
   cursor: pointer;
-  /* 原本用 $primary-color，先換實色；之後你可改回變數 */
-  color: #1aa6a6;
+  color: $primary-color;
   font-weight: bold;
   border-radius: 30px;
   padding: 10px 24px;

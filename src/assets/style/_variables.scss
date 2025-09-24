@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+
+$primary-color: #6ec5c4;
+$secondary-color: #e9c5d3;
+$tertiary-color: #f7e2a7;
+$quaternary-color: #c9dce5;
+$quinary-color: #d5b7dc;
+$text-color: #231815;
+$background-color: #f7f7f7;
+$title-color: #333;
+$paragraph-color: #666;
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
