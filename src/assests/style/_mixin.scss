@@ -1,0 +1,52 @@
+// @use './variables' as *;
+
+$breakpoints: (
+  'mobile': 320px,
+  'pad': 768px,
+  'desktop': 1024px,
+);
+
+@mixin respond-to($device) {
+  @media screen and (max-width: map-get($breakpoints, $device)) {
+    @content;
+  }
+}
+
+@mixin heading-style {
+  font-weight: 700;
+  font-size: 2.175rem;
+  color: $title-color;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+@mixin minheading-style {
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: $text-color;
+  line-height: 1.5;
+}
+
+@mixin subheading-style {
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: $title-color;
+  line-height: 1.5;
+}
+
+@mixin paragraph-style {
+  font-size: 1.25rem;
+  color: $paragraph-color;
+  line-height: 1.5;
+}
+
+@mixin button-style {
+  background-color: transparent;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  color: $primary-color;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 30px;
+}
