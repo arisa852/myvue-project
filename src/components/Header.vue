@@ -4,20 +4,22 @@
       <div class="logo-container">
         <img :src="logoUrl" alt="logo" />
       </div>
-      <nav class="nav">
-        <ul class="menus">
-          <li v-for="item in menus" :key="item.to">
-            <RouterLink :to="item.to">{{ item.label }}</RouterLink>
-          </li>
-        </ul>
-      </nav>
-      <button @click="login" ref="login" class="login-btn">登入</button>
+      <div class="list-container">
+        <nav class="nav">
+          <ul class="menus">
+            <li v-for="item in menus" :key="item.to">
+              <RouterLink :to="item.to">{{ item.label }}</RouterLink>
+            </li>
+          </ul>
+        </nav>
+        <button @click="login" ref="login" class="login-btn">登入</button>
+      </div>
     </div>
   </header>
 </template>
 <script>
 import { ref } from 'vue'
-import logoUrl from '../assests/images/logo3.png'
+import logoUrl from '../assets/images/logo3.png'
 
 export default {
   name: 'header',
@@ -36,6 +38,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use '../assets/style/variables' as *;
+@use '../assets/style/mixin' as *;
 
 .header {
   background-color: #fff;
@@ -50,9 +53,9 @@ export default {
 .wrapper {
   display: flex;
   align-items: center;
-  max-width: 1440px;
+  max-width: 1080px;
   padding: 20px;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0 auto;
 
   /* 先用 media query 代替 mixin，之後再換回 @include */
@@ -71,6 +74,7 @@ export default {
 .logo-container {
   width: 200px;
   margin-right: 20px;
+  justify-items: start;
 
   @media (max-width: 1024px) {
     width: 100px;
@@ -87,9 +91,14 @@ export default {
   }
 }
 
-.nav {
-  margin-right: 20px;
+.list-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
 
+.nav {
   @media (max-width: 1024px) {
     display: none;
   }
@@ -103,9 +112,16 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
+  gap: 30px;
 
-  li {
-    margin: 0 12px;
+  a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 }
 
@@ -118,5 +134,7 @@ export default {
   font-weight: bold;
   border-radius: 30px;
   padding: 10px 24px;
+  align-items: center;
+  justify-content: end;
 }
 </style>
