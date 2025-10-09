@@ -29,7 +29,7 @@ $breakpoints: (
 
 @mixin subheading-style {
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: $title-color;
   line-height: 1.5;
 }
@@ -61,7 +61,7 @@ $breakpoints: (
   transition: all 0.3s ease;
 
   &:hover {
-    opacity: 0.85;
+    opacity: 0.5;
   }
 
   // 允許呼叫時自訂更多樣式

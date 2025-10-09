@@ -22,7 +22,7 @@ import { ref } from 'vue'
 import logoUrl from '../assets/images/logo3.png'
 
 export default {
-  name: 'header',
+  name: 'Header',
   setup() {
     const menus = ref([
       { label: '找美食', to: '/food' },
@@ -58,13 +58,12 @@ export default {
   justify-content: space-between;
   margin: 0 auto;
 
-  /* 先用 media query 代替 mixin，之後再換回 @include */
-  @media (max-width: 1024px) {
+  @include respond-to(pad) {
     padding: 20px 10px;
     justify-content: space-between;
     align-items: center;
   }
-  @media (max-width: 768px) {
+  @include respond-to(mobile) {
     padding: 20px 10px;
     justify-content: space-between;
     align-items: center;
@@ -76,10 +75,10 @@ export default {
   margin-right: 20px;
   justify-items: start;
 
-  @media (max-width: 1024px) {
+  @include respond-to(pad) {
     width: 100px;
   }
-  @media (max-width: 768px) {
+  @include respond-to(mobile) {
     width: 120px;
     margin: 0 auto;
   }
@@ -99,10 +98,10 @@ export default {
 }
 
 .nav {
-  @media (max-width: 1024px) {
+  @include respond-to(pad) {
     display: none;
   }
-  @media (max-width: 768px) {
+  @include respond-to(mobile) {
     display: none;
   }
 }

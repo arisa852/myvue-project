@@ -5,18 +5,30 @@
     </template>
   </BannerSection>
   <FeatureSection></FeatureSection>
+  <EntranceSection
+    :foodEntrance="foodImg"
+    :wearEntrance="wearImg"
+    @goto-food="() => $router.push('/food')"
+    @goto-wear="() => $router.push('/food')"
+  >
+  </EntranceSection>
 </template>
 <script>
 import BannerSection from '@/components/BannerSection.vue'
 import heroUrl from '@/assets/images/Artboard 1.png'
 import FeatureSection from '@/components/FeatureSection.vue'
+import EntranceSection from '@/components/EntranceSection.vue'
+import foodImg from '@/assets/images/food.png'
+import wearImg from '@/assets/images/wearweather.png'
 
 export default {
   name: 'HomeView',
-  components: { BannerSection,FeatureSection },
+  components: { BannerSection, FeatureSection, EntranceSection },
   data() {
     return {
       heroUrl,
+      foodImg,
+      wearImg,
     }
   },
   methods: {
@@ -33,6 +45,13 @@ export default {
   @include button-style {
     border: 2px solid $primary-color;
     background-color: #fff;
+
+    &:hover {
+      background-color: $primary-color;
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 4px 8px #a5a5a5;
+    }
   }
 }
 </style>
