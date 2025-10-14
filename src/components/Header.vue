@@ -12,13 +12,38 @@
             </li>
           </ul>
         </nav>
-        <button @click="login" ref="login" class="login-btn">登入</button>
+        <button @click="login" ref="login" class="login-btn" v-if="!isMobile">登入</button>
+      </div>
+      <!-- 手機板選單 -->
+      <div
+        class="hamburger"
+        @click="toggleMenu"
+        :class="{ open: isOpen }"
+        v-show="isMobile"
+        aria-controls="mobile-nav"
+        :aria-expanded="isOpen ? 'true' : 'false'"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="hamburger-menu" v-if="isOpen && isMobile">
+        <ul class="navbar">
+          <li v-for="menu in menus" :key="menu.to">
+            <RouterLink :to="menu.to" @click="closeMenu">{{ menu.label }}</RouterLink>
+          </li>
+          <li class="login-icon">
+            <button @click="login" aria-label="登入">
+              <i class="bi bi-person-circle"></i>
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   </header>
 </template>
 <script>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import logoUrl from '../assets/images/logo3.png'
 
 export default {
@@ -29,10 +54,48 @@ export default {
       { label: '穿搭靈感', to: '/style' },
       { label: '收藏', to: '/collect' },
     ])
+
+    const isOpen = ref(false)
+    const isMobile = ref(false)
+    let mql = null
+
+    const toggleMenu = () => {
+      isOpen.value = !isOpen.value
+    }
+
+    const closeMenu = () => {
+      isOpen.value = false
+    }
+    const updateMobile = () => {
+      isMobile.value = mql.matches
+      if (!isMobile.value) {
+        isOpen.value = false
+      }
+    }
+
+    onMounted(() => {
+      mql = window.matchMedia('(max-width:1024px)')
+      updateMobile()
+      if (mql.addEventListener) {
+        mql.addEventListener('change', updateMobile)
+      } else if (mql.addListener) {
+        mql.addListener(updateMobile)
+      }
+    })
+
+    onBeforeUnmount(() => {
+      if (!mql) return
+      if (mql.removeEventListener) {
+        mql.removeEventListener('change', updateMobile)
+      } else if (mql.removeListener) {
+        mql.removeListener(updateMobile)
+      }
+    })
+
     function login() {
       console.log('login clicked')
     }
-    return { menus, logoUrl, login }
+    return { menus, logoUrl, login, isOpen, isMobile, toggleMenu }
   },
 }
 </script>
@@ -41,7 +104,7 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .header {
-  background-color: #fff;
+  background-color: #f9f9f9;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   position: fixed;
@@ -54,7 +117,7 @@ export default {
   display: flex;
   align-items: center;
   max-width: 1080px;
-  padding: 20px;
+  padding: 12px;
   justify-content: space-between;
   margin: 0 auto;
 
@@ -71,7 +134,7 @@ export default {
 }
 
 .logo-container {
-  width: 200px;
+  width: 180px;
   margin-right: 20px;
   justify-items: start;
 
@@ -135,5 +198,119 @@ export default {
   padding: 10px 24px;
   align-items: center;
   justify-content: end;
+}
+
+.hamburger {
+  position: relative;
+  width: 36px;
+  height: 28px;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+
+  & span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: transform 0.2s ease;
+  }
+
+  span:nth-child(1) {
+    top: 4px;
+  }
+  span:nth-child(2) {
+    top: 12px;
+  }
+  span:nth-child(3) {
+    top: 20px;
+  }
+
+  &.open {
+    span:nth-child(1) {
+      top: 12px;
+      transform: rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      top: 12px;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.hamburger-menu {
+  position: fixed;
+  top: 65px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: -8px 0 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 16px 12px;
+  transform: translateX(100%);
+  animation: slideIn 0.2s ease forwards;
+  width: 80vw;
+  height: calc(100vh - 65px);
+  .navbar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .navbar li a {
+    display: block;
+    padding: 12px 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.275rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  .navbar li a:hover {
+    background-color: #f5f5f5;
+  }
+}
+.login-icon {
+  button {
+    @include button-style {
+      padding: 0 15px;
+      margin: 0;
+      display: inline-flex;
+      appearance: none;
+      cursor: pointer;
+      background-color: #fff;
+    }
+  }
+
+  .bi {
+    font-size: 2.75rem;
+    color: $primary-color;
+    transition:
+      transform 0.3s,
+      color 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+      transform: scale(1.2);
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 </style>
