@@ -34,6 +34,10 @@ export default {
       default: '',
     },
   },
+  setup(props) {
+    console.log(props.title)
+    return { ...props }
+  },
 }
 </script>
 <style lang="scss" scoped>

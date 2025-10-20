@@ -38,6 +38,7 @@ $breakpoints: (
   font-size: 1.25rem;
   color: $paragraph-color;
   line-height: 1.5;
+  @content;
 }
 
 @mixin button-style(

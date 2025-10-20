@@ -12,7 +12,7 @@
             </li>
           </ul>
         </nav>
-        <button @click="login" ref="login" class="login-btn" v-if="!isMobile">登入</button>
+        <button @click="openLogin" class="login-btn" v-if="!isMobile">登入</button>
       </div>
       <!-- 手機板選單 -->
       <div
@@ -33,7 +33,7 @@
             <RouterLink :to="menu.to" @click="closeMenu">{{ menu.label }}</RouterLink>
           </li>
           <li class="login-icon">
-            <button @click="login" aria-label="登入">
+            <button @click="openLogin" aria-label="登入">
               <i class="bi bi-person-circle"></i>
             </button>
           </li>
@@ -48,7 +48,8 @@ import logoUrl from '../assets/images/logo3.png'
 
 export default {
   name: 'Header',
-  setup() {
+  emit: ['open-login'],
+  setup(props, { emit }) {
     const menus = ref([
       { label: '找美食', to: '/food' },
       { label: '穿搭靈感', to: '/style' },
@@ -91,11 +92,8 @@ export default {
         mql.removeListener(updateMobile)
       }
     })
-
-    function login() {
-      console.log('login clicked')
-    }
-    return { menus, logoUrl, login, isOpen, isMobile, toggleMenu }
+    const openLogin = () => emit('open-login')
+    return { menus, logoUrl, openLogin, isOpen, isMobile, toggleMenu, closeMenu }
   },
 }
 </script>

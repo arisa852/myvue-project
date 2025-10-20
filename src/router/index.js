@@ -8,6 +8,16 @@ const routes = [
     component: HomeView,
   },
   { path: '/home', redirect: { name: 'home' } },
+  {
+    path: '/food',
+    name: 'food',
+    component: '',
+  },
+  {
+    path: '/wear',
+    name: 'wear',
+    component: '',
+  },
 ]
 
 const router = createRouter({

@@ -36,6 +36,11 @@ export default {
       default: '穿的入口圖',
     },
   },
+  setup(props, { emit }) {
+    const gotoFood = () => emit('goto-food')
+    const gotoWear = () => emit('goto-wear')
+    return { ...props, gotoFood, gotoWear }
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -91,18 +96,18 @@ export default {
     }
   }
   & h4 {
-    @include subheading-style; 
+    @include subheading-style;
     margin-bottom: 30px;
     color: #666;
 
-    @include respond-to(pad){
+    @include respond-to(pad) {
       margin-bottom: 20px;
     }
   }
   .entrance-button {
     @include button-style {
       border: 2px solid #fff;
-      background-color:$primary-color;
+      background-color: $primary-color;
       margin-bottom: 30px;
       color: #fff;
     }

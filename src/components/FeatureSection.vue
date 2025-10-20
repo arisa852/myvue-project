@@ -27,7 +27,7 @@ import pickofeatImg3 from '@/assets/images/9611342.png'
 
 export default {
   name: 'FeatureSection',
-  data() {
+  setup() {
     return {
       pickofeatImg1,
       pickofeatImg2,
