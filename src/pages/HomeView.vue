@@ -12,6 +12,7 @@
     @goto-wear="() => $router.push('/food')"
   >
   </EntranceSection>
+  <Footer />
 </template>
 <script>
 import BannerSection from '@/components/BannerSection.vue'
@@ -20,21 +21,21 @@ import FeatureSection from '@/components/FeatureSection.vue'
 import EntranceSection from '@/components/EntranceSection.vue'
 import foodImg from '@/assets/images/food.png'
 import wearImg from '@/assets/images/wearweather.png'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'HomeView',
-  components: { BannerSection, FeatureSection, EntranceSection },
-  data() {
+  components: { BannerSection, FeatureSection, EntranceSection, Footer },
+  setup() {
+    const goStart = () => {
+      console.log('已點擊')
+    }
     return {
-      heroUrl,
       foodImg,
       wearImg,
+      heroUrl,
+      goStart,
     }
-  },
-  methods: {
-    goStart() {
-      console.log('已點擊')
-    },
   },
 }
 </script>

@@ -25,7 +25,7 @@
 footer {
   width: 100%;
   background-color: $text-color;
-  padding: 20px 0;
+  padding: 0;
   display: inline-block;
 
   .container {
@@ -35,12 +35,12 @@ footer {
     max-width: 1080px;
     margin: 0 auto;
     flex-wrap: wrap;
-    padding: 30px 20px;
+    padding: 16px 24px;
 
     @include respond-to(pad) {
       flex-direction: column;
       gap: 20px;
-      padding: 30px 10px;
+      padding: 16px 24px;
       justify-content: flex-start;
       align-items: flex-start;
     }
@@ -48,7 +48,7 @@ footer {
     @include respond-to(mobile) {
       flex-direction: column;
       gap: 20px;
-      padding: 30px 10px;
+      padding: 16px 24px;
       justify-content: flex-start;
       align-items: flex-start;
     }

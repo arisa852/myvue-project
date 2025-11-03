@@ -22,20 +22,20 @@ $breakpoints: (
 
 @mixin minheading-style {
   font-weight: 400;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: $text-color;
   line-height: 1.5;
 }
 
 @mixin subheading-style {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.275rem;
   color: $title-color;
   line-height: 1.5;
 }
 
 @mixin paragraph-style {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: $paragraph-color;
   line-height: 1.5;
   @content;

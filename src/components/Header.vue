@@ -2,7 +2,9 @@
   <header class="header">
     <div class="wrapper">
       <div class="logo-container">
-        <img :src="logoUrl" alt="logo" />
+        <RouterLink to="/">
+          <img :src="logoUrl" alt="logo" />
+        </RouterLink>
       </div>
       <div class="list-container">
         <nav class="nav">
@@ -75,7 +77,7 @@ export default {
     }
 
     onMounted(() => {
-      mql = window.matchMedia('(max-width:1024px)')
+      mql = window.matchMedia('(max-width:1023px)')
       updateMobile()
       if (mql.addEventListener) {
         mql.addEventListener('change', updateMobile)
@@ -115,7 +117,7 @@ export default {
   display: flex;
   align-items: center;
   max-width: 1080px;
-  padding: 12px;
+  padding: 8px;
   justify-content: space-between;
   margin: 0 auto;
 
@@ -132,7 +134,7 @@ export default {
 }
 
 .logo-container {
-  width: 180px;
+  width: 100px;
   margin-right: 20px;
   justify-items: start;
 
@@ -148,6 +150,12 @@ export default {
     width: 100%;
     object-fit: cover;
     display: block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -177,7 +185,7 @@ export default {
   a {
     text-decoration: none;
     color: inherit;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 400;
   }
   a:hover {
@@ -187,13 +195,13 @@ export default {
 
 .login-btn {
   background-color: #f9f9f9;
-  font-size: 1.25rem;
+  font-size: 1rem;
   border: 2px solid $primary-color;
   cursor: pointer;
   color: $primary-color;
   font-weight: bold;
   border-radius: 30px;
-  padding: 10px 24px;
+  padding: 8px 16px;
   align-items: center;
   justify-content: end;
 }

@@ -10,10 +10,10 @@
           </p>
           <slot name="cta"></slot>
         </div>
+        <div class="bn-img" v-if="bannerImg">
+          <img :src="bannerImg" alt="Banner" />
+        </div>
       </slot>
-      <div class="bn-img" v-if="bannerImg">
-        <img :src="bannerImg" alt="Banner" />
-      </div>
     </div>
   </section>
 </template>
@@ -68,12 +68,12 @@ export default {
 
     @include respond-to(pad) {
       flex-direction: column;
-      padding: 40px;
+      padding: 20px;
       max-width: 100%;
     }
     @include respond-to(mobile) {
       flex-direction: column;
-      padding: 40px;
+      padding: 20px;
       max-width: 100%;
     }
   }

@@ -1,0 +1,169 @@
+{
+  "outfits": [
+    {
+      "id": 1,
+      "name": "白色長袖襯衫",
+      "season": "winter",
+      "category": "shirt",
+      "subcategory": "long-sleeve-shirt",
+      "style": ["formal"],
+      "image": "images/dress1.png",
+      "gender": "male",
+      "tags": ["formal", "clean"]
+    },
+    {
+      "id": 2,
+      "name": "粉色短袖襯衫",
+      "season": "summer",
+      "category": "shirt",
+      "subcategory": "short-sleeve-shirt",
+      "style": ["formal", "fresh"],
+      "image": "images/dress2.png",
+      "gender": "female",
+      "tags": ["formal", "fresh", "pink", "short-sleeve", "shirt"]
+    },
+    {
+      "id": 3,
+      "name": "白色短袖襯衫",
+      "season": "summer",
+      "category": "shirt",
+      "subcategory": "short-sleeve-shirt",
+      "style": ["formal", "fresh"],
+      "image": "images/dress3.png",
+      "gender": "male",
+      "tags": ["formal", "white", "tie", "interview"]
+    },
+    {
+      "id": 4,
+      "name": "灰色長袖襯衫",
+      "season": "winter",
+      "category": "shirt",
+      "subcategory": "long-sleeve-shirt",
+      "style": ["formal", "fresh"],
+      "image": "images/dress4.png",
+      "gender": "male",
+      "tags": ["formal", "gray", "shirt"]
+    },
+    {
+      "id": 5,
+      "name": "橘色外套",
+      "season": "autumn",
+      "category": "jacket",
+      "subcategory": "casual-jacket",
+      "style": ["casual", "street"],
+      "image": "images/dress5.png",
+      "gender": "male",
+      "tags": ["autumn", "jacket", "orange", "casual", "warm"]
+    },
+    {
+      "id": 6,
+      "name": "藍色長袖上衣",
+      "season": "spring",
+      "category": "shirt",
+      "subcategory": "long-sleeve-tshirt",
+      "style": ["casual", "fresh"],
+      "image": "images/dress6.png",
+      "gender": "female",
+      "tags": ["blue", "long-sleeve", "tshirt", "fresh", "spring"]
+    },
+    {
+      "id": 7,
+      "name": "灰色西裝外套",
+      "season": "winter",
+      "category": "jacket",
+      "subcategory": "suit-jacket",
+      "style": ["formal", "business"],
+      "image": "images/dress14.png",
+      "gender": "male",
+      "tags": ["gray", "suit", "formal", "office", "winter"]
+    },
+    {
+      "id": 8,
+      "name": "綠色短裙",
+      "season": "summer",
+      "category": "skirt",
+      "subcategory": "green-skirt",
+      "style": ["fresh", "cute"],
+      "image": "images/dress20.png",
+      "gender": "female",
+      "tags": ["skirt", "green", "summer", "cute", "light"]
+    },
+    {
+      "id": 9,
+      "name": "粉紅洋裝",
+      "season": "spring",
+      "category": "dress",
+      "subcategory": "sleeveless-dress",
+      "style": ["sweet", "date"],
+      "image": "images/dress28.png",
+      "gender": "female",
+      "tags": ["pink", "spring", "dress", "cute", "sweet", "sleeveless"]
+    },
+    {
+      "id": 10,
+      "name": "藍色長褲",
+      "season": "autumn",
+      "category": "pants",
+      "subcategory": "blue-pants",
+      "style": ["formal", "daily"],
+      "image": "images/dress23.png",
+      "gender": "male",
+      "tags": ["blue", "pants", "casual", "autumn", "versatile"]
+    },
+    {
+      "id": 11,
+      "name": "黑色長褲",
+      "season": "winter",
+      "category": "pants",
+      "subcategory": "suit-pants",
+      "style": ["formal", "office"],
+      "image": "images/dress23.png",
+      "gender": "male",
+      "tags": ["black", "pants", "formal", "winter", "suit"]
+    },
+    {
+      "id": 12,
+      "name": "紅色運動背心",
+      "season": "summer",
+      "category": "tank",
+      "subcategory": "red-sporttank",
+      "style": ["sport", "active"],
+      "image": "images/dress16.png",
+      "gender": "male",
+      "tags": ["red", "tank-top", "summer", "sport", "energetic"]
+    },
+    {
+      "id": 13,
+      "name": "橘色短褲",
+      "season": "summer",
+      "category": "shorts",
+      "subcategory": "orange-shorts",
+      "style": ["sport", "casual"],
+      "image": "images/dress24.png",
+      "gender": "male",
+      "tags": ["orange", "shorts", "sport", "summer", "light"]
+    },
+    {
+      "id": 14,
+      "name": "綠色洋裝",
+      "season": "spring",
+      "category": "dress",
+      "subcategory": "short-sleeve-dress",
+      "style": ["sweet", "daily"],
+      "image": "images/dress29.jpg",
+      "gender": "female",
+      "tags": ["green", "dress", "spring", "elegant", "fresh"]
+    },
+    {
+      "id": 15,
+      "name": "黃色連身泳衣",
+      "season": "summer",
+      "category": "swimsuit",
+      "subcategory": "one-piece-swimsuit",
+      "style": ["beach", "casual"],
+      "image": "images/dress39.png",
+      "gender": "female",
+      "tags": ["yellow", "swimsuit", "summer", "vacation", "beach"]
+    }
+  ]
+}

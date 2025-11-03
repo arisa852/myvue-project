@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../pages/HomeView.vue'
+import StyleView from '../pages/StyleView.vue'
 
 const routes = [
   {
@@ -9,14 +10,9 @@ const routes = [
   },
   { path: '/home', redirect: { name: 'home' } },
   {
-    path: '/food',
-    name: 'food',
-    component: '',
-  },
-  {
-    path: '/wear',
-    name: 'wear',
-    component: '',
+    path: '/style',
+    name: 'style',
+    component: StyleView,
   },
 ]
 

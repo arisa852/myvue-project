@@ -43,6 +43,7 @@ export default {
 .feature {
   padding: 40px 0;
   overflow: hidden;
+  background-color: #fff;
 
   & h1 {
     font-weight: bold;
@@ -84,7 +85,6 @@ export default {
       }
 
       & h6 {
-        font-family: 'Noto Sans TC', sans-serif;
         font-size: 1.375rem;
         text-align: center;
         font-weight: bold;
