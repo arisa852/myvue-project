@@ -1,6 +1,6 @@
 <template>
   <div class="outfit-card">
-    <img :src="item.img" :alt="item.name" v-if="item" />
+    <img :src="item.image" :alt="item.name" v-if="item" />
     <p>{{ item.name }}</p>
   </div>
 </template>
@@ -28,14 +28,17 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 15px;
+  width: 216px;
+  text-align: center;
 
   img {
     width: 100%;
+    max-width: 120px;
     overflow: hidden;
     object-fit: cover;
     display: block;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   p {

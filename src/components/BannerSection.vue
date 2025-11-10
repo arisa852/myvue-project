@@ -45,7 +45,7 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .header-space {
-  height: 100px;
+  height: 65px;
 }
 
 .banner {

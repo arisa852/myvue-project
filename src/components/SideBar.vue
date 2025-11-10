@@ -8,7 +8,7 @@
         :class="{active:filters.season === value}"
         @click="filters.season = value">{{ label }}</li>
       </ul>
-      <p>目前選擇{{ displaySeason }}</p>
+      <p>目前選擇：{{ displaySeason }}</p>
     </div>
     <div class="style-group">
       <h6>{{ title2 }}</h6>
@@ -25,11 +25,11 @@
         <option value="active">活動</option>
         <option value="sport">運動</option>
       </select>
-      <p>目前選擇{{ displayStyle }}</p>
+      <p>目前選擇：{{ displayStyle }}</p>
     </div>
     <div class="search-space">
 	<label><input v-model.trim="filters.keyword" type='search' value="正式" placeholder="請輸入關鍵字"></input></label>
-	<p>目前搜尋{{filters.keyword}}</p>
+	<p>目前搜尋：{{filters.keyword}}</p>
   </div>
   </aside>
 </template>
@@ -54,23 +54,21 @@ export default {
     const filters = reactive({
       season: 'all',
       style: 'all',
-      keyword: 'all',
+      keyword: '',
     })
 
     const seasonmap = {
       all: '全部',
-      spring: '春季',
       summer: '夏季',
-      autumn: '秋季',
       winter: '冬季',
+      mild: '中性季節',
     }
     const displaySeason = computed(() => {
       const map = {
         all: '全部',
         summer: '夏季',
         winter: '冬季',
-        spring: '春季',
-        autumn: '秋季',
+        mild: '中性季節',
       }
       return map[filters.season] || ''
     })
@@ -105,13 +103,11 @@ export default {
 .header-space{
   height: 100px;
 }
-
-
 .sidebar{
   display: flex;
   align-items: flex-start;
   width:280px; 
-  height:100vh;
+  min-height: 100vh;
   border-right:1px solid #dfecec; 
   padding:50px 20px; 
   box-sizing:border-box;
@@ -150,11 +146,7 @@ export default {
       border-color: #00bfa6;
     }
     }
-
-    
-
  }
-
 
   select{
       padding: 8px 12px;
@@ -169,14 +161,12 @@ export default {
         outline: none;
         border-color: #00bfa6;
     }
-
     p{
       @include paragraph-style;
     }
 }
 
 .search-space{
-  
   input{
     border-radius: 30px;
     padding: 8px;
