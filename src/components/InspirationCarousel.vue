@@ -19,7 +19,8 @@
         disableOnInteraction: false,
       }"
       :breakpoints="{
-        768: { slidesPerView: 2 },
+        0: { slidesPerView: 1 },
+        640: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
       }"
     >
@@ -27,13 +28,15 @@
         <img :src="item.image" :alt="item.name" />
         <p>{{ item.name }}</p>
       </swiper-slide>
+
+      <!----Navigation buttons-->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </swiper>
   </div>
 </template>
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/css/free-mode'
-
 import { Autoplay, FreeMode, Pagination, Navigation } from 'swiper/modules'
 
 export default {
@@ -74,6 +77,10 @@ export default {
   justify-content: center;
   margin-top: 24px;
 }
+
+::v-deep(.swiper) {
+  position: relative;
+}
 .swiper {
   width: 100%;
   max-width: 960px;
@@ -107,5 +114,40 @@ export default {
 ::v-deep(.swiper-pagination) {
   margin-top: 16px;
   position: relative;
+}
+
+::v-deep(.swiper-pagination-bullet) {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+::v-deep(.swiper-pagination-bullet-active) {
+  background-color: $primary-color;
+  transform: scale(1.2);
+}
+
+::v-deep(.swiper-button-next),
+::v-deep(.swiper-button-prev) {
+  color: #333;
+  transition: all 0.3s ease;
+  width: 30px;
+  height: 30px;
+  top: 40%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+
+  @include respond-to(mobile) {
+    top: 50%;
+  }
+}
+::v-deep(.swiper-button-next:hover),
+::v-deep(.swiper-button-prev:hover) {
+  color: $primary-color;
 }
 </style>

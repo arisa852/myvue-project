@@ -5,11 +5,7 @@
       <div class="outfit-container">
         <OutfitCard :item="top" v-if="top"></OutfitCard>
         <OutfitCard :item="bottom" v-if="bottom"></OutfitCard>
-      </div>
-
-      <div class="outfit-show" v-if="hero">
-        <img :src="hero.image" alt="hero.name||'今日穿搭預覽'" />
-        <p>{{ hero.name }}</p>
+        <OutfitCard :item="hero" :is-hero="true" v-if="hero"></OutfitCard>
       </div>
     </div>
     <button @click="reRoll">再抽一次</button>
@@ -37,12 +33,11 @@ export default {
   setup(props, { emit }) {
     const top = computed(() => props.outfit?.top || null)
     const bottom = computed(() => props.outfit?.bottom || null)
-    const hero = computed(() => props.hero || null)
     const reRoll = () => emit('reroll')
 
     console.log('[TodayOutfit]收到的outfit:', props.outfit)
     console.log('[TodayOutfit]收到的hero:', props.hero)
-    return { top, bottom, hero, reRoll }
+    return { top, bottom, reRoll }
   },
 }
 </script>
@@ -54,7 +49,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
   padding: 30px 20px;
   max-width: 960px;
   margin: 0 auto;
@@ -63,6 +57,15 @@ export default {
     @include minheading-style;
     text-align: left;
     margin-left: 20px;
+
+    @include respond-to(pad) {
+      text-align: center;
+      margin-left: 20px;
+    }
+    @include respond-to(mobile) {
+      text-align: center;
+      margin-left: 20px;
+    }
   }
   & span {
     @include paragraph-style;
@@ -73,37 +76,66 @@ export default {
     @include button-style {
       color: #fff;
     }
+    @include respond-to(pad) {
+      align-items: center;
+      text-align: center;
+    }
+    @include respond-to(mobile) {
+      align-items: center;
+      text-align: center;
+      padding: 20px 16px;
+    }
   }
 }
 
 .outfit-row {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
-  gap: 24px; // 卡片區與 hero 的距離
   margin-top: 24px;
-  padding: 20px;
+  padding: 10px 0;
+  width: 100%;
+
+  @include respond-to(pad) {
+    flex-direction: column;
+    align-items: center;
+  }
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .outfit-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
+  flex: 0 0 auto;
+
+  @include respond-to(pad) {
+    flex-direction: column;
+  }
+  @include respond-to(mobile) {
+    flex-direction: column;
+  }
 }
 
-.outfit-show {
+/* .outfit-show {
   background-color: #fff;
   box-shadow: 0 8px 20px rgba(0, 191, 166, 0.25);
   border: 1px solid #b3ede4;
   padding: 24px 16px;
   border-radius: 16px;
-  width: 260px;
+  width: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-sizing: border-box;
 
   & img {
-    width: 140px;
+    width: 100%;
     margin-bottom: 12px;
     display: block;
     object-fit: contain;
@@ -112,5 +144,16 @@ export default {
     text-align: center;
     @include paragraph-style;
   }
-}
+  @include respond-to(pad) {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 40px;
+  }
+
+  @include respond-to(mobile) {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 40px;
+  }
+} */
 </style>

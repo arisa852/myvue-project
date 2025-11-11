@@ -1,6 +1,7 @@
 <template>
   <div class="header-space"></div>
   <aside class="sidebar">
+    <button v-if="showClose" class="sidebar-close-button" @click="handleClose">x</button>
     <div class="select-group">
       <h6>{{ title1 }}</h6>
       <ul class="season-list">
@@ -47,6 +48,10 @@ export default {
       type: String,
       default: '風格篩選',
     },
+    showClose:{
+      type:Boolean,
+      default:false,
+    },
   },
   setup(props,{emit}) {
     console.log(props.title1)
@@ -92,7 +97,11 @@ export default {
     watch(filters,(newVal)=>{
       emit('filters-change',newVal)
     },{deep:true})
-    return{filters,displaySeason,displayStyle,seasonmap}
+
+    const handleClose = ()=>{
+      emit('close')
+    }
+    return{filters,displaySeason,displayStyle,seasonmap,handleClose}
   },
 }
 </script>
@@ -108,11 +117,28 @@ export default {
   align-items: flex-start;
   width:280px; 
   min-height: 100vh;
-  border-right:1px solid #dfecec; 
-  padding:50px 20px; 
+  padding:30px 20px; 
   box-sizing:border-box;
   flex-direction: column;
   background-color: #fff;
+  position: relative;
+}
+
+.sidebar-close-button{
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      line-height: 1;
+      position: absolute;
+      right: 20px;
+      top:0;
+      transition: transform 2s ease;
+      
+      &:hover{
+        transform: scale(1.5);
+      }
+    
 }
 
 .select-group,.style-group{
