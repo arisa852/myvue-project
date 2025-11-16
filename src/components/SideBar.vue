@@ -116,7 +116,6 @@ export default {
   display: flex;
   align-items: flex-start;
   width:280px; 
-  min-height: 100vh;
   padding:30px 20px; 
   box-sizing:border-box;
   flex-direction: column;

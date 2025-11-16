@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
 
 .style-layout {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   margin: 0 auto;
   min-height: calc(100vh - 100px);
   max-width: 1200px;
@@ -211,6 +211,8 @@ onBeforeUnmount(() => {
   padding: 10px 0;
   margin-top: 16px;
   border-radius: 15px 15px 0px 0px;
+  overflow: hidden;
+  
 }
 .inspiration-carousel {
   background-color: #ffffff;
