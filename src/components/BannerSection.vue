@@ -45,7 +45,7 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .header-space {
-  height: 65px;
+  height: 50px;
 }
 
 .banner {
@@ -94,12 +94,12 @@ export default {
       font-weight: bold;
       margin-bottom: 10px;
       line-height: 1.5;
-      font-size: 2.35rem;
+      font-size: 2.175rem;
       color: #333;
     }
 
     & p {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       line-height: 1.5;
       margin-bottom: 20px;
       color: #333;
@@ -108,6 +108,7 @@ export default {
 
   .bn-img {
     width: 50%;
+    max-width: 300px;
 
     @include respond-to(pad) {
       width: 100%;

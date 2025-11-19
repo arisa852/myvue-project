@@ -45,7 +45,7 @@
 </template>
 <script setup>
 import BannerSection from '@/components/BannerSection.vue'
-import SideBar from '@/components/SideBar.vue'
+import SideBar from '@/components/SideBarStyle.vue'
 import Artboard from '@/assets/images/instration.png'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import TodayOutfit from '@/components/TodayOutfit.vue'
@@ -212,7 +212,6 @@ onBeforeUnmount(() => {
   margin-top: 16px;
   border-radius: 15px 15px 0px 0px;
   overflow: hidden;
-  
 }
 .inspiration-carousel {
   background-color: #ffffff;

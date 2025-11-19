@@ -368,7 +368,7 @@
       "subcategory": "blue-bikini",
       "slot": "onepiece",
       "style": ["beach", "casual"],
-      "image": "images/dress30.png",
+      "image": "images/dress40.png",
       "gender": "female",
       "tags": ["swimsuit", "bikini", "blue", "summer", "beach", "vacation"]
     },
@@ -380,7 +380,7 @@
       "subcategory": "cutout-onepiece",
       "slot": "onepiece",
       "style": ["beach", "casual"],
-      "image": "images/dress31.png",
+      "image": "images/dress41.png",
       "gender": "female",
       "tags": ["swimsuit", "one-piece", "cutout", "teal", "summer", "vacation"]
     },
@@ -392,7 +392,7 @@
       "subcategory": "stripe-bikini",
       "slot": "onepiece",
       "style": ["beach", "cute"],
-      "image": "images/dress32.png",
+      "image": "images/dress42.png",
       "gender": "female",
       "tags": ["swimsuit", "bikini", "stripe", "pink", "green", "cute", "summer"]
     },
@@ -404,7 +404,7 @@
       "subcategory": "yellow-bikini",
       "slot": "onepiece",
       "style": ["beach", "casual"],
-      "image": "images/dress33.png",
+      "image": "images/dress43.png",
       "gender": "female",
       "tags": ["swimsuit", "bikini", "yellow", "summer", "vacation"]
     },
@@ -416,7 +416,7 @@
       "subcategory": "string-bikini",
       "slot": "onepiece",
       "style": ["beach", "casual"],
-      "image": "images/dress34.png",
+      "image": "images/dress44.png",
       "gender": "female",
       "tags": ["swimsuit", "bikini", "lightblue", "summer", "beach"]
     }
@@ -484,6 +484,133 @@
     "mood": ["work", "commute"],
     "image": "/inspiration/set1.png",
     "tags": ["coat", "plaid", "long-pants", "sneakers"]
+  }
+],
+  "restaurantlist": [
+  {
+    "id": 1,
+    "name": "小山食堂",
+    "category": "japanese",
+    "locationTag": "taipei-main",
+    "city": "taipei",
+    "address": "台北市中正區忠孝西路一段 10 號",
+    "priceRange": "low",
+    "rating": 4.3,
+    "services": ["dine-in", "takeout"],
+    "openingHours": {
+      "mon": "休息",
+      "tue": "11:00-21:00",
+      "wed": "11:00-21:00",
+      "thu": "11:00-21:00",
+      "fri": "11:00-22:00",
+      "sat": "11:00-22:00",
+      "sun": "11:00-21:00"
+    },
+    "coverImage": "/restaurants/japan_2.jpg",
+    "images": [
+      "/restaurants/japan_3.jpg",
+      "/restaurants/japan_1.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "北車一番拉麵",
+    "category": "japanese",
+    "locationTag": "taipei-main",
+    "city": "taipei",
+    "address": "台北市中正區忠孝西路一段 20 號",
+    "priceRange": "medium",
+    "rating": 4.5,
+    "services": ["dine-in", "takeout"],
+    "openingHours": {
+      "mon": "11:30-21:30",
+      "tue": "休息",
+      "wed": "11:30-21:30",
+      "thu": "11:30-21:30",
+      "fri": "11:30-22:00",
+      "sat": "11:00-22:00",
+      "sun": "11:00-21:30"
+    },
+    "coverImage": "/restaurants/noodles_1.jpg",
+    "images": [
+      "/restaurants/noodles_2.jpg",
+      "/restaurants/noodles_3.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "中央車站咖啡館",
+    "category": "cafe",
+    "locationTag": "taipei-main",
+    "city": "taipei",
+    "address": "台北市中正區忠孝西路一段 35 號",
+    "priceRange": "high",
+    "rating": 4.1,
+    "services": ["dine-in", "takeout"],
+    "openingHours": {
+      "mon": "休息",
+      "tue": "08:00-20:00",
+      "wed": "08:00-20:00",
+      "thu": "08:00-20:00",
+      "fri": "08:00-21:00",
+      "sat": "09:00-21:00",
+      "sun": "09:00-20:00"
+    },
+    "coverImage": "/restaurants/coffee_3.jpg",
+    "images": [
+      "/restaurants/coffee_1.jpg",
+      "/restaurants/coffee_2.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "轉運站早午餐",
+    "category": "lightmeal",
+    "locationTag": "taipei-main",
+    "city": "taipei",
+    "address": "台北市中正區忠孝西路一段 50 號",
+    "priceRange": "low",
+    "rating": 4.0,
+    "services": ["dine-in", "takeout"],
+    "openingHours": {
+      "mon": "08:30-15:00",
+      "tue": "08:30-15:00",
+      "wed": "休息",
+      "thu": "08:30-15:00",
+      "fri": "08:30-15:00",
+      "sat": "08:00-16:00",
+      "sun": "08:00-16:00"
+    },
+    "coverImage": "restaurants/brunch_1.jpg",
+    "images": [
+      "/restaurants/brunch_2.jpg",
+      "/restaurants/brunch_3.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "車站口川味小館",
+    "category": "chinese",
+    "locationTag": "taipei-main",
+    "city": "taipei",
+    "address": "台北市中正區忠孝西路一段 65 號",
+    "priceRange": "high",
+    "rating": 4.4,
+    "services": ["dine-in", "takeout"],
+    "openingHours": {
+      "mon": "11:30-21:30",
+      "tue": "11:30-21:30",
+      "wed": "11:30-21:30",
+      "thu": "休息",
+      "fri": "11:30-22:00",
+      "sat": "11:00-22:00",
+      "sun": "11:00-21:30"
+    },
+    "coverImage": "restaurants/asia_1.jpg",
+    "images": [
+      "restaurants/asia_2.jpg",
+      "restaurants/asia_3.jpg"
+    ]
   }
 ]
 }
