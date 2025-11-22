@@ -10,6 +10,7 @@
         :bannerImg="Bnfood"
       >
       </BannerSection>
+      
     </main>
   </div>
 </template>
