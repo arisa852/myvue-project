@@ -30,33 +30,33 @@
         <li
           v-for="option in priceRange"
           :key="option.value"
-          @click="select.price = option.value"
-          :class="{ active: select.price === option.value }"
+          @click="select.priceRange = option.value"
+          :class="{ active: select.priceRange === option.value }"
         >
           {{ option.label }}
         </li>
       </ul>
-      <p>目前選擇:{{ select.price }}</p>
+      <p>目前選擇:{{ select.priceRange }}</p>
     </div>
     <div class="place-group">
       <h6>{{ PlaceTitle }}</h6>
       <label class="radio-wrapper">
-        <input type="radio" value="taipei-main" v-model="select.place" />
+        <input type="radio" value="taipei-main" v-model="select.locationTag" />
         <span class="custom-radio"></span>
         <span class="radio-text">台北車站</span>
       </label>
       <label class="radio-wrapper">
-        <input type="radio" value="yongkang" v-model="select.place" />
+        <input type="radio" value="yongkang" v-model="select.locationTag" />
         <span class="custom-radio"></span>
         <span class="radio-text">永康街</span>
       </label>
       <label class="radio-wrapper">
-        <input type="radio" value="taipei-east" v-model="select.place" />
+        <input type="radio" value="taipei-east" v-model="select.locationTag" />
         <span class="custom-radio"></span>
         <span class="radio-text">台北東區</span>
       </label>
       <label class="radio-wrapper">
-        <input type="radio" value="xinyi-Shopping" v-model="select.place" />
+        <input type="radio" value="xinyi-Shopping" v-model="select.locationTag" />
         <span class="custom-radio"></span>
         <span class="radio-text">信義商圈</span>
       </label>
@@ -86,8 +86,8 @@ export default {
   setup(props, { emit }) {
     const select = reactive({
       category: '',
-      price: '',
-      place: '',
+      priceRange: '',
+      locationTag: '',
     })
 
     const DisplayCategory = computed(() => {
@@ -107,19 +107,19 @@ export default {
         'taipei-east': '台北東區',
         'xinyi-Shopping': '信義商圈',
       }
-      return map[select.place] || ''
+      return map[select.locationTag] || ''
     })
 
     const priceRange = [
       { label: '100-150', value: 'low' },
-      { label: '150-200', value: 'medium' },
+      { label: '200-250', value: 'medium' },
       { label: '250以上', value: 'high' },
     ]
 
     watch(
       select,
       (newVal) => {
-        emit('select-change', newVal)
+        emit('select-change', { ...newVal })
       },
       { deep: true },
     )
@@ -151,6 +151,7 @@ export default {
   width: 220px;
   background-color: #fff;
   border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   h6 {
     @include subheading-style;
@@ -218,6 +219,7 @@ export default {
   border-radius: 15px;
   margin-bottom: 10px;
   width: 220px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   h6 {
     @include subheading-style;

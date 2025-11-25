@@ -5,9 +5,14 @@
     <div class="select-group">
       <h6>{{ title1 }}</h6>
       <ul class="season-list">
-        <li v-for="(label,value) in seasonmap" :key="value" 
-        :class="{active:filters.season === value}"
-        @click="filters.season = value">{{ label }}</li>
+        <li
+          v-for="(label, value) in seasonmap"
+          :key="value"
+          :class="{ active: filters.season === value }"
+          @click="filters.season = value"
+        >
+          {{ label }}
+        </li>
       </ul>
       <p>目前選擇：{{ displaySeason }}</p>
     </div>
@@ -29,13 +34,19 @@
       <p>目前選擇：{{ displayStyle }}</p>
     </div>
     <div class="search-space">
-	<label><input v-model.trim="filters.keyword" type='search' value="正式" placeholder="請輸入關鍵字"></input></label>
-	<p>目前搜尋：{{filters.keyword}}</p>
-  </div>
+      <label
+        ><input
+          v-model.trim="filters.keyword"
+          type="search"
+          value="正式"
+          placeholder="請輸入關鍵字"
+      /></label>
+      <p>目前搜尋：{{ filters.keyword }}</p>
+    </div>
   </aside>
 </template>
 <script>
-import {reactive, computed,watch } from 'vue'
+import { reactive, computed, watch } from 'vue'
 
 export default {
   name: 'SideBar',
@@ -48,12 +59,12 @@ export default {
       type: String,
       default: '風格篩選',
     },
-    showClose:{
-      type:Boolean,
-      default:false,
+    showClose: {
+      type: Boolean,
+      default: false,
     },
   },
-  setup(props,{emit}) {
+  setup(props, { emit }) {
     console.log(props.title1)
 
     const filters = reactive({
@@ -94,14 +105,18 @@ export default {
       }
       return map[filters.style] || ''
     })
-    watch(filters,(newVal)=>{
-      emit('filters-change',newVal)
-    },{deep:true})
+    watch(
+      filters,
+      (newVal) => {
+        emit('filters-change', newVal)
+      },
+      { deep: true },
+    )
 
-    const handleClose = ()=>{
+    const handleClose = () => {
       emit('close')
     }
-    return{filters,displaySeason,displayStyle,seasonmap,handleClose}
+    return { filters, displaySeason, displayStyle, seasonmap, handleClose }
   },
 }
 </script>
@@ -109,90 +124,89 @@ export default {
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
-.header-space{
+.header-space {
   height: 100px;
 }
-.sidebar{
+.sidebar {
   display: flex;
   align-items: flex-start;
-  width:280px; 
-  padding:30px 20px; 
-  box-sizing:border-box;
+  width: 280px;
+  padding: 30px 20px;
+  box-sizing: border-box;
   flex-direction: column;
   background-color: #fff;
   position: relative;
 }
 
-.sidebar-close-button{
-      background: none;
-      border: none;
-      font-size: 30px;
-      cursor: pointer;
-      line-height: 1;
-      position: absolute;
-      right: 20px;
-      top:0;
-      transition: transform 2s ease;
-      
-      &:hover{
-        transform: scale(1.5);
-      }
-    
+.sidebar-close-button {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  transition: transform 2s ease;
+
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 
-.select-group,.style-group{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.select-group,
+.style-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 20px;
 
-  h6{
+  h6 {
     @include subheading-style;
- }
+  }
 
- .season-list{
-  list-style: none;
-  padding: 0;
-  margin:0;
-  flex-wrap: wrap;
-  gap: 30px;
-  font-size: 1.175rem;
+  .season-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    gap: 30px;
+    font-size: 1.175rem;
 
-    li{
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-
-
-    &.active{
-      background-color: #00bfa6;
-      color: #fff;
-      border-color: #00bfa6;
-    }
-    }
- }
-
-  select{
+    li {
       padding: 8px 12px;
       border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
       cursor: pointer;
-      transition: border-color 0.2s ease;
-      color:$text-color;
-   }
-    &:focus {
-        outline: none;
+      transition: all 0.2s;
+
+      &.active {
+        background-color: #00bfa6;
+        color: #fff;
         border-color: #00bfa6;
+      }
     }
-    p{
-      @include paragraph-style;
-    }
+  }
+
+  select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    color: $text-color;
+  }
+  &:focus {
+    outline: none;
+    border-color: #00bfa6;
+  }
+  p {
+    @include paragraph-style;
+  }
 }
 
-.search-space{
-  input{
+.search-space {
+  input {
     border-radius: 30px;
     padding: 8px;
     margin-bottom: 20px;

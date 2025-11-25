@@ -42,8 +42,9 @@ export default {
   .sort-bar {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
     gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 15px;
 
     .price-btn {
       @include button-style {
@@ -60,10 +61,9 @@ export default {
   .food-col {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   }
 }
 </style>
