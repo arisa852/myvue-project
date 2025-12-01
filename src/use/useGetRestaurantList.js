@@ -70,7 +70,7 @@ export function useGetRestaurantList() {
     restaurantlists.value
       .filter((i) => !selects.category || i.category === selects.category)
       .filter((i) => !selects.priceRange || i.priceRange === selects.priceRange)
-      .filter((i) => !selects.locationTag || i.locationTag === selects.locationTag)
+      .filter((i) => !selects.locationTag || i.locationTag === selects.locationTag),
   )
 
   const priceOrder = {
@@ -79,15 +79,59 @@ export function useGetRestaurantList() {
     high: 3,
   }
 
-  const sortPrice = () => {
-    restaurantlists.value.sort((a, b) => {
-      return priceOrder[a.priceRange] - priceOrder[b.priceRange]
-    })
+  const sortState = reactive({
+    priceMode: 'none',
+    rateMode: 'none',
+  })
+
+  function togglePricesort() {
+    if (sortState.priceMode === 'none') {
+      sortState.priceMode = 'asc'
+    } else if (sortState.priceMode === 'asc') {
+      sortState.priceMode = 'desc'
+    } else {
+      sortState.priceMode = 'none'
+    }
   }
 
-  const sortRate = () => {
-    restaurantlists.value.sort((a, b) => b.rating - a.rating)
+  function toggleRatesort(){
+     if (sortState.rateMode === 'none') {
+      sortState.rateMode = 'asc'
+    } else if (sortState.rateMode === 'asc') {
+      sortState.rateMode = 'desc'
+    } else {
+      sortState.rateMode = 'none'
+    }
   }
+
+  function sortPrice(mode){
+    if(mode === 'asc'){
+      restaurantlists.value.sort((a,b)=> priceOrder[a.priceRange] - priceOrder[b.priceRange])
+    }else if(mode === 'desc'){
+      restaurantlists.value.sort((a,b) =>priceOrder[b.priceRange] - priceOrder[a.priceRange])
+    }
+  }
+
+  function sortRate(mode){
+    if(mode === 'asc'){
+      restaurantlists.value.sort((a,b) =>a.rating - b.rating)
+    }else if(mode ==='desc'){
+      restaurantlists.value.sort((a,b)=> b.rating - a.rating)
+    }
+  }
+
+
+  
+
+  // const sortPrice = () => {
+  //   restaurantlists.value.sort((a, b) => {
+  //     return priceOrder[a.priceRange] - priceOrder[b.priceRange]
+  //   })
+  // }
+
+  // const sortRate = () => {
+  //   restaurantlists.value.sort((a, b) => b.rating - a.rating)
+  // }
 
   const fetchRestaurantlist = async () => {
     loading.value = true
@@ -109,9 +153,12 @@ export function useGetRestaurantList() {
     error,
     selects,
     todayItems,
+    sortState,
+    togglePricesort,
+    toggleRatesort,
     sortPrice,
     sortRate,
     fetchRestaurantlist,
-    getOpentime,
+    getOpentime
   }
 }

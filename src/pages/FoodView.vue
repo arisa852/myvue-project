@@ -15,8 +15,9 @@
       <TodayFood
         v-if="top3.length > 0"
         :items="top3"
-        @sortPrice="sortPrice"
-        @sortRate="sortRate"
+        :sort-state="sortState"
+        @toggle-Price="handleClickPrice"
+        @toggle-Rate="handleClickRate"
       ></TodayFood>
     </main>
   </div>
@@ -34,6 +35,9 @@ const {
   error,
   selects,
   todayItems,
+  sortState,
+  togglePricesort,
+  toggleRatesort,
   sortPrice,
   sortRate,
   fetchRestaurantlist,
@@ -45,8 +49,18 @@ function handleSelectChange(newVal) {
   Object.assign(selects, newVal)
 }
 
+function handleClickPrice() {
+  togglePricesort()
+  sortPrice(sortState.priceMode)
+}
+
+function handleClickRate() {
+  toggleRatesort()
+  sortRate(sortState.rateMode)
+}
+
 const top3 = computed(() =>
-  todayItems.value.slice(0, 2).map((item) => ({
+  todayItems.value.slice(0, 3).map((item) => ({
     ...item,
     openNow: getOpentime(item),
   })),
@@ -56,6 +70,13 @@ watch(todayItems, (v) => {
   console.log(
     'todayItems',
     v.map((x) => x.name),
+  )
+})
+
+watch(top3, (v) => {
+  console.log(
+    '父層top3更新:',
+    v.map((i) => i.name),
   )
 })
 
@@ -90,8 +111,8 @@ onMounted(async () => {
   flex: 1;
   box-sizing: border-box;
   min-width: 0;
-  padding: 0 20px;
-  display: block;
+  padding: 20px;
+  display: inline-block;
   margin: 10px 0;
 }
 </style>

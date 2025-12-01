@@ -1,8 +1,18 @@
 <template>
   <section class="today-food">
     <div class="sort-bar">
-      <button class="price-btn" @click="sortPrice">價格排序</button>
-      <button class="rate-btn" @click="sortRate">評分排序</button>
+      <button class="price-btn" @click="onClickprice">
+        價格排序
+        <span v-if="sortState.priceMode === 'asc'">↑</span>
+        <span v-else-if="sortState.priceMode === 'desc'">↓</span>
+        <span v-else>-</span>
+      </button>
+      <button class="rate-btn" @click="onClickrate">
+        評分排序
+        <span v-if="sortState.rateMode === 'asc'">↑</span>
+        <span v-else-if="sortState.rateMode === 'desc'">↓</span>
+        <span v-else>-</span>
+      </button>
     </div>
     <div class="food-col">
       <RestaurantsCard v-for="food in items" :key="food.id" :item="food" />
@@ -10,6 +20,7 @@
   </section>
 </template>
 <script>
+import { watch } from 'vue'
 import RestaurantsCard from './RestaurantsCard.vue'
 
 export default {
@@ -18,16 +29,28 @@ export default {
   props: {
     items: {
       type: Array,
+      required: true,
+    },
+    sortState: {
+      type: Object,
+      required: true,
     },
   },
-  emits: ['sortPrice', 'sortRate'],
+  emits: ['toggle-Price', 'toggle-Rate'],
 
   setup(props, { emit }) {
-    console.log('收到的Filtersfood', props.items)
-    const sortPrice = () => emit('sortPrice')
-    const sortRate = () => emit('sortRate')
+    ;(watch(
+      () => props.items,
+      (v) => {
+        console.log('todayFood接收到itemss:', v)
+      },
+    ),
+      { immediate: true })
 
-    return { sortPrice, sortRate }
+    const onClickprice = () => emit('toggle-Price')
+    const onClickrate = () => emit('toggle-Rate')
+
+    return { onClickprice, onClickrate }
   },
 }
 </script>
@@ -36,8 +59,8 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .today-food {
-  padding: 10px;
-  max-width: 960px;
+  max-width: 860px;
+  margin: 0 20px;
 
   .sort-bar {
     display: flex;

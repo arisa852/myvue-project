@@ -34,11 +34,10 @@ defineProps({
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 16px;
   width: 100%;
-  max-width: 800px;
 
   .left-col {
     flex: 1;
@@ -71,21 +70,19 @@ defineProps({
 
   .restaurants-img {
     width: 50%;
-    background-color: #fff;
-    padding: 10px;
+    overflow: hidden;
 
     & img {
-      max-width: 180px;
+      max-width: 300px;
       border-radius: 16px;
       object-fit: cover;
-      overflow: hidden;
       display: block;
     }
   }
   .btn-group {
     display: flex;
     align-items: flex-start;
-    gap: 30px;
+    gap: 10px;
 
     .navigate-btn {
       @include button-style;
