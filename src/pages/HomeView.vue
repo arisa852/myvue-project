@@ -9,10 +9,10 @@
     :foodEntrance="foodImg"
     :wearEntrance="wearImg"
     @goto-food="() => $router.push('/food')"
-    @goto-wear="() => $router.push('/food')"
+    @goto-wear="() => $router.push('/style')"
   >
   </EntranceSection>
-  <Footer />
+  <Footer></Footer>
 </template>
 <script>
 import BannerSection from '@/components/BannerSection.vue'
@@ -42,6 +42,7 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
+
 .cta-button {
   @include button-style {
     border: 2px solid $primary-color;

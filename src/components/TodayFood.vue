@@ -15,12 +15,16 @@
       </button>
     </div>
     <div class="food-col">
-      <RestaurantsCard v-for="food in items" :key="food.id" :item="food" />
+      <RestaurantsCard
+        v-for="food in items"
+        :key="food.id"
+        :item="food"
+        @open-drawer="onOpenDrawer"
+      />
     </div>
   </section>
 </template>
 <script>
-import { watch } from 'vue'
 import RestaurantsCard from './RestaurantsCard.vue'
 
 export default {
@@ -36,21 +40,18 @@ export default {
       required: true,
     },
   },
-  emits: ['toggle-Price', 'toggle-Rate'],
+  emits: ['toggle-Price', 'toggle-Rate','open-drawer'],
 
   setup(props, { emit }) {
-    ;(watch(
-      () => props.items,
-      (v) => {
-        console.log('todayFood接收到itemss:', v)
-      },
-    ),
-      { immediate: true })
-
     const onClickprice = () => emit('toggle-Price')
     const onClickrate = () => emit('toggle-Rate')
+   
 
-    return { onClickprice, onClickrate }
+    function onOpenDrawer(item) {
+      emit('open-drawer', item)
+    }
+
+    return { onClickprice, onClickrate, onOpenDrawer }
   },
 }
 </script>

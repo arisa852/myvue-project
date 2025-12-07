@@ -103,7 +103,7 @@ export default {
     const DisplayPlace = computed(() => {
       const map = {
         'taipei-main': '台北車站',
-        yongkang: '永康街',
+        'yongkang': '永康街',
         'taipei-east': '台北東區',
         'xinyi-Shopping': '信義商圈',
       }

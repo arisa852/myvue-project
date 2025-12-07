@@ -52,7 +52,10 @@ export function getOpentime(item) {
   const nowMin = now.getHours() * 60 + now.getMinutes()
   console.log('nowMin', typeof nowMin, nowMin)
 
-  return isOpennow(startMin, endMin, nowMin)
+  return {
+    openNow: isOpennow(startMin, endMin, nowMin),
+    todayHours: hours,
+  }
 }
 
 export function useGetRestaurantList() {
@@ -60,18 +63,17 @@ export function useGetRestaurantList() {
   const error = ref(null)
   const restaurantlists = ref([])
 
-  const selects = reactive({
-    category: '',
-    priceRange: '',
-    locationTag: '',
+  const enhancedRestaurants = computed(() => {
+    return restaurantlists.value.map((item) => {
+      const { openNow, todayHours } = getOpentime(item)
+      console.log('getOpentime in composable:', typeof getOpentime)
+      return {
+        ...item,
+        openNow,
+        todayHours,
+      }
+    })
   })
-
-  const todayItems = computed(() =>
-    restaurantlists.value
-      .filter((i) => !selects.category || i.category === selects.category)
-      .filter((i) => !selects.priceRange || i.priceRange === selects.priceRange)
-      .filter((i) => !selects.locationTag || i.locationTag === selects.locationTag),
-  )
 
   const priceOrder = {
     low: 1,
@@ -85,6 +87,8 @@ export function useGetRestaurantList() {
   })
 
   function togglePricesort() {
+    sortState.rateMode = 'none'
+
     if (sortState.priceMode === 'none') {
       sortState.priceMode = 'asc'
     } else if (sortState.priceMode === 'asc') {
@@ -94,8 +98,10 @@ export function useGetRestaurantList() {
     }
   }
 
-  function toggleRatesort(){
-     if (sortState.rateMode === 'none') {
+  function toggleRatesort() {
+    sortState.priceMode = 'none'
+
+    if (sortState.rateMode === 'none') {
       sortState.rateMode = 'asc'
     } else if (sortState.rateMode === 'asc') {
       sortState.rateMode = 'desc'
@@ -104,34 +110,72 @@ export function useGetRestaurantList() {
     }
   }
 
-  function sortPrice(mode){
-    if(mode === 'asc'){
-      restaurantlists.value.sort((a,b)=> priceOrder[a.priceRange] - priceOrder[b.priceRange])
-    }else if(mode === 'desc'){
-      restaurantlists.value.sort((a,b) =>priceOrder[b.priceRange] - priceOrder[a.priceRange])
+  const sortRestaurants = computed(() => {
+    let list = [...enhancedRestaurants.value]
+    if (sortState.priceMode === 'asc') {
+      list.sort((a, b) => priceOrder[a.priceRange] - priceOrder[b.priceRange])
+    } else if (sortState.priceMode === 'desc') {
+      list.sort((a, b) => priceOrder[b.priceRange] - priceOrder[a.priceRange])
+    }
+
+    if (sortState.rateMode === 'asc') {
+      list.sort((a, b) => a.rating - b.rating)
+    } else if (sortState.rateMode === 'desc') {
+      list.sort((a, b) => b.rating - a.rating)
+    }
+    return list
+  })
+
+  const selects = reactive({
+    category: '',
+    priceRange: '',
+    locationTag: '',
+  })
+
+  const filteredRestaurants = computed(() =>
+    sortRestaurants.value
+      .filter((i) => !selects.category || i.category === selects.category)
+      .filter((i) => !selects.priceRange || i.priceRange === selects.priceRange)
+      .filter((i) => !selects.locationTag || i.locationTag === selects.locationTag),
+  )
+
+  const currentPage = ref(1)
+  const pageSize = ref(3)
+  const totalPages = computed(() => {
+    if (!filteredRestaurants.value.length) {
+      return 1
+    }
+    return Math.ceil(filteredRestaurants.value.length / pageSize.value)
+  })
+
+  const paginationItem = computed(() => {
+    const start = (currentPage.value - 1) * pageSize.value
+    const end = start + pageSize.value
+    return filteredRestaurants.value.slice(start, end)
+  })
+
+  function nextPage() {
+    if (currentPage.value < totalPages.value) {
+      currentPage.value++
     }
   }
 
-  function sortRate(mode){
-    if(mode === 'asc'){
-      restaurantlists.value.sort((a,b) =>a.rating - b.rating)
-    }else if(mode ==='desc'){
-      restaurantlists.value.sort((a,b)=> b.rating - a.rating)
+  function prePage() {
+    if (currentPage.value > 1) {
+      currentPage.value--
     }
   }
 
+  function changePage(pageNumber) {
+    let page = pageNumber
 
-  
-
-  // const sortPrice = () => {
-  //   restaurantlists.value.sort((a, b) => {
-  //     return priceOrder[a.priceRange] - priceOrder[b.priceRange]
-  //   })
-  // }
-
-  // const sortRate = () => {
-  //   restaurantlists.value.sort((a, b) => b.rating - a.rating)
-  // }
+    if (page < 1) {
+      page = 1
+    } else if (page > totalPages.value) {
+      page = totalPages.value
+    }
+    currentPage.value = page
+  }
 
   const fetchRestaurantlist = async () => {
     loading.value = true
@@ -152,13 +196,18 @@ export function useGetRestaurantList() {
     loading,
     error,
     selects,
-    todayItems,
-    sortState,
+    enhancedRestaurants,
+    filteredRestaurants,
     togglePricesort,
     toggleRatesort,
-    sortPrice,
-    sortRate,
+    sortRestaurants,
+    currentPage,
+    totalPages,
+    paginationItem,
+    nextPage,
+    prePage,
+    changePage,
     fetchRestaurantlist,
-    getOpentime
+    sortState
   }
 }

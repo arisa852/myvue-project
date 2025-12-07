@@ -18,7 +18,23 @@
         :sort-state="sortState"
         @toggle-Price="handleClickPrice"
         @toggle-Rate="handleClickRate"
+        @open-drawer="onOpenDrawer"
       ></TodayFood>
+      <RestaurantsDetail
+        :show="showDetail"
+        :restaurantlist="activeRestaurant"
+        @close="oncloseDetail"
+      >
+      </RestaurantsDetail>
+      <div class="pagination">
+        <button @click="prePage" :disabled="currentPage === 1" class="arrow-btn">
+          <i class="bi bi-chevron-compact-left"></i>
+        </button>
+        <span class="page-info">第{{ currentPage }}頁 / 第{{ totalPages }}頁</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages" class="arrow-btn">
+          <i class="bi bi-chevron-compact-right"></i>
+        </button>
+      </div>
     </main>
   </div>
 </template>
@@ -27,21 +43,23 @@ import BannerSection from '@/components/BannerSection.vue'
 import SidebarFood from '@/components/SidebarFood.vue'
 import Bnfood from '@/assets/images/noodles.png'
 import TodayFood from '@/components/TodayFood.vue'
+import RestaurantsDetail from '@/components/RestaurantsDetail.vue'
 import { useGetRestaurantList } from '@/use/useGetRestaurantList'
-import { computed, onMounted, watch } from 'vue'
+import { computed, onMounted, watch, ref } from 'vue'
 
 const {
   loading,
   error,
   selects,
-  todayItems,
   sortState,
   togglePricesort,
   toggleRatesort,
-  sortPrice,
-  sortRate,
+  currentPage,
+  totalPages,
+  paginationItem,
+  nextPage,
+  prePage,
   fetchRestaurantlist,
-  getOpentime,
 } = useGetRestaurantList()
 
 function handleSelectChange(newVal) {
@@ -51,24 +69,30 @@ function handleSelectChange(newVal) {
 
 function handleClickPrice() {
   togglePricesort()
-  sortPrice(sortState.priceMode)
 }
 
 function handleClickRate() {
   toggleRatesort()
-  sortRate(sortState.rateMode)
 }
 
-const top3 = computed(() =>
-  todayItems.value.slice(0, 3).map((item) => ({
-    ...item,
-    openNow: getOpentime(item),
-  })),
-)
+const showDetail = ref(false)
 
-watch(todayItems, (v) => {
+const activeRestaurant = ref(null)
+
+function onOpenDrawer(item) {
+  activeRestaurant.value = item
+  showDetail.value = true
+}
+
+function oncloseDetail() {
+  showDetail.value = false
+}
+
+const top3 = computed(() => paginationItem.value.slice(0, 3))
+
+watch(paginationItem, (v) => {
   console.log(
-    'todayItems',
+    '目前頁顯示的餐廳',
     v.map((x) => x.name),
   )
 })
@@ -86,6 +110,9 @@ onMounted(async () => {
 })
 </script>
 <style lang="scss">
+@use '../assets/style/variables' as *;
+@use '../assets/style/mixin' as *;
+
 :global(html, body) {
   background-color: #f8f8f8;
 }
@@ -114,5 +141,43 @@ onMounted(async () => {
   padding: 20px;
   display: inline-block;
   margin: 10px 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-top: 20px;
+  gap: 10px;
+
+  .page-info {
+    @include paragraph-style;
+    height: 40px;
+    line-height: 1.2;
+    color: #333;
+  }
+
+  .arrow-btn {
+    @include button-style {
+      display: inline-flex;
+      justify-content: center;
+      align-items: baseline;
+      background-color: transparent;
+      color: $primary-color;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      padding: 0;
+    }
+    .bi {
+      font-size: 1.25rem;
+      color: $primary-color;
+      line-height: 1;
+    }
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
 }
 </style>

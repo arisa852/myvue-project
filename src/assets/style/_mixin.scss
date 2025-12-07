@@ -21,7 +21,7 @@ $breakpoints: (
 }
 
 @mixin minheading-style {
-  font-weight: 400;
+  font-weight: 700;
   font-size: 1.5rem;
   color: $text-color;
   line-height: 1.5;
@@ -64,7 +64,20 @@ $breakpoints: (
   &:hover {
     opacity: 0.5;
   }
-
   // 允許呼叫時自訂更多樣式
   @content;
 }
+
+
+@mixin overlay-base{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.4);
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

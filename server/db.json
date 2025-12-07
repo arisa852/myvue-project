@@ -507,7 +507,8 @@
         "sun": "11:00-21:00"
       },
       "coverImage": "/restaurants/japan_2.jpg",
-      "images": ["/restaurants/japan_3.jpg", "/restaurants/japan_1.jpg"]
+      "images": ["/restaurants/japan_3.jpg", "/restaurants/japan_1.jpg"],
+      "description": "提供家常風日式定食，份量扎實、價格親民，適合上班族和學生日常用餐。"
     },
     {
       "id": 2,
@@ -529,7 +530,8 @@
         "sun": "11:00-21:30"
       },
       "coverImage": "/restaurants/noodles_1.jpg",
-      "images": ["/restaurants/noodles_2.jpg", "/restaurants/noodles_3.jpg"]
+      "images": ["/restaurants/noodles_2.jpg", "/restaurants/noodles_3.jpg"],
+      "description": "主打濃郁湯頭與現煮拉麵，靠近北車交通方便，適合想快速吃一碗熱拉麵的旅人。"
     },
     {
       "id": 3,
@@ -551,7 +553,8 @@
         "sun": "09:00-20:00"
       },
       "coverImage": "/restaurants/coffee_3.jpg",
-      "images": ["/restaurants/coffee_1.jpg", "/restaurants/coffee_2.jpg"]
+      "images": ["/restaurants/coffee_1.jpg", "/restaurants/coffee_2.jpg"],
+      "description": "靠近車站的安靜咖啡空間，提供手沖咖啡與輕甜點，適合短暫休息或帶筆電簡單辦公。"
     },
     {
       "id": 4,
@@ -572,8 +575,9 @@
         "sat": "08:00-16:00",
         "sun": "08:00-16:00"
       },
-      "coverImage": "restaurants/brunch_1.jpg",
-      "images": ["/restaurants/brunch_2.jpg", "/restaurants/brunch_3.jpg"]
+      "coverImage": "/restaurants/brunch_1.jpg",
+      "images": ["/restaurants/brunch_2.jpg", "/restaurants/brunch_3.jpg"],
+      "description": "以份量十足的早午餐盤為主，價格平實，離車站不遠，是假日與朋友聚餐的輕鬆選擇。"
     },
     {
       "id": 5,
@@ -594,8 +598,9 @@
         "sat": "11:00-22:00",
         "sun": "11:00-21:30"
       },
-      "coverImage": "restaurants/asia_1.jpg",
-      "images": ["restaurants/asia_2.jpg", "restaurants/asia_3.jpg"]
+      "coverImage": "/restaurants/asia_1.jpg",
+      "images": ["/restaurants/asia_2.jpg", "/restaurants/asia_3.jpg"],
+      "description": "專賣川味熱炒與麻辣料理，口味偏重帶香麻辣氣息，適合想大口吃飯、配幾道小菜的時候。"
     },
     {
       "id": 6,
@@ -617,10 +622,8 @@
         "sun": "11:00-21:00"
       },
       "coverImage": "/restaurants/YOUNKONG/asia.jpg",
-      "images": [
-        "/restaurants/YOUNKONG/asia1.jpg",
-        "/restaurants/YOUNKONG/asia2.jpg"
-      ]
+      "images": ["/restaurants/YOUNKONG/asia1.jpg", "/restaurants/YOUNKONG/asia2.jpg"],
+      "description": "紅燒湯頭濃郁不死鹹，牛肉軟嫩，附小菜選擇多，是永康街一帶人氣很高的牛肉麵店。"
     },
     {
       "id": 7,
@@ -642,7 +645,8 @@
         "sun": "11:00-21:00"
       },
       "coverImage": "/restaurants/YOUNKONG/cafe.jpg",
-      "images": ["/restaurants/YOUNKONG/cafe1.jpg", "/restaurants/YOUNKONG/cafe2.jpg"]
+      "images": ["/restaurants/YOUNKONG/cafe1.jpg", "/restaurants/YOUNKONG/cafe2.jpg"],
+      "description": "巷弄裡的咖啡小店，提供簡單甜點與飲品，氣氛輕鬆不拘謹，適合聊天或一個人放空。"
     },
     {
       "id": 8,
@@ -664,7 +668,8 @@
         "sun": "11:00-21:30"
       },
       "coverImage": "/restaurants/YOUNKONG/asia3.jpg",
-      "images": ["/restaurants/YOUNKONG/asia4.jpg", "/restaurants/YOUNKONG/asia5.jpg"]
+      "images": ["/restaurants/YOUNKONG/asia4.jpg", "/restaurants/YOUNKONG/asia5.jpg"],
+      "description": "主打升級版牛肉麵與特色小菜，座位比本館寬敞，適合多人聚餐或家庭一起用餐。"
     },
     {
       "id": 9,
@@ -686,7 +691,8 @@
         "sun": "10:00-21:00"
       },
       "coverImage": "/restaurants/YOUNKONG/asia6.jpg",
-      "images": ["/restaurants/YOUNKONG/asia7.jpg", "/restaurants/YOUNKONG/asia8.jpg"]
+      "images": ["/restaurants/YOUNKONG/asia7.jpg", "/restaurants/YOUNKONG/asia8.jpg"],
+      "description": "現蒸小籠包皮薄多汁，也有麵食與湯品可搭配，是附近常見排隊的人氣小點心店。"
     },
     {
       "id": 10,
@@ -708,7 +714,8 @@
         "sun": "11:00-21:00"
       },
       "coverImage": "/restaurants/YOUNKONG/asia9.jpg",
-      "images": ["/restaurants/YOUNKONG/asia10.jpg"]
+      "images": ["/restaurants/YOUNKONG/asia10.jpg"],
+      "description": "供應清爽湯頭的越南河粉與生春捲，調味清新不油膩，適合想吃簡單又不負擔的一餐。"
     },
     {
       "id": 11,
@@ -730,7 +737,8 @@
         "sun": "08:00-16:00"
       },
       "coverImage": "/restaurants/YOUNKONG/brunch1.jpg",
-      "images": ["/restaurants/YOUNKONG/brunch.jpg", "/restaurants/YOUNKONG/brunch2.jpg"]
+      "images": ["/restaurants/YOUNKONG/brunch.jpg", "/restaurants/YOUNKONG/brunch2.jpg"],
+      "description": "主打歐風早午餐盤與咖啡飲品，環境明亮舒適，適合慢慢吃一頓悠閒的早午餐。"
     },
     {
       "id": 12,
@@ -752,328 +760,325 @@
         "sun": "11:30-21:00"
       },
       "coverImage": "/restaurants/YOUNKONG/japan.jpg",
-      "images": ["/restaurants/YOUNKONG/japan1.jpg", "/restaurants/YOUNKONG/japan2.jpg"]
+      "images": ["/restaurants/YOUNKONG/japan1.jpg", "/restaurants/YOUNKONG/japan2.jpg"],
+      "description": "提供精緻日式定食與小品料理，用餐氣氛安靜，有一點小小過節或約會氛圍。"
     },
-    [
-      {
-        "id": 13,
-        "name": "初禾咖啡館",
-        "category": "cafe",
-        "locationTag": "east",
-        "city": "taipei",
-        "address": "台北市大安區忠孝東路四段 216 巷 27 號",
-        "priceRange": "medium",
-        "rating": 4.6,
-        "services": ["dine-in", "takeout"],
-        "openingHours": {
-          "mon": "10:00-20:00",
-          "tue": "10:00-20:00",
-          "wed": "10:00-20:00",
-          "thu": "10:00-20:00",
-          "fri": "10:00-21:00",
-          "sat": "09:00-21:00",
-          "sun": "09:00-20:00"
-        },
-        "coverImage": "/restaurants/east_chuhe_cafe.jpg",
-        "images": ["/restaurants/east_chuhe_cafe_1.jpg", "/restaurants/east_chuhe_cafe_2.jpg"]
+    {
+      "id": 13,
+      "name": "初禾咖啡館",
+      "category": "cafe",
+      "locationTag": "taipei-east",
+      "city": "taipei",
+      "address": "台北市大安區忠孝東路四段 216 巷 27 號",
+      "priceRange": "medium",
+      "rating": 4.6,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "10:00-20:00",
+        "tue": "10:00-20:00",
+        "wed": "10:00-20:00",
+        "thu": "10:00-20:00",
+        "fri": "10:00-21:00",
+        "sat": "09:00-21:00",
+        "sun": "09:00-20:00"
       },
-      {
-        "id": 14,
-        "name": "東區和風食堂",
-        "category": "japanese",
-        "locationTag": "east",
-        "city": "taipei",
-        "address": "台北市大安區敦化南路一段 190 巷 9 號",
-        "priceRange": "medium",
-        "rating": 4.4,
-        "services": ["dine-in", "takeout"],
-        "openingHours": {
-          "mon": "11:30-21:00",
-          "tue": "11:30-21:00",
-          "wed": "11:30-21:00",
-          "thu": "11:30-21:00",
-          "fri": "11:30-22:00",
-          "sat": "11:00-22:00",
-          "sun": "11:00-21:00"
-        },
-        "coverImage": "/restaurants/east_japanese_set.jpg",
-        "images": ["/restaurants/east_japanese_set_1.jpg", "/restaurants/east_japanese_set_2.jpg"]
+      "coverImage": "/restaurants/east_chuhe_cafe.jpg",
+      "images": ["/restaurants/east_chuhe_cafe_1.jpg", "/restaurants/east_chuhe_cafe_2.jpg"]
+    },
+    {
+      "id": 14,
+      "name": "東區和風食堂",
+      "category": "japanese",
+      "locationTag": "taipei-east",
+      "city": "taipei",
+      "address": "台北市大安區敦化南路一段 190 巷 9 號",
+      "priceRange": "medium",
+      "rating": 4.4,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "11:30-21:00",
+        "tue": "11:30-21:00",
+        "wed": "11:30-21:00",
+        "thu": "11:30-21:00",
+        "fri": "11:30-22:00",
+        "sat": "11:00-22:00",
+        "sun": "11:00-21:00"
       },
-      {
-        "id": 15,
-        "name": "青蔬食光",
-        "category": "lightmeal",
-        "locationTag": "east",
-        "city": "taipei",
-        "address": "台北市大安區忠孝東路四段 248 巷 8 號",
-        "priceRange": "medium",
-        "rating": 4.3,
-        "services": ["dine-in", "takeout"],
-        "openingHours": {
-          "mon": "11:00-20:00",
-          "tue": "11:00-20:00",
-          "wed": "11:00-20:00",
-          "thu": "11:00-20:00",
-          "fri": "11:00-20:30",
-          "sat": "10:30-20:30",
-          "sun": "10:30-20:00"
-        },
-        "coverImage": "/restaurants/east_green_lightmeal.jpg",
-        "images": [
-          "/restaurants/east_green_lightmeal_1.jpg",
-          "/restaurants/east_green_lightmeal_2.jpg"
-        ]
+      "coverImage": "/restaurants/east_japanese_set.jpg",
+      "images": ["/restaurants/east_japanese_set_1.jpg", "/restaurants/east_japanese_set_2.jpg"]
+    },
+    {
+      "id": 15,
+      "name": "青蔬食光",
+      "category": "lightmeal",
+      "locationTag": "taipei-east",
+      "city": "taipei",
+      "address": "台北市大安區忠孝東路四段 248 巷 8 號",
+      "priceRange": "medium",
+      "rating": 4.3,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "11:00-20:00",
+        "tue": "11:00-20:00",
+        "wed": "11:00-20:00",
+        "thu": "11:00-20:00",
+        "fri": "11:00-20:30",
+        "sat": "10:30-20:30",
+        "sun": "10:30-20:00"
       },
-      {
-        "id": 16,
-        "name": "東區食堂·中式快餐",
-        "category": "chinese",
-        "locationTag": "east",
-        "city": "taipei",
-        "address": "台北市大安區仁愛路四段 345 巷 12 號",
-        "priceRange": "cheap",
-        "rating": 4.2,
-        "services": ["dine-in", "takeout"],
-        "openingHours": {
-          "mon": "11:00-20:00",
-          "tue": "11:00-20:00",
-          "wed": "11:00-20:00",
-          "thu": "11:00-20:00",
-          "fri": "11:00-20:30",
-          "sat": "11:00-20:30",
-          "sun": "休息"
-        },
-        "coverImage": "/restaurants/east_chinese_fastfood.jpg",
-        "images": [
-          "/restaurants/east_chinese_fastfood_1.jpg",
-          "/restaurants/east_chinese_fastfood_2.jpg"
-        ]
-      },
-      {
-        "id": 17,
-        "name": "森嶼咖啡",
-        "category": "cafe",
-        "locationTag": "east",
-        "city": "taipei",
-        "address": "台北市大安區安和路一段 21 巷 12 號",
-        "priceRange": "medium",
-        "rating": 4.7,
-        "services": ["dine-in"],
-        "openingHours": {
-          "mon": "12:00-20:00",
-          "tue": "12:00-20:00",
-          "wed": "12:00-20:00",
-          "thu": "12:00-20:00",
-          "fri": "12:00-21:00",
-          "sat": "11:00-21:00",
-          "sun": "11:00-20:00"
-        },
-        "coverImage": "/restaurants/east_forest_cafe.jpg",
-        "images": ["/restaurants/east_forest_cafe_1.jpg", "/restaurants/east_forest_cafe_2.jpg"]
-      },
-      {
-        "id": 18,
-        "name": "旬味日式丼飯",
-        "category": "japanese",
-        "locationTag": "east",
-        "city": "taipei",
-        "address": "台北市大安區復興南路一段 135 巷 5 號",
-        "priceRange": "medium",
-        "rating": 4.5,
-        "services": ["dine-in", "takeout"],
-        "openingHours": {
-          "mon": "11:00-21:00",
-          "tue": "11:00-21:00",
-          "wed": "11:00-21:00",
-          "thu": "11:00-21:00",
-          "fri": "11:00-22:00",
-          "sat": "11:00-22:00",
-          "sun": "11:00-21:00"
-        },
-        "coverImage": "/restaurants/east_japanese_don.jpg",
-        "images": ["/restaurants/east_japanese_don_1.jpg", "/restaurants/east_japanese_don_2.jpg"]
-      },
-      {
-        "id": 19,
-        "name": "活力輕食吧",
-        "category": "lightmeal",
-        "locationTag": "east",
-        "city": "taipei",
-        "address": "台北市大安區忠孝東路四段 181 巷 12 號",
-        "priceRange": "cheap",
-        "rating": 4.1,
-        "services": ["dine-in", "takeout"],
-        "openingHours": {
-          "mon": "10:30-19:30",
-          "tue": "10:30-19:30",
-          "wed": "10:30-19:30",
-          "thu": "10:30-19:30",
-          "fri": "10:30-20:00",
-          "sat": "10:00-20:00",
-          "sun": "10:00-19:00"
-        },
-        "coverImage": "/restaurants/east_energy_lightmeal.jpg",
-        "images": [
-          "/restaurants/east_energy_lightmeal_1.jpg",
-          "/restaurants/east_energy_lightmeal_2.jpg"
-        ]
-      },
-      [
-        {
-          "id": 20,
-          "name": "信義和風食堂",
-          "category": "japanese",
-          "locationTag": "xinyi-Shopping",
-          "city": "taipei",
-          "address": "台北市信義區松壽路 12 號",
-          "priceRange": "medium",
-          "rating": 4.4,
-          "services": ["dine-in", "takeout"],
-          "openingHours": {
-            "mon": "11:30-21:30",
-            "tue": "11:30-21:30",
-            "wed": "11:30-21:30",
-            "thu": "11:30-21:30",
-            "fri": "11:30-22:00",
-            "sat": "11:00-22:00",
-            "sun": "11:00-21:30"
-          },
-          "coverImage": "/restaurants/xinyi_japanese_1.jpg",
-          "images": ["/restaurants/xinyi_japanese_1_1.jpg", "/restaurants/xinyi_japanese_1_2.jpg"]
-        },
-        {
-          "id": 21,
-          "name": "松高輕食館",
-          "category": "lightmeal",
-          "locationTag": "xinyi-Shopping",
-          "city": "taipei",
-          "address": "台北市信義區松高路 18 號",
-          "priceRange": "low",
-          "rating": 4.0,
-          "services": ["dine-in", "takeout"],
-          "openingHours": {
-            "mon": "10:00-20:00",
-            "tue": "10:00-20:00",
-            "wed": "10:00-20:00",
-            "thu": "10:00-20:00",
-            "fri": "10:00-21:00",
-            "sat": "10:00-21:00",
-            "sun": "10:00-20:00"
-          },
-          "coverImage": "/restaurants/xinyi_lightmeal_1.jpg",
-          "images": ["/restaurants/xinyi_lightmeal_1_1.jpg", "/restaurants/xinyi_lightmeal_1_2.jpg"]
-        },
-        {
-          "id": 22,
-          "name": "信義巷內牛肉麵",
-          "category": "chinese",
-          "locationTag": "xinyi-Shopping",
-          "city": "taipei",
-          "address": "台北市信義區永吉路 30 巷 15 號",
-          "priceRange": "medium",
-          "rating": 4.3,
-          "services": ["dine-in", "takeout"],
-          "openingHours": {
-            "mon": "11:00-21:00",
-            "tue": "11:00-21:00",
-            "wed": "11:00-21:00",
-            "thu": "11:00-21:00",
-            "fri": "11:00-22:00",
-            "sat": "11:00-22:00",
-            "sun": "11:00-21:00"
-          },
-          "coverImage": "/restaurants/xinyi_beefnoodle.jpg",
-          "images": ["/restaurants/xinyi_beefnoodle_1.jpg", "/restaurants/xinyi_beefnoodle_2.jpg"]
-        },
-        {
-          "id": 23,
-          "name": "A13 咖啡角",
-          "category": "cafe",
-          "locationTag": "xinyi-Shopping",
-          "city": "taipei",
-          "address": "台北市信義區松仁路 58 號",
-          "priceRange": "medium",
-          "rating": 4.6,
-          "services": ["dine-in", "takeout"],
-          "openingHours": {
-            "mon": "09:00-20:30",
-            "tue": "09:00-20:30",
-            "wed": "09:00-20:30",
-            "thu": "09:00-20:30",
-            "fri": "09:00-21:00",
-            "sat": "09:00-21:00",
-            "sun": "09:00-20:30"
-          },
-          "coverImage": "/restaurants/xinyi_cafe_1.jpg",
-          "images": ["/restaurants/xinyi_cafe_1_1.jpg", "/restaurants/xinyi_cafe_1_2.jpg"]
-        },
-        {
-          "id": 24,
-          "name": "信義和食便當屋",
-          "category": "japanese",
-          "locationTag": "xinyi-Shopping",
-          "city": "taipei",
-          "address": "台北市信義區基隆路一段 176 號",
-          "priceRange": "low",
-          "rating": 4.1,
-          "services": ["takeout"],
-          "openingHours": {
-            "mon": "10:30-20:00",
-            "tue": "10:30-20:00",
-            "wed": "10:30-20:00",
-            "thu": "10:30-20:00",
-            "fri": "10:30-20:30",
-            "sat": "10:30-20:30",
-            "sun": "休息"
-          },
-          "coverImage": "/restaurants/xinyi_bento_1.jpg",
-          "images": ["/restaurants/xinyi_bento_1_1.jpg", "/restaurants/xinyi_bento_1_2.jpg"]
-        },
-        {
-          "id": 25,
-          "name": "永春輕食沙拉吧",
-          "category": "lightmeal",
-          "locationTag": "xinyi-Shopping",
-          "city": "taipei",
-          "address": "台北市信義區忠孝東路五段 455 號",
-          "priceRange": "medium",
-          "rating": 4.2,
-          "services": ["dine-in", "takeout"],
-          "openingHours": {
-            "mon": "10:00-20:00",
-            "tue": "10:00-20:00",
-            "wed": "10:00-20:00",
-            "thu": "10:00-20:00",
-            "fri": "10:00-21:00",
-            "sat": "10:00-21:00",
-            "sun": "10:00-20:00"
-          },
-          "coverImage": "/restaurants/xinyi_salad_1.jpg",
-          "images": ["/restaurants/xinyi_salad_1_1.jpg", "/restaurants/xinyi_salad_1_2.jpg"]
-        },
-        {
-          "id": 26,
-          "name": "象山中式小館",
-          "category": "chinese",
-          "locationTag": "xinyi-Shopping",
-          "city": "taipei",
-          "address": "台北市信義區信義路五段 150 號",
-          "priceRange": "high",
-          "rating": 4.5,
-          "services": ["dine-in"],
-          "openingHours": {
-            "mon": "11:30-21:00",
-            "tue": "11:30-21:00",
-            "wed": "11:30-21:00",
-            "thu": "11:30-21:00",
-            "fri": "11:30-22:00",
-            "sat": "11:00-22:00",
-            "sun": "11:00-21:00"
-          },
-          "coverImage": "/restaurants/xinyi_chinese_1.jpg",
-          "images": ["/restaurants/xinyi_chinese_1_1.jpg", "/restaurants/xinyi_chinese_1_2.jpg"]
-        }
+      "coverImage": "/restaurants/east_green_lightmeal.jpg",
+      "images": [
+        "/restaurants/east_green_lightmeal_1.jpg",
+        "/restaurants/east_green_lightmeal_2.jpg"
       ]
-    ]
+    },
+    {
+      "id": 16,
+      "name": "東區食堂·中式快餐",
+      "category": "chinese",
+      "locationTag": "taipei-east",
+      "city": "taipei",
+      "address": "台北市大安區仁愛路四段 345 巷 12 號",
+      "priceRange": "cheap",
+      "rating": 4.2,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "11:00-20:00",
+        "tue": "11:00-20:00",
+        "wed": "11:00-20:00",
+        "thu": "11:00-20:00",
+        "fri": "11:00-20:30",
+        "sat": "11:00-20:30",
+        "sun": "休息"
+      },
+      "coverImage": "/restaurants/east_chinese_fastfood.jpg",
+      "images": [
+        "/restaurants/east_chinese_fastfood_1.jpg",
+        "/restaurants/east_chinese_fastfood_2.jpg"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "森嶼咖啡",
+      "category": "cafe",
+      "locationTag": "taipei-east",
+      "city": "taipei",
+      "address": "台北市大安區安和路一段 21 巷 12 號",
+      "priceRange": "medium",
+      "rating": 4.7,
+      "services": ["dine-in"],
+      "openingHours": {
+        "mon": "12:00-20:00",
+        "tue": "12:00-20:00",
+        "wed": "12:00-20:00",
+        "thu": "12:00-20:00",
+        "fri": "12:00-21:00",
+        "sat": "11:00-21:00",
+        "sun": "11:00-20:00"
+      },
+      "coverImage": "/restaurants/east_forest_cafe.jpg",
+      "images": ["/restaurants/east_forest_cafe_1.jpg", "/restaurants/east_forest_cafe_2.jpg"]
+    },
+    {
+      "id": 18,
+      "name": "旬味日式丼飯",
+      "category": "japanese",
+      "locationTag": "taipei-east",
+      "city": "taipei",
+      "address": "台北市大安區復興南路一段 135 巷 5 號",
+      "priceRange": "medium",
+      "rating": 4.5,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "11:00-21:00",
+        "tue": "11:00-21:00",
+        "wed": "11:00-21:00",
+        "thu": "11:00-21:00",
+        "fri": "11:00-22:00",
+        "sat": "11:00-22:00",
+        "sun": "11:00-21:00"
+      },
+      "coverImage": "/restaurants/east_japanese_don.jpg",
+      "images": ["/restaurants/east_japanese_don_1.jpg", "/restaurants/east_japanese_don_2.jpg"]
+    },
+    {
+      "id": 19,
+      "name": "活力輕食吧",
+      "category": "lightmeal",
+      "locationTag": "taipei-east",
+      "city": "taipei",
+      "address": "台北市大安區忠孝東路四段 181 巷 12 號",
+      "priceRange": "cheap",
+      "rating": 4.1,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "10:30-19:30",
+        "tue": "10:30-19:30",
+        "wed": "10:30-19:30",
+        "thu": "10:30-19:30",
+        "fri": "10:30-20:00",
+        "sat": "10:00-20:00",
+        "sun": "10:00-19:00"
+      },
+      "coverImage": "/restaurants/east_energy_lightmeal.jpg",
+      "images": [
+        "/restaurants/east_energy_lightmeal_1.jpg",
+        "/restaurants/east_energy_lightmeal_2.jpg"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "信義和風食堂",
+      "category": "japanese",
+      "locationTag": "xinyi-shopping",
+      "city": "taipei",
+      "address": "台北市信義區松壽路 12 號",
+      "priceRange": "medium",
+      "rating": 4.4,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "11:30-21:30",
+        "tue": "11:30-21:30",
+        "wed": "11:30-21:30",
+        "thu": "11:30-21:30",
+        "fri": "11:30-22:00",
+        "sat": "11:00-22:00",
+        "sun": "11:00-21:30"
+      },
+      "coverImage": "/restaurants/xinyi_japanese_1.jpg",
+      "images": ["/restaurants/xinyi_japanese_1_1.jpg", "/restaurants/xinyi_japanese_1_2.jpg"]
+    },
+    {
+      "id": 21,
+      "name": "松高輕食館",
+      "category": "lightmeal",
+      "locationTag": "xinyi-shopping",
+      "city": "taipei",
+      "address": "台北市信義區松高路 18 號",
+      "priceRange": "low",
+      "rating": 4.0,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "10:00-20:00",
+        "tue": "10:00-20:00",
+        "wed": "10:00-20:00",
+        "thu": "10:00-20:00",
+        "fri": "10:00-21:00",
+        "sat": "10:00-21:00",
+        "sun": "10:00-20:00"
+      },
+      "coverImage": "/restaurants/xinyi_lightmeal_1.jpg",
+      "images": ["/restaurants/xinyi_lightmeal_1_1.jpg", "/restaurants/xinyi_lightmeal_1_2.jpg"]
+    },
+    {
+      "id": 22,
+      "name": "信義巷內牛肉麵",
+      "category": "chinese",
+      "locationTag": "xinyi-shopping",
+      "city": "taipei",
+      "address": "台北市信義區永吉路 30 巷 15 號",
+      "priceRange": "medium",
+      "rating": 4.3,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "11:00-21:00",
+        "tue": "11:00-21:00",
+        "wed": "11:00-21:00",
+        "thu": "11:00-21:00",
+        "fri": "11:00-22:00",
+        "sat": "11:00-22:00",
+        "sun": "11:00-21:00"
+      },
+      "coverImage": "/restaurants/xinyi_beefnoodle.jpg",
+      "images": ["/restaurants/xinyi_beefnoodle_1.jpg", "/restaurants/xinyi_beefnoodle_2.jpg"]
+    },
+    {
+      "id": 23,
+      "name": "A13 咖啡角",
+      "category": "cafe",
+      "locationTag": "xinyi-shopping",
+      "city": "taipei",
+      "address": "台北市信義區松仁路 58 號",
+      "priceRange": "medium",
+      "rating": 4.6,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "09:00-20:30",
+        "tue": "09:00-20:30",
+        "wed": "09:00-20:30",
+        "thu": "09:00-20:30",
+        "fri": "09:00-21:00",
+        "sat": "09:00-21:00",
+        "sun": "09:00-20:30"
+      },
+      "coverImage": "/restaurants/xinyi_cafe_1.jpg",
+      "images": ["/restaurants/xinyi_cafe_1_1.jpg", "/restaurants/xinyi_cafe_1_2.jpg"]
+    },
+    {
+      "id": 24,
+      "name": "信義和食便當屋",
+      "category": "japanese",
+      "locationTag": "xinyi-shopping",
+      "city": "taipei",
+      "address": "台北市信義區基隆路一段 176 號",
+      "priceRange": "low",
+      "rating": 4.1,
+      "services": ["takeout"],
+      "openingHours": {
+        "mon": "10:30-20:00",
+        "tue": "10:30-20:00",
+        "wed": "10:30-20:00",
+        "thu": "10:30-20:00",
+        "fri": "10:30-20:30",
+        "sat": "10:30-20:30",
+        "sun": "休息"
+      },
+      "coverImage": "/restaurants/xinyi_bento_1.jpg",
+      "images": ["/restaurants/xinyi_bento_1_1.jpg", "/restaurants/xinyi_bento_1_2.jpg"]
+    },
+    {
+      "id": 25,
+      "name": "永春輕食沙拉吧",
+      "category": "lightmeal",
+      "locationTag": "xinyi-shopping",
+      "city": "taipei",
+      "address": "台北市信義區忠孝東路五段 455 號",
+      "priceRange": "medium",
+      "rating": 4.2,
+      "services": ["dine-in", "takeout"],
+      "openingHours": {
+        "mon": "10:00-20:00",
+        "tue": "10:00-20:00",
+        "wed": "10:00-20:00",
+        "thu": "10:00-20:00",
+        "fri": "10:00-21:00",
+        "sat": "10:00-21:00",
+        "sun": "10:00-20:00"
+      },
+      "coverImage": "/restaurants/xinyi_salad_1.jpg",
+      "images": ["/restaurants/xinyi_salad_1_1.jpg", "/restaurants/xinyi_salad_1_2.jpg"]
+    },
+    {
+      "id": 26,
+      "name": "象山中式小館",
+      "category": "chinese",
+      "locationTag": "xinyi-shopping",
+      "city": "taipei",
+      "address": "台北市信義區信義路五段 150 號",
+      "priceRange": "high",
+      "rating": 4.5,
+      "services": ["dine-in"],
+      "openingHours": {
+        "mon": "11:30-21:00",
+        "tue": "11:30-21:00",
+        "wed": "11:30-21:00",
+        "thu": "11:30-21:00",
+        "fri": "11:30-22:00",
+        "sat": "11:00-22:00",
+        "sun": "11:00-21:00"
+      },
+      "coverImage": "/restaurants/xinyi_chinese_1.jpg",
+      "images": ["/restaurants/xinyi_chinese_1_1.jpg", "/restaurants/xinyi_chinese_1_2.jpg"]
+    }
   ]
 }

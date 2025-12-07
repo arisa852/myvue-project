@@ -5,11 +5,11 @@
         <h6 class="restaurants-title">{{ item.name }}</h6>
         <p>{{ item.rating }}</p>
         <p :class="item.openNow ? 'open' : 'close'">{{ item.openNow ? '營業中' : '休息' }}</p>
-        <p>{{ item.locationTag }}</p>
+        <p>{{ locationMap }}</p>
       </div>
       <div class="btn-group">
         <button type="button" class="navigate-btn">導航</button>
-        <button type="button" class="detail-btn">查看詳情</button>
+        <button type="button" class="detail-btn" @click="handleOpenDrawer">查看詳情</button>
       </div>
     </div>
     <div class="restaurants-img">
@@ -18,11 +18,29 @@
   </article>
 </template>
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const emit = defineEmits(['open-drawer'])
+
+function handleOpenDrawer() {
+  emit('open-drawer', props.item)
+}
+
+const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
+})
+
+const locationMap = computed(() => {
+  const map = {
+    'taipei-main': '台北車站',
+    yongkang: '永康街',
+    'taipei-east': '台北東區',
+    'xinyi-shopping': '信義商圈',
+  }
+  return map[props.item.locationTag] || props.item.locationTag
 })
 </script>
 <style lang="scss" scoped>
@@ -57,7 +75,7 @@ defineProps({
       font-weight: 700;
     }
     p {
-      @include subheading-style;
+      @include paragraph-style;
       font-weight: 400;
     }
     .open {
