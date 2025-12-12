@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "夏日清新裙裝",
+    "season": "summer",
+    "style": ["fresh", "casual"],
+    "mood": ["vacation", "date"],
+    "image": "/inspiration/set6.png",
+    "tags": ["green-top", "yellow-check", "skirt", "hat", "sandals"]
+  },
+  {
+    "id": 2,
+    "name": "條紋襯衫休閒風",
+    "season": "summer",
+    "style": ["casual", "relax"],
+    "mood": ["weekend", "outing"],
+    "image": "/inspiration/set7.png",
+    "tags": ["striped-shirt", "shorts", "loafers"]
+  },
+  {
+    "id": 3,
+    "name": "極簡長褲穿搭",
+    "season": "mild",
+    "style": ["minimal", "daily"],
+    "mood": ["commute", "casual-day"],
+    "image": "/inspiration/set5.png",
+    "tags": ["tshirt", "wide-pants", "sneakers"]
+  },
+  {
+    "id": 4,
+    "name": "暖色花裙套裝",
+    "season": "autumn",
+    "style": ["feminine", "cozy"],
+    "mood": ["daily", "coffee"],
+    "image": "/inspiration/set4.png",
+    "tags": ["sweater", "midi-skirt", "floral"]
+  },
+  {
+    "id": 5,
+    "name": "通勤長裙造型",
+    "season": "autumn",
+    "style": ["daily", "neat"],
+    "mood": ["commute", "city-walk"],
+    "image": "/inspiration/set3.png",
+    "tags": ["sweater", "dark-skirt", "crossbody-bag", "sneakers"]
+  },
+  {
+    "id": 6,
+    "name": "條紋上衣中性穿搭",
+    "season": "mild",
+    "style": ["casual", "campus"],
+    "mood": ["daily", "walk"],
+    "image": "/inspiration/set2.png",
+    "tags": ["striped-top", "mini-skirt", "sneakers"]
+  },
+  {
+    "id": 7,
+    "name": "格紋大衣秋冬風格",
+    "season": "winter",
+    "style": ["coat-look", "modern"],
+    "mood": ["work", "commute"],
+    "image": "/inspiration/set1.png",
+    "tags": ["coat", "plaid", "long-pants", "sneakers"]
+  }
+]

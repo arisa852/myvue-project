@@ -1,5 +1,5 @@
 import { computed, ref, watch } from 'vue'
-import { getOutfits } from '@/services/outfitService'
+import { getOutfits } from '@/services/Service'
 
 function getRandomIndex(len) {
   if (!len || len <= 0) {

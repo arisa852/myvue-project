@@ -1,5 +1,5 @@
 import { ref, reactive, computed } from 'vue'
-import { getRestaurantlist } from '@/services/outfitService'
+import { getRestaurantlist } from '@/services/Service'
 
 function toMinutes(timeStr) {
   const arr = timeStr.split(':')
@@ -208,6 +208,6 @@ export function useGetRestaurantList() {
     prePage,
     changePage,
     fetchRestaurantlist,
-    sortState
+    sortState,
   }
 }

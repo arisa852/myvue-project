@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { getInspirations } from '@/services/outfitService'
+import { getInspirations } from '@/services/Service'
 
 export function useGetinspiration() {
   const inspirations = ref([])

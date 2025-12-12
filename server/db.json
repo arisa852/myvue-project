@@ -836,7 +836,7 @@
       "locationTag": "taipei-east",
       "city": "taipei",
       "address": "台北市大安區仁愛路四段 345 巷 12 號",
-      "priceRange": "cheap",
+      "priceRange": "low",
       "rating": 4.2,
       "services": ["dine-in", "takeout"],
       "openingHours": {
@@ -902,7 +902,7 @@
       "locationTag": "taipei-east",
       "city": "taipei",
       "address": "台北市大安區忠孝東路四段 181 巷 12 號",
-      "priceRange": "cheap",
+      "priceRange": "low",
       "rating": 4.1,
       "services": ["dine-in", "takeout"],
       "openingHours": {

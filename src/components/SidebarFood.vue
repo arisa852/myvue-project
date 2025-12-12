@@ -57,7 +57,7 @@
         <span class="radio-text">台北東區</span>
       </label>
       <label class="radio-wrapper">
-        <input type="radio" value="xinyi-Shopping" v-model="select.locationTag" />
+        <input type="radio" value="xinyi-shopping" v-model="select.locationTag" />
         <span class="custom-radio"></span>
         <span class="radio-text">信義商圈</span>
       </label>
@@ -111,7 +111,7 @@ export default {
         'taipei-main': '台北車站',
         yongkang: '永康街',
         'taipei-east': '台北東區',
-        'xinyi-Shopping': '信義商圈',
+        'xinyi-shopping': '信義商圈',
       }
       return map[select.locationTag] || ''
     })
