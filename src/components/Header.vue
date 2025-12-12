@@ -55,7 +55,7 @@ export default {
     const menus = ref([
       { label: '找美食', to: '/food' },
       { label: '穿搭靈感', to: '/style' },
-      { label: '收藏', to: '/collect' },
+      // { label: '收藏', to: '/collect' },
     ])
 
     const isOpen = ref(false)
@@ -104,8 +104,8 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .header {
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: $white-color;
+  box-shadow: $shadow-md;
   width: 100%;
   position: sticky;
   top: 0;
@@ -116,8 +116,9 @@ export default {
 .wrapper {
   display: flex;
   align-items: center;
-  max-width: 1080px;
-  padding: 8px;
+  width: 100%;
+  max-width: 1200px;
+  padding: $space-sm;
   justify-content: space-between;
   margin: 0 auto;
 
@@ -140,10 +141,10 @@ export default {
 
   @include respond-to(pad) {
     width: 100px;
+    margin-right: 0;
   }
   @include respond-to(mobile) {
     width: 120px;
-    margin: 0 auto;
   }
 
   img {
@@ -162,7 +163,7 @@ export default {
 .list-container {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: $space-md;
   margin-left: auto;
 }
 
@@ -180,7 +181,7 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 30px;
+  gap: $space-2xl;
 
   a {
     text-decoration: none;
@@ -189,21 +190,21 @@ export default {
     font-weight: 400;
   }
   a:hover {
-    text-decoration: underline;
+    color: $primary-color;
   }
 }
 
 .login-btn {
-  background-color: #f9f9f9;
-  font-size: 1rem;
-  border: 2px solid $primary-color;
-  cursor: pointer;
-  color: $primary-color;
-  font-weight: bold;
-  border-radius: 30px;
-  padding: 8px 16px;
-  align-items: center;
-  justify-content: end;
+  @include button-style {
+    background-color: $white-color;
+    font-size: 1rem;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+    font-weight: bold;
+    align-items: center;
+    justify-content: end;
+    border-radius: $radius-xl;
+  }
 }
 
 .hamburger {
@@ -260,7 +261,7 @@ export default {
   background-color: #fff;
   box-shadow: -8px 0 16px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  padding: 16px 12px;
+  padding: $space-sm $space-md;
   transform: translateX(100%);
   animation: slideIn 0.2s ease forwards;
   width: 80vw;
@@ -270,13 +271,13 @@ export default {
     padding: 0;
     margin: 0;
     display: grid;
-    gap: 12px;
+    gap: $space-sm;
   }
   .navbar li a {
     display: block;
-    padding: 12px 10px;
+    padding: $space-sm;
     text-decoration: none;
-    color: #333;
+    color: $paragraph-color;
     font-size: 1.275rem;
     border-radius: 8px;
     transition: background-color 0.2s ease;
@@ -288,7 +289,7 @@ export default {
 .login-icon {
   button {
     @include button-style {
-      padding: 0 15px;
+      padding: 0 $space-md;
       margin: 0;
       display: inline-flex;
       appearance: none;

@@ -1,46 +1,58 @@
 <template>
-  <div class="style-layout">
-    <!-- <------桌機版sidebar左側固定------>
-    <SideBar v-if="!isFiltersMobile" class="sidebar-fixed" @filters-change="handleFiltersChange" />
-    <!-- <------手機版彈窗sidebar------>
-    <div
-      v-if="isFiltersMobile && isFiltersOpen"
-      class="sidebar-mobile-overlay"
-      @click.self="toggleFilters"
-    >
-      <div class="sidebar-mobile-modal">
-        <div class="sidebar-modal">
-          <SideBar
-            :showClose="true"
-            class="sidebar-modal"
-            @filters-change="handleFiltersChange"
-            @close="toggleFilters"
-          >
-          </SideBar>
+  <div class="style-page">
+    <div class="style-layout">
+      <!-- <------桌機版sidebar左側固定------>
+      <SideBar
+        v-if="!isFiltersMobile"
+        class="sidebar-fixed"
+        @filters-change="handleFiltersChange"
+      />
+      <!-- <------手機版彈窗sidebar------>
+      <div
+        v-if="isFiltersMobile && isFiltersOpen"
+        class="sidebar-mobile-overlay"
+        @click.self="toggleFilters"
+      >
+        <div class="sidebar-mobile-modal">
+          <div class="sidebar-modal">
+            <SideBar
+              :showClose="true"
+              class="sidebar-modal"
+              @filters-change="handleFiltersChange"
+              @close="toggleFilters"
+            >
+            </SideBar>
+          </div>
         </div>
       </div>
+      <main class="main-content">
+        <section class="style-banner">
+          <BannerSection
+            title="探索最新穿搭靈感"
+            content="一鍵探索，穿搭沒煩惱"
+            :bannerImg="Artboard"
+          >
+            <template #cta>
+              <button @click="handleStart" class="start-button">立即抽</button>
+              <button v-if="isFiltersMobile" class="filter-button-mobile" @click="toggleFilters">
+                {{ isFiltersOpen ? '關閉篩選' : '篩選條件' }}
+              </button>
+            </template>
+          </BannerSection>
+        </section>
+        <section class="style-todayoutfit">
+          <TodayOutfit v-if="outfit && hero" :outfit="outfit" :hero="hero" @reroll="reroll">
+          </TodayOutfit>
+        </section>
+        <section class="style-inspiration">
+          <InspirationCarousel
+            :inspirations="inspirations"
+            :loading="loading"
+            :error="error"
+          ></InspirationCarousel>
+        </section>
+      </main>
     </div>
-    <main class="main-content">
-      <BannerSection title="探索最新穿搭靈感" content="一鍵探索，穿搭沒煩惱" :bannerImg="Artboard">
-        <template #cta>
-          <button @click="handleStart" class="start-button">立即抽</button>
-          <button v-if="isFiltersMobile" class="filter-button-mobile" @click="toggleFilters">
-            {{ isFiltersOpen ? '關閉篩選' : '篩選條件' }}
-          </button>
-        </template>
-      </BannerSection>
-      <section class="today-outfit">
-        <TodayOutfit v-if="outfit && hero" :outfit="outfit" :hero="hero" @reroll="reroll">
-        </TodayOutfit>
-      </section>
-      <section class="inspiration-carousel">
-        <InspirationCarousel
-          :inspirations="inspirations"
-          :loading="loading"
-          :error="error"
-        ></InspirationCarousel>
-      </section>
-    </main>
   </div>
 </template>
 <script setup>
@@ -118,27 +130,26 @@ onBeforeUnmount(() => {
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
-:global(html, body) {
-  background-color: #f8f8f8;
+.style-page {
+  background-color: $background-color;
+  min-height: 100vh;
 }
 
 .style-layout {
   display: flex;
   align-items: stretch;
   margin: 0 auto;
-  min-height: calc(100vh - 100px);
   max-width: 1200px;
 }
 
 /*桌機版sidebar用*/
 .sidebar-fixed {
-  width: 240px;
   flex-shrink: 0;
-  padding: 16px;
+  padding: $space-md;
   position: sticky;
   top: 150px;
   box-sizing: border-box;
-  min-height: calc(100vh - 120px);
+  background-color: $white-color;
 }
 
 /*手機版sidebar用*/
@@ -153,7 +164,7 @@ onBeforeUnmount(() => {
     position: fixed;
   }
   &-modal {
-    padding: 10px;
+    padding: $space-sm;
     width: 100%;
     max-width: 400px;
   }
@@ -162,61 +173,61 @@ onBeforeUnmount(() => {
 .sidebar-modal {
   background-color: #fff;
   width: auto;
-  margin: 20px;
+  margin: $space-lg;
   max-width: 340px;
   max-height: 80vh;
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: $radius-md;
+  padding: $space-md;
   box-sizing: border-box;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: $shadow-md;
   overflow-y: auto;
 }
 
 .main-content {
   flex: 1;
-  padding: 15px;
   box-sizing: border-box;
   min-width: 0;
   display: block;
   border-radius: 30px;
+  padding: $space-md $space-sm;
 }
 
 .start-button {
   @include button-style {
     border: 1px solid $primary-color;
-    background-color: #fff;
+    background-color: $white-color;
+    color: $primary-color;
 
     &:hover {
       background-color: $primary-color;
-      color: #fff;
+      color: $white-color;
       opacity: 1;
-      box-shadow: 0 4px 8px #a5a5a5;
+      box-shadow: $shadow-sm;
     }
   }
 }
 
-.banner-section {
-  border-radius: 0px 0px 15px 15px;
+.style-banner {
+  border-radius: 0px 0px $radius-md $radius-md;
+  background: linear-gradient(to bottom, $primary-color, $white-color);
 }
 
 .filter-button-mobile {
   @include button-style {
-    color: #fff;
     margin-left: 20px;
   }
 }
 
-.today-outfit {
-  background-color: #fff;
-  padding: 10px 0;
-  margin-top: 16px;
-  border-radius: 15px 15px 0px 0px;
+.style-todayoutfit {
+  background-color: $white-color;
+  padding: $space-sm 0;
+  border-radius: $radius-md $radius-md 0px 0px;
   overflow: hidden;
+  margin-top: $space-lg;
 }
-.inspiration-carousel {
-  background-color: #ffffff;
-  padding: 10px 0 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
-  border-radius: 0px 0px 15px 15px;
+.style-inspiration {
+  background-color: $white-color;
+  padding: $space-sm 0;
+  border-radius: 0px 0px $radius-md $radius-md;
 }
 </style>

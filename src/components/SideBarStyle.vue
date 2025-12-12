@@ -1,5 +1,4 @@
 <template>
-  <div class="header-space"></div>
   <aside class="sidebar">
     <button v-if="showClose" class="sidebar-close-button" @click="handleClose">x</button>
     <div class="select-group">
@@ -64,6 +63,7 @@ export default {
       default: false,
     },
   },
+  emits: ['filters-change', 'close'],
   setup(props, { emit }) {
     console.log(props.title1)
 
@@ -124,18 +124,14 @@ export default {
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
-.header-space {
-  height: 100px;
-}
 .sidebar {
   display: flex;
   align-items: flex-start;
-  width: 280px;
-  padding: 30px 20px;
+  padding: $space-md;
   box-sizing: border-box;
   flex-direction: column;
-  background-color: #fff;
   position: relative;
+  background-color: $white-color;
 }
 
 .sidebar-close-button {
@@ -147,7 +143,7 @@ export default {
   position: absolute;
   right: 20px;
   top: 0;
-  transition: transform 2s ease;
+  transition: transform 0.2s ease;
 
   &:hover {
     transform: scale(1.5);
@@ -158,8 +154,8 @@ export default {
 .style-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
+  gap: $space-sm;
+  padding: $space-lg;
 
   h6 {
     @include subheading-style;
@@ -170,26 +166,26 @@ export default {
     padding: 0;
     margin: 0;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: $space-sm;
     font-size: 1.175rem;
 
     li {
-      padding: 8px 12px;
-      border-radius: 8px;
+      padding: $space-sm $space-md;
+      border-radius: $radius-sm;
       cursor: pointer;
       transition: all 0.2s;
 
       &.active {
-        background-color: #00bfa6;
-        color: #fff;
-        border-color: #00bfa6;
+        background-color: $second-primary-color;
+        color: $white-color;
+        border-color: $second-primary-color;
       }
     }
   }
 
   select {
-    padding: 8px 12px;
-    border-radius: 8px;
+    padding: $space-sm $space-md;
+    border-radius: $radius-sm;
     border: 1px solid #ccc;
     font-size: 1rem;
     cursor: pointer;
@@ -198,7 +194,7 @@ export default {
   }
   &:focus {
     outline: none;
-    border-color: #00bfa6;
+    border-color: $second-primary-color;
   }
   p {
     @include paragraph-style;
@@ -207,9 +203,9 @@ export default {
 
 .search-space {
   input {
-    border-radius: 30px;
-    padding: 8px;
-    margin-bottom: 20px;
+    border-radius: $radius-2xl;
+    padding: $space-sm;
+    margin-bottom: $space-lg;
     font-size: 1rem;
   }
 }

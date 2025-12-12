@@ -40,12 +40,11 @@ export default {
       required: true,
     },
   },
-  emits: ['toggle-Price', 'toggle-Rate','open-drawer'],
+  emits: ['toggle-Price', 'toggle-Rate', 'open-drawer'],
 
   setup(props, { emit }) {
     const onClickprice = () => emit('toggle-Price')
     const onClickrate = () => emit('toggle-Rate')
-   
 
     function onOpenDrawer(item) {
       emit('open-drawer', item)
@@ -60,15 +59,22 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .today-food {
-  max-width: 860px;
-  margin: 0 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 
   .sort-bar {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    gap: $space-sm;
+    margin: $space-md 0;
+
+    @include respond-to(pad) {
+      margin-left: $space-lg;
+    }
+    @include respond-to(mobile) {
+      margin-left: $space-lg;
+    }
 
     .price-btn {
       @include button-style {
@@ -85,9 +91,9 @@ export default {
   .food-col {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    align-items: center;
+    gap: $space-md;
     justify-content: center;
+    width: 100%;
   }
 }
 </style>

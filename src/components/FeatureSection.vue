@@ -41,28 +41,25 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .feature {
-  padding: 40px 0;
+  padding: $space-lg;
   overflow: hidden;
-  background-color: #fff;
 
   & h1 {
-    font-weight: bold;
+    @include minheading-style;
     font-size: 1.75rem;
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: $space-lg;
     color: $primary-color;
+    text-align: center;
   }
 
   .wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin: 0 auto;
-    max-width: 1200px;
+    gap: $space-md;
 
     @include respond-to(pad) {
       grid-template-columns: repeat(1, 1fr);
-      gap: 10px;
+      gap: $space-sm;
       max-width: 680px;
     }
 
@@ -72,39 +69,38 @@ export default {
     }
 
     .picko-feat {
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      border-radius: 15px;
+      background-color: $white-color;
+      box-shadow: $shadow-md;
+      padding: $space-lg;
+      border-radius: $radius-md;
 
       @include respond-to(pad) {
-        padding: 20px 30px;
+        padding: $space-lg $space-xl;
       }
       @include respond-to(mobile) {
-        padding: 16px 24px;
+        padding: $space-sm $space-md;
       }
 
       & h6 {
-        font-size: 1.375rem;
+        @include subheading-style;
         text-align: center;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #666;
+        margin-bottom: $space-sm;
+        color: $title-color;
       }
 
       & p {
-        font-size: 1.125rem;
-        line-height: 1.5;
-        color: #333;
+        @include paragraph-style;
+        color: $paragraph-color;
         text-align: center;
       }
       & img {
-        width: 120px;
+        width: 100%;
+        max-width: 120px;
         overflow: hidden;
         object-fit: cover;
         display: block;
         margin: 0 auto;
-        margin-bottom: 30px;
+        margin-bottom: $space-xl;
 
         @include respond-to(pad) {
           width: 200px;

@@ -110,15 +110,20 @@ export default {
 
 .overlay {
   @include overlay-base;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 24px;
 }
 
 .drawer {
   width: min(420px, 100%);
-  height: 80vh;
+  height: auto;
+  max-height: calc(100vh - 48px);
   background: #fff;
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.12);
   padding: 20px;
   border-radius: 16px;
+  overflow-x: auto;
 }
 
 .swiper {
@@ -138,8 +143,8 @@ export default {
 
 .swiper-slide img {
   display: block;
-  width: 220px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -151,6 +156,7 @@ export default {
   flex-direction: column;
   background-color: #fff;
   padding: 20px;
+  gap: 8px;
 
   .info_title {
     @include minheading-style;

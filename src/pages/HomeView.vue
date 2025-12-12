@@ -1,18 +1,38 @@
 <template>
-  <BannerSection title="解決選擇障礙的首頁" content="吃與穿的靈感，一鍵開啟。" :bannerImg="heroUrl">
-    <template #cta>
-      <button @click="goStart" class="cta-button">立即開始</button>
-    </template>
-  </BannerSection>
-  <FeatureSection></FeatureSection>
-  <EntranceSection
-    :foodEntrance="foodImg"
-    :wearEntrance="wearImg"
-    @goto-food="() => $router.push('/food')"
-    @goto-wear="() => $router.push('/style')"
-  >
-  </EntranceSection>
-  <Footer></Footer>
+  <div class="home-view">
+    <section class="home-banner">
+      <div class="home-inner">
+        <BannerSection
+          title="解決選擇障礙的首頁"
+          content="吃與穿的靈感，一鍵開啟。"
+          :bannerImg="heroUrl"
+        >
+          <template #cta>
+            <button @click="goStart" class="cta-button">立即開始</button>
+          </template>
+        </BannerSection>
+      </div>
+    </section>
+
+    <section class="home-feature">
+      <div class="home-inner">
+        <FeatureSection></FeatureSection>
+      </div>
+    </section>
+
+    <section class="home-entrance">
+      <div class="home-inner">
+        <EntranceSection
+          :foodEntrance="foodImg"
+          :wearEntrance="wearImg"
+          @goto-food="() => $router.push('/food')"
+          @goto-wear="() => $router.push('/style')"
+        >
+        </EntranceSection>
+      </div>
+    </section>
+    <Footer></Footer>
+  </div>
 </template>
 <script>
 import BannerSection from '@/components/BannerSection.vue'
@@ -43,16 +63,43 @@ export default {
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
+.home-view {
+  background-color: $white-color;
+  min-height: 100vh;
+}
+
+/* 共用的「版心容器」：專門負責 1200px + 置中 */
+.home-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-banner {
+  width: 100%;
+  background: linear-gradient(to bottom, $primary-color, $white-color);
+  padding-top: $space-lg;
+}
+
+.home-feature {
+  background-color: $white-color;
+  padding: $space-xl $space-lg;
+}
+
+.home-entrance {
+  background: linear-gradient(to bottom, $white-color, $primary-color);
+  padding: $space-xl $space-lg;
+}
 .cta-button {
   @include button-style {
     border: 2px solid $primary-color;
-    background-color: #fff;
+    background-color: $white-color;
+    color: $primary-color;
 
     &:hover {
       background-color: $primary-color;
-      color: #fff;
+      color: $white-color;
       opacity: 1;
-      box-shadow: 0 4px 8px #a5a5a5;
+      box-shadow: $shadow-sm;
     }
   }
 }

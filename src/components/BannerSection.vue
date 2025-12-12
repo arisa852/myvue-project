@@ -1,6 +1,5 @@
 <template>
   <section class="banner">
-    <div class="header-space"></div>
     <div class="container">
       <slot>
         <div class="bn-text">
@@ -44,36 +43,27 @@ export default {
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
-.header-space {
-  height: 50px;
-}
-
 .banner {
-  width: 100%;
-  max-width: 100%;
-  position: relative;
-  background: linear-gradient(to bottom, $primary-color, #fff);
   overflow: hidden;
 
   .container {
-    margin: 0 auto;
-    max-width: 1080px;
-    position: relative;
-    z-index: 3;
-    padding: 20px;
+    padding: $space-lg;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+   
 
     @include respond-to(pad) {
       flex-direction: column;
-      padding: 20px;
+      padding: $space-lg;
       max-width: 100%;
     }
     @include respond-to(mobile) {
       flex-direction: column;
-      padding: 20px;
+      padding: $space-lg;
       max-width: 100%;
     }
   }
@@ -91,24 +81,19 @@ export default {
     }
 
     & h1 {
-      font-weight: bold;
-      margin-bottom: 10px;
-      line-height: 1.5;
-      font-size: 2.175rem;
-      color: #333;
+      @include heading-style;
+      color: $title-color;
     }
 
     & p {
-      font-size: 1.5rem;
-      line-height: 1.5;
-      margin-bottom: 20px;
-      color: #333;
+      @include minheading-style;
+      font-weight: 400;
+      color: $paragraph-color;
     }
   }
 
   .bn-img {
     width: 50%;
-    max-width: 300px;
 
     @include respond-to(pad) {
       width: 100%;
@@ -120,7 +105,7 @@ export default {
 
     & img {
       width: 100%;
-      overflow: hidden;
+      max-width: 500px;
       object-fit: contain;
       height: auto;
       display: block;

@@ -1,41 +1,64 @@
 <template>
-  <div class="food-layout">
-    <div class="sidebar-fixed">
-      <SidebarFood @select-change="handleSelectChange"></SidebarFood>
-    </div>
-    <main class="main-container">
-      <div v-if="loading">載入中</div>
-      <div v-else-if="error">發生錯誤:{{ error.message }}</div>
-      <BannerSection
-        title="每天都在想吃什麼？我們懂"
-        content="用分類＋篩選快速縮小範圍，輕鬆決定下一餐"
-        :bannerImg="Bnfood"
-      >
-      </BannerSection>
-      <TodayFood
-        v-if="top3.length > 0"
-        :items="top3"
-        :sort-state="sortState"
-        @toggle-Price="handleClickPrice"
-        @toggle-Rate="handleClickRate"
-        @open-drawer="onOpenDrawer"
-      ></TodayFood>
-      <RestaurantsDetail
-        :show="showDetail"
-        :restaurantlist="activeRestaurant"
-        @close="oncloseDetail"
-      >
-      </RestaurantsDetail>
-      <div class="pagination">
-        <button @click="prePage" :disabled="currentPage === 1" class="arrow-btn">
-          <i class="bi bi-chevron-compact-left"></i>
-        </button>
-        <span class="page-info">第{{ currentPage }}頁 / 第{{ totalPages }}頁</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="arrow-btn">
-          <i class="bi bi-chevron-compact-right"></i>
-        </button>
+  <div class="food-page">
+    <div class="food-layout">
+      <!------桌機版sidebar左側固定------>
+      <SidebarFood v-if="!isMobile" class="sidebar-fixed" @select-change="handleSelectChange">
+      </SidebarFood>
+      <!------手機版sidebar左側固定------>
+      <div v-if="isMobile && isOpen" class="sidebar-mobile-overlay" @click.self="toggleSelect">
+        <div class="sidebar-mobile-modal">
+          <div class="sidebar-modal">
+            <SidebarFood
+              :isClose="true"
+              class="sidebar-modal"
+              @select-change="handleSelectChange"
+              @closeSidebar="toggleSelect"
+            >
+            </SidebarFood>
+          </div>
+        </div>
       </div>
-    </main>
+      <main class="main-container">
+        <div v-if="loading">載入中</div>
+        <div v-else-if="error">發生錯誤:{{ error.message }}</div>
+        <div class="food-banner">
+          <BannerSection
+            title="每天都在想吃什麼？我們懂"
+            content="用分類＋篩選快速縮小範圍，輕鬆決定下一餐"
+            :bannerImg="Bnfood"
+          >
+            <template #cta>
+              <button v-if="isMobile" class="select-button-mobile" @click="toggleSelect">
+                {{ isOpen ? '關閉篩選' : '篩選條件' }}
+              </button>
+            </template>
+          </BannerSection>
+        </div>
+        <TodayFood
+          v-if="top3.length > 0"
+          :items="top3"
+          :sort-state="sortState"
+          @toggle-Price="handleClickPrice"
+          @toggle-Rate="handleClickRate"
+          @open-drawer="onOpenDrawer"
+        ></TodayFood>
+        <RestaurantsDetail
+          :show="showDetail"
+          :restaurantlist="activeRestaurant"
+          @close="oncloseDetail"
+        >
+        </RestaurantsDetail>
+        <div class="pagination">
+          <button @click="prePage" :disabled="currentPage === 1" class="arrow-btn">
+            <i class="bi bi-chevron-compact-left"></i>
+          </button>
+          <span class="page-info">第{{ currentPage }}頁 / 第{{ totalPages }}頁</span>
+          <button @click="nextPage" :disabled="currentPage === totalPages" class="arrow-btn">
+            <i class="bi bi-chevron-compact-right"></i>
+          </button>
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 <script setup>
@@ -45,7 +68,7 @@ import Bnfood from '@/assets/images/noodles.png'
 import TodayFood from '@/components/TodayFood.vue'
 import RestaurantsDetail from '@/components/RestaurantsDetail.vue'
 import { useGetRestaurantList } from '@/use/useGetRestaurantList'
-import { computed, onMounted, watch, ref } from 'vue'
+import { computed, onMounted, watch, ref, onBeforeUnmount } from 'vue'
 
 const {
   loading,
@@ -61,6 +84,24 @@ const {
   prePage,
   fetchRestaurantlist,
 } = useGetRestaurantList()
+
+const isMobile = ref(false)
+const isOpen = ref(false)
+let mql = null
+
+const toggleSelect = () => {
+  isOpen.value = !isOpen.value
+}
+
+const updateMobile = () => {
+  if (!mql) {
+    return
+  }
+  isMobile.value = mql.matches
+  if (!isMobile.value) {
+    isOpen.value = false
+  }
+}
 
 function handleSelectChange(newVal) {
   console.log('sidebar的值', newVal)
@@ -104,43 +145,105 @@ watch(top3, (v) => {
   )
 })
 
+watch(
+  isOpen,
+  (newVal) => {
+    const body = document.body
+
+    if (!body) return
+    if (newVal) {
+      body.classList.add('modal-open')
+    } else {
+      body.classList.remove('modal-open')
+    }
+  },
+  { immediate: false },
+)
+
 onMounted(async () => {
   console.log('foodview開始執行')
+  mql = window.matchMedia('(max-width:1023px)')
+  updateMobile()
+  if (mql.addEventListener) {
+    mql.addEventListener('change', updateMobile)
+  } else if (mql.addListener) {
+    mql.addListener(updateMobile)
+  }
+
   await fetchRestaurantlist()
 })
+
+onBeforeUnmount(() => {
+  if (!mql) return
+  if (mql.removeEventListener) {
+    mql.removeEventListener('change', updateMobile)
+  } else if (mql.removeListener) {
+    mql.removeListener(updateMobile)
+  }
+  document.body.classList.remove('modal-open')
+})
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
-:global(html, body) {
-  background-color: #f8f8f8;
+.food-page {
+  background-color: $background-color;
+  min-height: 100vh;
 }
 
 .food-layout {
   display: flex;
   align-items: stretch;
   margin: 0 auto;
-  min-height: 100vh;
   max-width: 1200px;
+  gap: $space-lg;
 }
 
 /*桌機版sidebar用*/
 .sidebar-fixed {
   width: 240px;
   flex-shrink: 0;
-  padding: 16px;
+  padding: $space-md;
   position: sticky;
-  top: 150px;
+  top: 20px;
+  margin-right: $space-lg;
+}
+
+.sidebar-mobile {
+  &-overlay {
+    @include overlay-base;
+  }
+  &-modal {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+.sidebar-modal {
+  background-color: #fff;
+  width: auto;
+  max-width: 300px;
+  border-radius: $radius-lg;
+  padding: $space-md;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .main-container {
   flex: 1;
-  box-sizing: border-box;
   min-width: 0;
-  padding: 20px;
-  display: inline-block;
-  margin: 10px 0;
+  box-sizing: border-box;
+  margin: $space-sm 0;
+}
+
+.food-banner {
+  background: linear-gradient(to bottom, $primary-color, $white-color);
+  padding: $space-sm $space-md;
+}
+
+.select-button-mobile {
+  @include button-style;
 }
 
 .pagination {
@@ -148,13 +251,13 @@ onMounted(async () => {
   justify-content: center;
   align-items: baseline;
   margin-top: 20px;
-  gap: 10px;
+  gap: $space-sm;
 
   .page-info {
     @include paragraph-style;
     height: 40px;
     line-height: 1.2;
-    color: #333;
+    color: $paragraph-color;
   }
 
   .arrow-btn {

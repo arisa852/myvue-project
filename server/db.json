@@ -628,7 +628,7 @@
     {
       "id": 7,
       "name": "永康咖啡館",
-      "category": "cafe",
+      "category": "lightmeal",
       "locationTag": "yongkang",
       "city": "taipei",
       "address": "台北市大安區永康街 15 號",
@@ -697,7 +697,7 @@
     {
       "id": 10,
       "name": "永康越南河粉",
-      "category": "lightmeal",
+      "category": "chinese",
       "locationTag": "yongkang",
       "city": "taipei",
       "address": "台北市大安區永康街 25 巷 8 號",
@@ -720,7 +720,7 @@
     {
       "id": 11,
       "name": "永康早午餐 Brunch House",
-      "category": "cafe",
+      "category": "lightmeal",
       "locationTag": "yongkang",
       "city": "taipei",
       "address": "台北市大安區永康街 31 號",
@@ -782,8 +782,8 @@
         "sat": "09:00-21:00",
         "sun": "09:00-20:00"
       },
-      "coverImage": "/restaurants/east_chuhe_cafe.jpg",
-      "images": ["/restaurants/east_chuhe_cafe_1.jpg", "/restaurants/east_chuhe_cafe_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 14,
@@ -804,8 +804,8 @@
         "sat": "11:00-22:00",
         "sun": "11:00-21:00"
       },
-      "coverImage": "/restaurants/east_japanese_set.jpg",
-      "images": ["/restaurants/east_japanese_set_1.jpg", "/restaurants/east_japanese_set_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 15,
@@ -826,11 +826,8 @@
         "sat": "10:30-20:30",
         "sun": "10:30-20:00"
       },
-      "coverImage": "/restaurants/east_green_lightmeal.jpg",
-      "images": [
-        "/restaurants/east_green_lightmeal_1.jpg",
-        "/restaurants/east_green_lightmeal_2.jpg"
-      ]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 16,
@@ -851,11 +848,8 @@
         "sat": "11:00-20:30",
         "sun": "休息"
       },
-      "coverImage": "/restaurants/east_chinese_fastfood.jpg",
-      "images": [
-        "/restaurants/east_chinese_fastfood_1.jpg",
-        "/restaurants/east_chinese_fastfood_2.jpg"
-      ]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 17,
@@ -876,8 +870,8 @@
         "sat": "11:00-21:00",
         "sun": "11:00-20:00"
       },
-      "coverImage": "/restaurants/east_forest_cafe.jpg",
-      "images": ["/restaurants/east_forest_cafe_1.jpg", "/restaurants/east_forest_cafe_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 18,
@@ -898,8 +892,8 @@
         "sat": "11:00-22:00",
         "sun": "11:00-21:00"
       },
-      "coverImage": "/restaurants/east_japanese_don.jpg",
-      "images": ["/restaurants/east_japanese_don_1.jpg", "/restaurants/east_japanese_don_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 19,
@@ -920,11 +914,8 @@
         "sat": "10:00-20:00",
         "sun": "10:00-19:00"
       },
-      "coverImage": "/restaurants/east_energy_lightmeal.jpg",
-      "images": [
-        "/restaurants/east_energy_lightmeal_1.jpg",
-        "/restaurants/east_energy_lightmeal_2.jpg"
-      ]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 20,
@@ -945,8 +936,8 @@
         "sat": "11:00-22:00",
         "sun": "11:00-21:30"
       },
-      "coverImage": "/restaurants/xinyi_japanese_1.jpg",
-      "images": ["/restaurants/xinyi_japanese_1_1.jpg", "/restaurants/xinyi_japanese_1_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 21,
@@ -967,8 +958,8 @@
         "sat": "10:00-21:00",
         "sun": "10:00-20:00"
       },
-      "coverImage": "/restaurants/xinyi_lightmeal_1.jpg",
-      "images": ["/restaurants/xinyi_lightmeal_1_1.jpg", "/restaurants/xinyi_lightmeal_1_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 22,
@@ -989,8 +980,8 @@
         "sat": "11:00-22:00",
         "sun": "11:00-21:00"
       },
-      "coverImage": "/restaurants/xinyi_beefnoodle.jpg",
-      "images": ["/restaurants/xinyi_beefnoodle_1.jpg", "/restaurants/xinyi_beefnoodle_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 23,
@@ -1011,8 +1002,8 @@
         "sat": "09:00-21:00",
         "sun": "09:00-20:30"
       },
-      "coverImage": "/restaurants/xinyi_cafe_1.jpg",
-      "images": ["/restaurants/xinyi_cafe_1_1.jpg", "/restaurants/xinyi_cafe_1_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 24,
@@ -1033,8 +1024,8 @@
         "sat": "10:30-20:30",
         "sun": "休息"
       },
-      "coverImage": "/restaurants/xinyi_bento_1.jpg",
-      "images": ["/restaurants/xinyi_bento_1_1.jpg", "/restaurants/xinyi_bento_1_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 25,
@@ -1055,8 +1046,8 @@
         "sat": "10:00-21:00",
         "sun": "10:00-20:00"
       },
-      "coverImage": "/restaurants/xinyi_salad_1.jpg",
-      "images": ["/restaurants/xinyi_salad_1_1.jpg", "/restaurants/xinyi_salad_1_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     },
     {
       "id": 26,
@@ -1077,8 +1068,8 @@
         "sat": "11:00-22:00",
         "sun": "11:00-21:00"
       },
-      "coverImage": "/restaurants/xinyi_chinese_1.jpg",
-      "images": ["/restaurants/xinyi_chinese_1_1.jpg", "/restaurants/xinyi_chinese_1_2.jpg"]
+      "coverImage": "",
+      "images": ["", ""]
     }
   ]
 }

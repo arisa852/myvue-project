@@ -48,20 +48,18 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .entrance {
-  padding: 40px 0;
-  background: linear-gradient(to top, $primary-color, #fff);
+  padding: $space-xl 0;
   overflow: hidden;
 }
 
 .entrance-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: $space-lg;
   max-width: 1000px;
   margin-inline: auto;
-  justify-items: center; // 每個格子水平置中
+  justify-items: center;
   align-items: start;
-  padding: 20px;
 
   @include respond-to(pad) {
     grid-template-columns: repeat(1, 1fr);
@@ -74,9 +72,9 @@ export default {
 }
 
 .entrance-card {
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
+  background-color: $white-color;
+  box-shadow: $shadow-sm;
+  border-radius: $radius-md;
   text-align: center;
   overflow: hidden;
 
@@ -84,7 +82,7 @@ export default {
     object-fit: cover;
     display: block;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: $space-lg;
     display: block;
     max-width: 450px;
 
@@ -97,19 +95,18 @@ export default {
   }
   & h4 {
     @include subheading-style;
-    margin-bottom: 30px;
-    color: #666;
+    margin-bottom: $space-xl;
+    color:$paragraph-color;
 
     @include respond-to(pad) {
-      margin-bottom: 20px;
+      margin-bottom: $space-lg;
     }
   }
   .entrance-button {
     @include button-style {
-      border: 2px solid #fff;
+      border: 2px solid $white-color;
       background-color: $primary-color;
-      margin-bottom: 30px;
-      color: #fff;
+      margin-bottom: $space-lg;
     }
   }
 }

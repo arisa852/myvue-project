@@ -44,7 +44,7 @@ $breakpoints: (
 @mixin button-style(
   $bg-color: $primary-color,
   // 預設背景
-  $text-color: $primary-color,
+  $text-color: $white-color,
   // 預設字色
   $padding: 8px 16px,
   // 預設 padding
@@ -68,16 +68,12 @@ $breakpoints: (
   @content;
 }
 
-
-@mixin overlay-base{
-    position: fixed;
-    background: rgba(0, 0, 0, 0.4);
-    inset: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@mixin overlay-base {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.4);
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-
-

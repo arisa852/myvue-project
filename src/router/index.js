@@ -19,7 +19,7 @@ const routes = [
     path: '/food',
     name: 'food',
     component: FoodView,
-  },
+  }
 ]
 
 const router = createRouter({

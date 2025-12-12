@@ -52,17 +52,26 @@ const locationMap = computed(() => {
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  border-radius: 16px;
-  width: 100%;
+  box-shadow: $shadow-md;
+  padding: $space-lg;
+  border-radius: $radius-md;
 
+  @include respond-to(pad) {
+    flex-direction: column;
+    width: 85%;
+    align-items: stretch;
+  }
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    width: 85%;
+    align-items: stretch;
+  }
   .left-col {
     flex: 1;
-    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: $space-sm;
   }
 
   .restaurants-text {
@@ -77,6 +86,13 @@ const locationMap = computed(() => {
     p {
       @include paragraph-style;
       font-weight: 400;
+
+      @include respond-to(pad) {
+        font-size: 1.275rem;
+      }
+      @include respond-to(mobile) {
+        font-size: 1.25rem;
+      }
     }
     .open {
       color: $primary-color;
@@ -88,23 +104,39 @@ const locationMap = computed(() => {
 
   .restaurants-img {
     width: 50%;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     & img {
-      max-width: 300px;
+      width: 100%;
+      max-width: 400px;
       border-radius: 16px;
       object-fit: cover;
-      display: block;
+
+      @include respond-to(pad) {
+        max-width: 350px;
+      }
+      @include respond-to(mobile) {
+        max-width: 350px;
+      }
     }
   }
   .btn-group {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: $space-sm;
 
     .navigate-btn {
       @include button-style;
       color: #fff;
+
+      @include respond-to(pad) {
+        margin-bottom: $space-lg;
+      }
+      @include respond-to(mobile) {
+        margin-bottom: $space-lg;
+      }
     }
     .detail-btn {
       @include button-style;

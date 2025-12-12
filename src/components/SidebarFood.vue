@@ -1,5 +1,6 @@
 <template>
   <aside class="sidebar-food">
+    <button v-if="isClose" class="close-btn" @click.self="handleClickSidebar">x</button>
     <div class="category-group">
       <h6>{{ FoodTitle }}</h6>
       <label class="radio-wrapper">
@@ -82,7 +83,12 @@ export default {
       type: String,
       default: '地區',
     },
+    isClose: {
+      type: Boolean,
+      default: false,
+    },
   },
+  emits: ['select-change', 'closeSidebar'],
   setup(props, { emit }) {
     const select = reactive({
       category: '',
@@ -103,7 +109,7 @@ export default {
     const DisplayPlace = computed(() => {
       const map = {
         'taipei-main': '台北車站',
-        'yongkang': '永康街',
+        yongkang: '永康街',
         'taipei-east': '台北東區',
         'xinyi-Shopping': '信義商圈',
       }
@@ -124,7 +130,11 @@ export default {
       { deep: true },
     )
 
-    return { DisplayCategory, DisplayPlace, priceRange, select }
+    const handleClickSidebar = () => {
+      console.log('子層點到')
+      emit('closeSidebar')
+    }
+    return { DisplayCategory, DisplayPlace, priceRange, select, handleClickSidebar }
   },
 }
 </script>
@@ -141,31 +151,54 @@ export default {
   position: relative;
 }
 
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+  position: absolute;
+  right: 10%;
+  top: 0px;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
 .category-group,
 .place-group {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  padding: 20px;
-  margin-bottom: 10px;
-  width: 220px;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: $space-sm;
+  width: 100%;
+  background-color: $white-color;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  gap: $space-xs;
+  padding: $space-lg;
+
+  @include respond-to(pad) {
+    box-shadow: none;
+  }
+  @include respond-to(mobile) {
+    box-shadow: none;
+  }
 
   h6 {
     @include subheading-style;
-    margin-bottom: 20px;
+    margin-bottom: $space-md;
   }
 
   p {
     @include paragraph-style;
-    margin-top: 16px;
   }
 
   .radio-wrapper {
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: $space-sm;
     display: flex;
     align-items: center;
 
@@ -178,9 +211,9 @@ export default {
       height: 16px;
       border: 2px solid $primary-color;
       position: relative;
-      margin-right: 8px;
+      margin-right: $space-sm;
       border-radius: 50%;
-      transition: transform 2s ease;
+      transition: transform 0.2s ease;
 
       &::after {
         content: '';
@@ -212,34 +245,37 @@ export default {
 .price-group {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   background-color: #fff;
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  width: 220px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: $space-md;
+  border-radius: $radius-lg;
+  width: 100%;
+  box-shadow: $shadow-md;
+  padding: $space-lg;
 
+  @include respond-to(pad) {
+    box-shadow: none;
+  }
+  @include respond-to(mobile) {
+    box-shadow: none;
+  }
   h6 {
     @include subheading-style;
   }
 
   p {
     @include paragraph-style;
-    margin-top: 16px;
+    margin-top: $space-sm;
   }
   .price-list {
     list-style: none;
     padding: 0;
-    margin: 0;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: $space-xs;
     font-size: 1.175rem;
 
     li {
-      padding: 8px 12px;
-      border-radius: 8px;
+      padding: $space-sm $space-md;
+      border-radius: $radius-sm;
       cursor: pointer;
       transition: all 0.2s ease;
       color: $paragraph-color;
