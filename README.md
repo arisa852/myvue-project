@@ -2,33 +2,52 @@
 
 Picko
 
-Vue 3 前端應用｜穿搭靈感 × 美食探索｜讓每天的選擇更輕鬆
+Vue 3 前端應用｜穿搭靈感 × 美食探索  
+幫助使用者在日常中快速做出「吃什麼、穿什麼」的選擇
 
-一款以 Vue 3 打造的互動式前端應用，結合「穿搭靈感」與「美食探索」兩大主題。
-專案聚焦在 元件化、資料流管理、前端邏輯處理與 UI / UX 互動設計，
-展示從資料整理 → 邏輯封裝 → UI 呈現的完整前端開發流程。
+## Demo
+
+- 線上展示：https://myvue-project-demo.vercel.app
+
+## 專案介紹
+
+Picko 是一款以 Vue 3 打造的互動式前端 SPA，
+結合「穿搭靈感」與「美食探索」兩大主題。
+
+專案著重於：
+
+- 元件化設計與頁面拆分
+- 前端資料流（篩選 / 排序 / 分頁）
+- 可重複使用邏輯的封裝（Composables）
+- UI / UX 與 RWD 響應式設計
+
+展示從資料整理 → 邏輯處理 → UI 呈現的完整前端開發流程。
 
 ## 專案特色
 
-1. 使用 Vue 3（Composition API）打造模組化架構
+### Vue 3 + Composition API 架構
 
-使用 script setup、computed、reactive 管理資料
+- 以 Composition API 撰寫元件（setup / script setup）
+- 使用`ref、reactive、computed`管理狀態
+- 明確區分 props / emits，維持單向資料流
 
-抽離共用邏輯為 composable（例如：餐廳資料處理 useGetRestaurantList）
+### 前端資料流設計
 
-透過 props / emits 實現父子雙向溝通
+- 資料流程：篩選（Filter） → 排序（Sort） → 分頁（Pagination） → UI 呈現
+- 條件變動時，餐廳列表會即時同步更新
+- 於美食模組中使用 computed 集中處理衍生列表資料，
+- 以避免不必要的重複計算並提升資料流可讀性
 
-2. 資料流完整：篩選 → 排序 → 分頁 → UI 呈現
+### 可重用邏輯封裝
 
-可依季節 / 風格 / 類別篩選不同穿搭或餐廳
+- 將資料處理與排序邏輯抽離為 Composables
+- UI 與商業邏輯解耦，提升可維護性與可讀性
 
-價格 / 評分排序（asc / desc / none 三段切換）
+### UI / UX 與 RWD
 
-可分頁顯示（帶 computed 計算當前列表）
-
-選單變動後，所有 UI 可自動同步更新
-
-可重複使用的邏輯封裝（Composable）
+- 桌機 / 平板 / 手機響應式版面設計
+- 卡片式 UI、Drawer 詳情視窗
+- Swiper 圖片輪播增強互動體驗
 
 ## 專案資訊
 
@@ -85,31 +104,22 @@ npm run dev
 
 ### 目前已完成功能
 
-##穿搭靈感（Outfit Module）
+#### 穿搭靈感（Outfit Module）
 
-今日穿搭靈感：隨機抽選今日配色
+- 穿搭列表與卡片呈現
+- 篩選：季節 / 風格
+- 動態資料載入（JSON Server）
+- RWD 響應式版面
 
-篩選：季節 / 風格
+#### 美食模組（Food Module）
 
-動態資料載入（JSON Server）
-
-RWD 響應式版面
-
-UI 卡片呈現
-
-##美食模組（Food Module）
-
-餐廳列表 + 卡片呈現
-
-Sort：價格 / 評分（asc / desc / none）
-
-Filter：類別 / 價位 / 地區
-
-Pagination：分頁顯示
-
-Drawer：店家詳情 + Swiper 圖片輪播
-
-開店狀態判斷（自行撰寫邏輯）
+- 餐廳列表與卡片呈現
+- Sort：價格 / 評分（asc / desc / none）
+- Filter：類別 / 價位 / 地區
+- Pagination：分頁顯示
+- Drawer：店家詳情視窗
+- Swiper：餐廳圖片輪播
+- 開店狀態判斷（自行實作邏輯）
 
 ### 範例資料(json-server)
 
@@ -139,15 +149,10 @@ Drawer：店家詳情 + Swiper 圖片輪播
 
 ### 未來計畫
 
-新增「吃的靈感」模組（食物推薦與篩選邏輯）
-
-導入 Pinia 狀態管理
-
-建立登入 / 註冊頁面（模擬使用者資料）
-
-優化 UI 動畫與互動細節
-
-收藏 / 本地儲存功能整合
+- 導入 Pinia 管理跨頁狀態
+- 建立登入 / 註冊頁（Firebase）
+- 收藏功能（LocalStorage / Firebase）
+- UI / UX 細節與動畫優化
 
 ### 開發理念
 
