@@ -5,7 +5,7 @@ Picko
 Vue 3 前端應用｜穿搭靈感 × 美食探索  
 幫助使用者在日常中快速做出「吃什麼、穿什麼」的選擇
 
-## Demo
+## 🔗 Demo
 
 - 線上展示：https://myvue-project-demo.vercel.app
 
@@ -31,7 +31,7 @@ Picko 是一款以 Vue 3 打造的互動式前端 SPA，
 - 使用`ref、reactive、computed`管理狀態
 - 明確區分 props / emits，維持單向資料流
 
-### 前端資料流設計
+### 前端資料流設計（Food Module）
 
 - 資料流程：篩選（Filter） → 排序（Sort） → 分頁（Pagination） → UI 呈現
 - 條件變動時，餐廳列表會即時同步更新
