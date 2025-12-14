@@ -9,6 +9,9 @@ Vue 3 前端應用｜穿搭靈感 × 美食探索
 
 - 線上展示：https://myvue-project-demo.vercel.app
 
+> 此 Demo 為專案 v1 版本，著重於前端架構、資料流處理與 UI / UX 實作，
+> 作為後續功能擴充與優化的基礎。
+
 ## 專案介紹
 
 Picko 是一款以 Vue 3 打造的互動式前端 SPA，
