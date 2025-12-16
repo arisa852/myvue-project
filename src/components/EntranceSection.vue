@@ -48,26 +48,22 @@ export default {
 @use '../assets/style/mixin' as *;
 
 .entrance {
-  padding: $space-xl 0;
-  overflow: hidden;
+  padding: 0;
+  margin: $space-4xl $space-lg;
+  box-sizing: border-box;
 }
 
 .entrance-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: $space-lg;
-  max-width: 1000px;
-  margin-inline: auto;
+  gap: $space-md;
   justify-items: center;
-  align-items: start;
 
   @include respond-to(pad) {
     grid-template-columns: repeat(1, 1fr);
-    max-width: 800px;
   }
   @include respond-to(mobile) {
     grid-template-columns: repeat(1, 1fr);
-    max-width: 300px;
   }
 }
 
@@ -81,22 +77,15 @@ export default {
   & img {
     object-fit: cover;
     display: block;
-    margin: 0 auto;
     margin-bottom: $space-lg;
     display: block;
-    max-width: 450px;
-
-    @include respond-to(pad) {
-      max-width: 400px;
-    }
-    @include respond-to(mobile) {
-      max-width: 200px;
-    }
+    width: 100%;
+    height: auto;
   }
   & h4 {
     @include subheading-style;
     margin-bottom: $space-xl;
-    color:$paragraph-color;
+    color: $paragraph-color;
 
     @include respond-to(pad) {
       margin-bottom: $space-lg;

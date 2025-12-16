@@ -51,21 +51,23 @@ const locationMap = computed(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: $white-color;
   box-shadow: $shadow-md;
   padding: $space-lg;
   border-radius: $radius-md;
+  width: 100%;
+  box-sizing: border-box;
 
   @include respond-to(pad) {
     flex-direction: column;
-    width: 85%;
     align-items: stretch;
+    margin: 0;
   }
 
   @include respond-to(mobile) {
     flex-direction: column;
-    width: 85%;
     align-items: stretch;
+    margin: 0;
   }
   .left-col {
     flex: 1;
@@ -98,7 +100,7 @@ const locationMap = computed(() => {
       color: $primary-color;
     }
     .close {
-      color: #e74c3c;
+      color: $opentime-color;
     }
   }
 

@@ -2,25 +2,22 @@ import { ref, reactive, computed } from 'vue'
 import { getRestaurantlist } from '@/services/Service'
 
 function toMinutes(timeStr) {
-  const arr = timeStr.split(':')
-  console.log('timeStr:', timeStr, typeof timeStr)
   if (typeof timeStr !== 'string') {
     console.warn('收到的timeStr:', timeStr)
     return NaN
   }
-  const h = Number(arr[0])
-  const m = Number(arr[1])
+  const [hStr, mStr] = timeStr.trim().split(':')
+  const h = Number(hStr)
+  const m = Number(mStr)
   return h * 60 + m
 }
 
 function isOpennow(startMin, endMin, nowMin) {
-  const isAfterstart = nowMin >= startMin
-  const isBeforeend = nowMin <= endMin
-
-  if (isAfterstart && isBeforeend) {
-    return true
+  if (![startMin, endMin, nowMin].every(Number.isFinite)) return false
+  if (endMin >= startMin) {
+    return nowMin >= startMin && nowMin <= endMin
   } else {
-    return false
+    return nowMin >= startMin || nowMin <= endMin
   }
 }
 
@@ -30,7 +27,8 @@ export function getOpentime(item) {
   const todaytime = new Date().getDay()
   const todayKey = weekday[todaytime]
 
-  const hours = item.openingHours[todayKey]
+  const hours = item?.openingHours?.[todayKey]
+
   console.log('店家:', item.name, 'todayKey:', todayKey, 'hours:', hours)
 
   if (!hours || typeof hours !== 'string') {

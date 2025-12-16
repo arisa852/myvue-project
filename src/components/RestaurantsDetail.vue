@@ -106,23 +106,39 @@ export default {
 .drawer-enter-from .drawer,
 .drawer-leave-to .drawer {
   transform: translateX(40px);
+
+  @include respond-to(pad) {
+    transform: translateY(40px);
+  }
+  @include respond-to(mobile) {
+    transform: translateY(40px);
+  }
 }
 
 .overlay {
   @include overlay-base;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 24px;
+  padding: $space-xl;
+
+  @include respond-to(pad) {
+    justify-content: center;
+    align-items: center;
+  }
+  @include respond-to(mobile) {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .drawer {
   width: min(420px, 100%);
   height: auto;
   max-height: calc(100vh - 48px);
-  background: #fff;
-  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.12);
-  padding: 20px;
-  border-radius: 16px;
+  background: $white-color;
+  box-shadow: $shadow-md;
+  padding: $space-lg;
+  border-radius: $radius-md;
   overflow-x: auto;
 }
 
@@ -130,7 +146,7 @@ export default {
   width: 100%;
   max-width: 400px;
   height: auto;
-  padding: 16px 0;
+  padding: $space-md 0;
 }
 
 .swiper-slide {
@@ -146,7 +162,7 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: $radius-sm;
 }
 
 .restaurant-info {
@@ -154,9 +170,9 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #fff;
-  padding: 20px;
-  gap: 8px;
+  background-color: $white-color;
+  padding: $space-lg;
+  gap: $space-sm;
 
   .info_title {
     @include minheading-style;
@@ -177,11 +193,11 @@ export default {
         color: $primary-color;
       }
       &.is-closed {
-        color: #cc3838;
+        color: $opentime-color;
       }
     }
     .today-hours {
-      color: #666;
+      color: $paragraph-color;
       font-size: 0.9rem;
     }
   }

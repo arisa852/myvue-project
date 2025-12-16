@@ -4,13 +4,15 @@
   <!------彈窗------>
   <div v-if="open" class="modal">
     <div class="modal-panel">
+      <button @click="closeModal" class="button-close" aria-label="關閉按鈕" type="button">
+        x
+      </button>
       <div class="left">
         <img :src="selectAuth" :alt="selectdisorder" />
       </div>
       <div class="content">
         <header class="modal-header">
           <h3>登入</h3>
-          <button @click="closeModal" class="button-close" aria-label="關閉按鈕">x</button>
         </header>
         <form class="login-form" @submit.prevent="userLogin">
           <label class="field">
@@ -77,6 +79,7 @@ export default {
       { immediate: true },
     )
     const closeModal = () => {
+      console.log('closeModal click')
       emit('update:open', false)
       document.body.style.overflow = ''
     }
@@ -133,26 +136,78 @@ export default {
 }
 
 .modal-panel {
-  background-color: #fff;
-  border-radius: 15px;
+  background-color: $white-color;
+  border-radius: $radius-md;
   display: flex;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: $shadow-lg;
   overflow: hidden;
   width: min(90vw, 800px);
   justify-content: space-between;
   flex-wrap: wrap;
-  min-height: 420px;
+  min-height: 380px;
   align-items: stretch;
+  position: relative;
+
+  @include respond-to(pad) {
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    min-height: 800px;
+  }
+  @include respond-to(mobile) {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    min-height: 600px;
+  }
+
+  .button-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 30px;
+    line-height: 1;
+    transition: transform 0.15s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(1.08);
+      }
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+
+    @include respond-to(pad) {
+      font-size: 40px;
+    }
+    @include respond-to(mobile) {
+      font-size: 40px;
+    }
+  }
 
   .left {
     width: 50%;
     flex: 1;
 
+    @include respond-to(pad) {
+      width: 100%;
+    }
+
+    @include respond-to(mobile) {
+      width: 100%;
+    }
+
     & img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      overflow: hidden;
       display: block;
     }
   }
@@ -160,33 +215,22 @@ export default {
 
 .content {
   flex: 1;
-  padding: 8px 16px;
+  padding: $space-sm $space-md;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   .modal-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 12px;
-    position: relative;
+    padding: $space-lg $space-md;
 
     & h3 {
       margin: 0;
       @include subheading-style;
-    }
-
-    .button-close {
-      background: none;
-      border: none;
-      font-size: 30px;
-      cursor: pointer;
-      line-height: 1;
-      position: absolute;
-      right: -150px;
-      top: -50px;
     }
   }
 }
@@ -235,25 +279,24 @@ export default {
 }
 
 .btn-group {
-  display: inline-block;
-  padding: 8px 16px;
-  margin-top: 10px;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: $space-sm $space-md;
+  margin-top: $space-lg;
 
   .btn-primary {
     @include button-style;
-    color: #fff;
+    color: $white-color;
     width: 100%;
   }
   .btn-register {
-    position: absolute;
-    right: 0;
-    top: 60px;
     @include button-style {
       background-color: transparent;
       border: none;
       font-size: 1rem;
-      color: #666;
+      color: $paragraph-color;
     }
     &:hover {
       text-decoration: underline;

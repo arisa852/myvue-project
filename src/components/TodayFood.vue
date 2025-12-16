@@ -62,6 +62,8 @@ export default {
   width: 100%;
   margin: 0;
   padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
 
   .sort-bar {
     display: flex;
@@ -93,7 +95,13 @@ export default {
     flex-direction: column;
     gap: $space-md;
     justify-content: center;
-    width: 100%;
+
+    @include respond-to(pad) {
+      padding: 0 $space-lg;
+    }
+    @include respond-to(mobile) {
+      padding: 0 $space-lg;
+    }
   }
 }
 </style>

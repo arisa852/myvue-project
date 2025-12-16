@@ -14,14 +14,13 @@
             </li>
           </ul>
         </nav>
-        <button @click="openLogin" class="login-btn" v-if="!isMobile">登入</button>
+        <button @click="openLogin" class="login-btn">登入</button>
       </div>
       <!-- 手機板選單 -->
       <div
         class="hamburger"
         @click="toggleMenu"
         :class="{ open: isOpen }"
-        v-show="isMobile"
         aria-controls="mobile-nav"
         :aria-expanded="isOpen ? 'true' : 'false'"
       >
@@ -29,7 +28,7 @@
         <span></span>
         <span></span>
       </div>
-      <div class="hamburger-menu" v-if="isOpen && isMobile">
+      <div class="hamburger-menu" v-if="isOpen">
         <ul class="navbar">
           <li v-for="menu in menus" :key="menu.to">
             <RouterLink :to="menu.to" @click="closeMenu">{{ menu.label }}</RouterLink>
@@ -59,8 +58,8 @@ export default {
     ])
 
     const isOpen = ref(false)
-    const isMobile = ref(false)
     let mql = null
+    let handle = null
 
     const toggleMenu = () => {
       isOpen.value = !isOpen.value
@@ -69,33 +68,27 @@ export default {
     const closeMenu = () => {
       isOpen.value = false
     }
-    const updateMobile = () => {
-      isMobile.value = mql.matches
-      if (!isMobile.value) {
-        isOpen.value = false
-      }
-    }
 
     onMounted(() => {
-      mql = window.matchMedia('(max-width:1023px)')
-      updateMobile()
-      if (mql.addEventListener) {
-        mql.addEventListener('change', updateMobile)
-      } else if (mql.addListener) {
-        mql.addListener(updateMobile)
+      mql = window.matchMedia('(min-width:1024px)')
+
+      handle = () => {
+        if (mql.matches) {
+          isOpen.value = false
+        }
       }
+      handle()
+      mql.addEventListener?.('change', handle)
+      mql.addListener?.(handle)
     })
 
     onBeforeUnmount(() => {
-      if (!mql) return
-      if (mql.removeEventListener) {
-        mql.removeEventListener('change', updateMobile)
-      } else if (mql.removeListener) {
-        mql.removeListener(updateMobile)
-      }
+      mql?.removeEventListener?.('change', handle)
+      mql?.removeListener?.(handle)
     })
+
     const openLogin = () => emit('open-login')
-    return { menus, logoUrl, openLogin, isOpen, isMobile, toggleMenu, closeMenu }
+    return { menus, logoUrl, openLogin, isOpen, toggleMenu, closeMenu }
   },
 }
 </script>
@@ -123,14 +116,16 @@ export default {
   margin: 0 auto;
 
   @include respond-to(pad) {
-    padding: 20px 10px;
+    padding: $space-lg;
     justify-content: space-between;
     align-items: center;
+    max-width: 768px;
   }
   @include respond-to(mobile) {
-    padding: 20px 10px;
+    padding: $space-md $space-sm;
     justify-content: space-between;
     align-items: center;
+    max-width: 600px;
   }
 }
 
@@ -165,15 +160,6 @@ export default {
   align-items: center;
   gap: $space-md;
   margin-left: auto;
-}
-
-.nav {
-  @include respond-to(pad) {
-    display: none;
-  }
-  @include respond-to(mobile) {
-    display: none;
-  }
 }
 
 .menus {
@@ -214,7 +200,6 @@ export default {
   cursor: pointer;
   border: 0;
   background-color: transparent;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   z-index: 1001;
@@ -256,7 +241,7 @@ export default {
 
 .hamburger-menu {
   position: fixed;
-  top: 65px;
+  top: 55px;
   right: 0;
   background-color: #fff;
   box-shadow: -8px 0 16px rgba(0, 0, 0, 0.1);
@@ -318,6 +303,34 @@ export default {
   }
   to {
     transform: translateX(0);
+  }
+}
+
+/* ===== 桌機（> 1024） ===== */
+.nav {
+  display: block;
+}
+
+.login-btn {
+  display: inline-flex;
+}
+
+.hamburger {
+  display: none;
+}
+/* ===== 1024 以下（平板 + 手機） ===== */
+
+@include respond-to(desktop) {
+  .nav {
+    display: none;
+  }
+
+  .login-btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: inline-flex;
   }
 }
 </style>

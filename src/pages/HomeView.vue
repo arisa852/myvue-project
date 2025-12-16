@@ -31,7 +31,9 @@
         </EntranceSection>
       </div>
     </section>
-    <Footer></Footer>
+    <section class="home-footer">
+      <Footer></Footer>
+    </section>
   </div>
 </template>
 <script>
@@ -39,8 +41,8 @@ import BannerSection from '@/components/BannerSection.vue'
 import heroUrl from '@/assets/images/Artboard 1.png'
 import FeatureSection from '@/components/FeatureSection.vue'
 import EntranceSection from '@/components/EntranceSection.vue'
-import foodImg from '@/assets/images/food.png'
-import wearImg from '@/assets/images/wearweather.png'
+import foodImg from '@/assets/images/foodno1.png'
+import wearImg from '@/assets/images/wear.png'
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -72,6 +74,15 @@ export default {
 .home-inner {
   max-width: 1200px;
   margin: 0 auto;
+
+  @include respond-to(pad) {
+    margin: 0 auto;
+    max-width: 768px;
+  }
+  @include respond-to(mobile) {
+    margin: 0 auto;
+    max-width: 360px;
+  }
 }
 
 .home-banner {
@@ -82,13 +93,14 @@ export default {
 
 .home-feature {
   background-color: $white-color;
-  padding: $space-xl $space-lg;
+  padding: $space-lg;
 }
 
 .home-entrance {
   background: linear-gradient(to bottom, $white-color, $primary-color);
-  padding: $space-xl $space-lg;
+  padding: $space-4xl $space-lg;
 }
+
 .cta-button {
   @include button-style {
     border: 2px solid $primary-color;

@@ -59,13 +59,12 @@ export default {
 
     @include respond-to(pad) {
       grid-template-columns: repeat(1, 1fr);
-      gap: $space-sm;
-      max-width: 680px;
+      gap: $space-lg;
     }
 
     @include respond-to(pad) {
       grid-template-columns: repeat(1, 1fr);
-      max-width: 300px;
+      gap: $space-lg;
     }
 
     .picko-feat {

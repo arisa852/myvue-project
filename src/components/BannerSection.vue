@@ -54,7 +54,6 @@ export default {
     flex-wrap: wrap;
     max-width: 1200px;
     width: 100%;
-   
 
     @include respond-to(pad) {
       flex-direction: column;
@@ -105,9 +104,8 @@ export default {
 
     & img {
       width: 100%;
-      max-width: 500px;
-      object-fit: contain;
-      height: auto;
+      object-fit: cover;
+      height: 100%;
       display: block;
     }
   }
