@@ -83,8 +83,8 @@ src/
 Clone 專案
 
 ```bash
-git clone https://github.com/arisa852/Picko.git
-cd Picko
+git clone https://github.com/arisa852/myvue-project.git
+cd myvue-project
 ```
 
 ### 安裝相依套件
