@@ -32,7 +32,9 @@
       </div>
     </section>
     <section class="home-footer">
-      <Footer></Footer>
+      <div class="home-inner">
+        <Footer></Footer>
+      </div>
     </section>
   </div>
 </template>
@@ -99,6 +101,11 @@ export default {
 .home-entrance {
   background: linear-gradient(to bottom, $white-color, $primary-color);
   padding: $space-4xl $space-lg;
+}
+
+.home-footer {
+  background-color: $text-color;
+  padding: $space-lg;
 }
 
 .cta-button {

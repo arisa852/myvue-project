@@ -221,7 +221,7 @@ onBeforeUnmount(() => {
 }
 
 .sidebar-modal {
-  background-color: #fff;
+  background-color: $white-color;
   width: auto;
   max-width: 300px;
   border-radius: $radius-lg;
@@ -250,7 +250,7 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  margin-top: 20px;
+  margin-top: $space-lg;
   gap: $space-sm;
 
   .page-info {

@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
 }
 
 .sidebar-modal {
-  background-color: #fff;
+  background-color: $white-color;
   width: auto;
   margin: $space-lg;
   max-width: 340px;
@@ -179,7 +179,6 @@ onBeforeUnmount(() => {
   border-radius: $radius-md;
   padding: $space-md;
   box-sizing: border-box;
-  box-shadow: $shadow-md;
   overflow-y: auto;
 }
 
@@ -188,7 +187,7 @@ onBeforeUnmount(() => {
   box-sizing: border-box;
   min-width: 0;
   display: block;
-  border-radius: 30px;
+  border-radius: $radius-xl;
   padding: $space-md $space-sm;
 }
 

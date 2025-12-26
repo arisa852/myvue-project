@@ -14,8 +14,27 @@
             </li>
           </ul>
         </nav>
-        <button @click="openLogin" class="login-btn">登入</button>
+        <div class="area-auth">
+          <button
+            v-if="!isLoggedIn"
+            @click="openLogin"
+            class="login-btn"
+            type="button"
+            :disabled="loading"
+          >
+            {{ loading ? '載入中' : '登入' }}
+          </button>
+
+          <!-- 已登入 -->
+          <div v-else class="user-area">
+            <span class="user-email">{{ displayName }}</span>
+            <button type="button" class="logout-btn" @click="onClickLogout" :disabled="loading">
+              登出
+            </button>
+          </div>
+        </div>
       </div>
+
       <!-- 手機板選單 -->
       <div
         class="hamburger"
@@ -34,8 +53,11 @@
             <RouterLink :to="menu.to" @click="closeMenu">{{ menu.label }}</RouterLink>
           </li>
           <li class="login-icon">
-            <button @click="openLogin" aria-label="登入">
+            <button @click="openLogin" aria-label="登入" v-if="!isLoggedIn">
               <i class="bi bi-person-circle"></i>
+            </button>
+            <button v-else @click="onClickLogout" type="button">
+              <i class="bi bi-person-check-fill logged-in"></i>
             </button>
           </li>
         </ul>
@@ -44,12 +66,13 @@
   </header>
 </template>
 <script>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import logoUrl from '../assets/images/logo3.png'
+import { useAuth } from '@/use/useAuth'
 
 export default {
   name: 'Header',
-  emit: ['open-login'],
+  emits: ['open-login'],
   setup(props, { emit }) {
     const menus = ref([
       { label: '找美食', to: '/food' },
@@ -61,6 +84,7 @@ export default {
     let mql = null
     let handle = null
 
+    const { user, isLoggedIn, logout, loading } = useAuth()
     const toggleMenu = () => {
       isOpen.value = !isOpen.value
     }
@@ -87,8 +111,29 @@ export default {
       mql?.removeListener?.(handle)
     })
 
+    const onClickLogout = async () => {
+      try {
+        await logout()
+      } catch (e) {
+        console.log('登出失敗', e)
+      }
+    }
+
+    const displayName = computed(() => user.value?.email ?? '訪客')
+
     const openLogin = () => emit('open-login')
-    return { menus, logoUrl, openLogin, isOpen, toggleMenu, closeMenu }
+    return {
+      menus,
+      logoUrl,
+      openLogin,
+      isOpen,
+      toggleMenu,
+      closeMenu,
+      onClickLogout,
+      displayName,
+      isLoggedIn,
+      loading,
+    }
   },
 }
 </script>
@@ -180,16 +225,32 @@ export default {
   }
 }
 
-.login-btn {
-  @include button-style {
-    background-color: $white-color;
-    font-size: 1rem;
-    border: 2px solid $primary-color;
-    color: $primary-color;
-    font-weight: bold;
-    align-items: center;
-    justify-content: end;
-    border-radius: $radius-xl;
+.area-auth {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+  .login-btn {
+    @include button-style {
+      background-color: $white-color;
+      border: 2px solid $primary-color;
+      color: $primary-color;
+      font-weight: bold;
+      border-radius: $radius-xl;
+    }
+  }
+  .user-email {
+    @include paragraph-style;
+    color: $text-color;
+    margin-right: $space-sm;
+  }
+  .logout-btn {
+    @include button-style {
+      background-color: $white-color;
+      border: 2px solid $primary-color;
+      color: $primary-color;
+      border-radius: $radius-xl;
+    }
   }
 }
 
@@ -315,6 +376,10 @@ export default {
   display: inline-flex;
 }
 
+.logout-btn {
+  display: inline-flex;
+}
+
 .hamburger {
   display: none;
 }
@@ -325,7 +390,7 @@ export default {
     display: none;
   }
 
-  .login-btn {
+  .area-auth {
     display: none;
   }
 

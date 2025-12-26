@@ -51,6 +51,9 @@
 <script>
 import { reactive, ref, watch, onMounted } from 'vue'
 import selectAuthImg from '@/assets/images/selectdis.jpg'
+import { useAuth } from '@/use/useAuth'
+
+const LOGIN_EMAIL_KEY = 'login_email'
 
 export default {
   name: 'LoginModal',
@@ -62,13 +65,17 @@ export default {
   emits: ['update:open', 'login'],
   setup(props, { emit }) {
     const user = reactive({ email: '', password: '' })
-    const rememberId = ref(!!localStorage.getItem('saveEmail'))
-    const loading = ref(false)
+    const rememberId = ref(!!localStorage.getItem('LOGIN_EMAIL_KEY'))
     const errorMsg = ref('')
 
+    const { login, loading } = useAuth()
+
+    const saveEmail = localStorage.getItem(LOGIN_EMAIL_KEY)
+    if (saveEmail) {
+      user.email = saveEmail
+    }
+
     onMounted(() => {
-      const saved = localStorage.getItem('saveEmail')
-      if (saved) user.email = saved
       if (props.open) document.body.style.overflow = 'hidden'
     })
     watch(
@@ -83,34 +90,28 @@ export default {
       emit('update:open', false)
       document.body.style.overflow = ''
     }
-    const userLogin = async () => {
-      loading.value = true
+
+    async function userLogin() {
       errorMsg.value = ''
+
       try {
-        await new Promise((resolve, reject) => {
-          setTimeout(() => {
-            if (user.email === 'test@example.com' && user.password === '123456') {
-              resolve()
-            } else {
-              reject(new Error('帳號密碼錯誤'))
-            }
-          }, 800)
-        })
+        await login(user.email, user.password)
+        console.log('登入成功',user.email)
 
         if (rememberId.value) {
-          localStorage.setItem('saveEmail', user.email)
+          localStorage.setItem('LOGIN_EMAIL_KEY', user.email)
         } else {
-          localStorage.removeItem('saveEmail')
+          localStorage.removeItem('LOGIN_EMAIL_KEY')
         }
-        emit('login', { email: user.email })
+
         closeModal()
-      } catch (err) {
-        errorMsg.value = err?.message || '登入失敗'
-      } finally {
-        loading.value = false
+        emit('login')
+      } catch {
+        errorMsg.value = '登入失敗，請確認帳號密碼'
       }
     }
-    return { user, rememberId, loading, errorMsg, closeModal, userLogin }
+
+    return { user, loading, errorMsg, closeModal, userLogin }
   },
 }
 </script>

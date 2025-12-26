@@ -10,54 +10,46 @@
         <a href="https://github.com/your-github" target="_blank" rel="noopener" aria-label="GitHub">
           <i class="bi bi-github"></i>
         </a>
-        <a href="mailto:your@email.com" aria-label="Email">
+        <a href="mailto:divine54679@gmail.com" aria-label="Email">
           <i class="bi bi-envelope"></i>
         </a>
       </div>
     </div>
   </footer>
 </template>
-<script></script>
+<script setup></script>
 <style lang="scss" scoped>
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
 footer {
   width: 100%;
-  background-color: $text-color;
   padding: 0;
   display: inline-block;
 
   .container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    max-width: 1080px;
-    margin: 0 auto;
     flex-wrap: wrap;
-    padding: 16px 24px;
+    padding: $space-md $space-xl;
 
     @include respond-to(pad) {
       flex-direction: column;
-      gap: 20px;
-      padding: 16px 24px;
+      gap: $space-lg;
+      padding: $space-md $space-xl;
       justify-content: flex-start;
-      align-items: flex-start;
     }
 
     @include respond-to(mobile) {
       flex-direction: column;
-      gap: 20px;
-      padding: 16px 24px;
-      justify-content: flex-start;
-      align-items: flex-start;
+      padding: $space-md $space-xl;
     }
 
     .footer-text {
       p {
-        color: #fff;
+        color: $white-color;
         font-size: 1.125rem;
-        margin-bottom: 8px;
+        margin-bottom: $space-sm;
         line-height: 1.5;
 
         @include respond-to(pad) {
@@ -71,10 +63,10 @@ footer {
     }
     .footer-icon {
       display: flex;
-      gap: 20px;
+      gap: $space-lg;
 
       a {
-        color: #fff;
+        color: $white-color;
         font-size: 24px;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
