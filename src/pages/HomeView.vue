@@ -46,13 +46,17 @@ import EntranceSection from '@/components/EntranceSection.vue'
 import foodImg from '@/assets/images/foodno1.png'
 import wearImg from '@/assets/images/wear.png'
 import Footer from '@/components/Footer.vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'HomeView',
   components: { BannerSection, FeatureSection, EntranceSection, Footer },
   setup() {
+    const router = useRouter()
+
     const goStart = () => {
       console.log('已點擊')
+      router.push('/food')
     }
     return {
       foodImg,
