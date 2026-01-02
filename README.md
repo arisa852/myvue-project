@@ -28,6 +28,16 @@ Picko 是一款以 Vue 3 打造的互動式前端 SPA，
 
 ## 專案特色
 
+### 使用者登入／註冊（Firebase Authentication）
+
+- 以 Firebase Auth 實作 Email / Password 驗證
+- 支援登入／註冊／登出流程
+- 並處理：
+  - 錯誤訊息
+  - Loading 狀態
+  - UI 提示（Toast）
+- 以 Composition API 抽離驗證邏輯，維持元件簡潔
+
 ### Vue 3 + Composition API 架構
 
 - 以 Composition API 撰寫元件（setup / script setup）
@@ -152,10 +162,24 @@ npm run dev
 
 ### 未來計畫
 
-- 導入 Pinia 管理跨頁狀態
-- 建立登入 / 註冊頁（Firebase）
-- 收藏功能（LocalStorage / Firebase）
-- UI / UX 細節與動畫優化
+#### 帳號與個人資料（Profile）
+
+- 在既有登入／註冊基礎上，新增個人資料頁面（暱稱、頭像或基本偏好）
+- 讓讓使用者登入後可以查看與管理自己的帳號資訊
+
+#### 收藏清單功能
+
+- 使用者可以將喜歡的餐廳與穿搭加入收藏，建立屬於自己的靈感收藏庫
+- 未來收藏資料會與帳號綁定，登入後可看到自己的收藏清單
+
+#### 資料持久化
+
+- 收藏與登入資訊保存至 LocalStorage / Firebase
+- 確保重新整理或再次登入後仍可保留個人設定
+
+#### UI / UX 優化
+
+- 包含提示訊息（Toast）、狀態處理、錯誤提示、RWD 細節優化，提升使用者體驗
 
 ### 開發理念
 
