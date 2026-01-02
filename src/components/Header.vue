@@ -69,6 +69,7 @@
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import logoUrl from '../assets/images/logo3.png'
 import { useAuth } from '@/use/useAuth'
+import { toast } from 'vue3-toastify'
 
 export default {
   name: 'Header',
@@ -114,6 +115,7 @@ export default {
     const onClickLogout = async () => {
       try {
         await logout()
+        toast.success('已成功登出')
       } catch (e) {
         console.log('登出失敗', e)
       }
@@ -302,7 +304,7 @@ export default {
 
 .hamburger-menu {
   position: fixed;
-  top: 55px;
+  top: 40px;
   right: 0;
   background-color: #fff;
   box-shadow: -8px 0 16px rgba(0, 0, 0, 0.1);
@@ -312,6 +314,9 @@ export default {
   animation: slideIn 0.2s ease forwards;
   width: 80vw;
   height: calc(100vh - 65px);
+  @include respond-to(mobile) {
+    top: 55px;
+  }
   .navbar {
     list-style: none;
     padding: 0;

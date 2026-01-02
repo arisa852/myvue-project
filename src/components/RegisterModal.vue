@@ -12,9 +12,9 @@
       </div>
       <div class="content">
         <header class="modal-header">
-          <h3>登入</h3>
+          <h3>註冊</h3>
         </header>
-        <form class="login-form" @submit.prevent="userLogin">
+        <form class="register-form" @submit.prevent="handleRegister">
           <label class="field">
             <span>帳號</span>
             <input type="email" v-model.trim="user.email" required placeholder="you@example.com" />
@@ -30,98 +30,88 @@
               minlength="6"
             />
           </label>
-          <label class="remember">
-            <input type="checkbox" v-model="rememberId" />
-            <span class="remember-text">記住帳號</span>
+          <label class="field">
+            <span>確認密碼</span>
+            <input
+              type="password"
+              v-model.trim="passwordconfirm"
+              required
+              placeholder="請再次輸入密碼"
+              minlength="6"
+            />
           </label>
           <p v-if="errorMsg" class="error">{{ errorMsg }}</p>
           <div class="btn-group">
-            <button type="submit" class="btn-primary" :disabled="loading" @click="userLogin">
-              {{ loading ? '登入中...' : '登入' }}
+            <button type="submit" class="btn-primary" :disabled="loading" @click="handleRegister">
+              {{ loading ? '註冊中...' : '註冊' }}
             </button>
-            <button type="button" class="btn-register" @click="goToRegister">
-              還沒有帳號 →
-            </button>
+            <button type="button" class="btn-register" @click="goToLogin">已有帳號 →</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </template>
-<script>
-import { reactive, ref, watch, onMounted } from 'vue'
-import selectAuthImg from '@/assets/images/selectdis.jpg'
+<script setup>
+import { reactive, ref } from 'vue'
 import { useAuth } from '@/use/useAuth'
+import selectAuthImg from '@/assets/images/selectdis.jpg'
 import { toast } from 'vue3-toastify'
 
-const LOGIN_EMAIL_KEY = 'login_email'
+defineProps({
+  open: { type: Boolean, default: false },
+  selectAuth: { type: String, default: selectAuthImg },
+  selectdisorder: { type: String, default: 'loginimage' },
+})
 
-export default {
-  name: 'LoginModal',
-  props: {
-    open: { type: Boolean, default: false },
-    selectAuth: { type: String, default: selectAuthImg },
-    selectdisorder: { type: String, default: 'loginimage' },
-  },
-  emits: ['update:open', 'login','switch-to-register'],
-  setup(props, { emit }) {
-    const user = reactive({ email: '', password: '' })
-    const rememberId = ref(!!localStorage.getItem('LOGIN_EMAIL_KEY'))
-    const errorMsg = ref('')
+const emit = defineEmits(['update:open', 'register', 'switch-to-login'])
 
-    const { login, loading } = useAuth()
+const user = reactive({ email: '', password: '' })
+const passwordconfirm = ref('')
 
-    const saveEmail = localStorage.getItem(LOGIN_EMAIL_KEY)
-    if (saveEmail) {
-      user.email = saveEmail
-    }
+const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/
+const errorMsg = ref('')
 
-    onMounted(() => {
-      if (props.open) document.body.style.overflow = 'hidden'
-    })
-    watch(
-      () => props.open,
-      (v) => {
-        document.body.style.overflow = v ? 'hidden' : ''
-      },
-      { immediate: true },
-    )
-    const closeModal = () => {
-      console.log('closeModal click')
-      emit('update:open', false)
-      document.body.style.overflow = ''
-    }
+const { register, loading } = useAuth()
 
-    const goToRegister = () =>{
-      closeModal()
-      emit('switch-to-register')
-    }
+const closeModal = () => {
+  emit('update:open', false)
+}
 
-    async function userLogin() {
-      errorMsg.value = ''
+const goToLogin = () => {
+  closeModal()
+  emit('switch-to-login')
+}
 
-      try {
-        await login(user.email, user.password)
-        console.log('登入成功', user.email)
+async function handleRegister() {
+  errorMsg.value = ''
 
-        if (rememberId.value) {
-          localStorage.setItem('LOGIN_EMAIL_KEY', user.email)
-        } else {
-          localStorage.removeItem('LOGIN_EMAIL_KEY')
-        }
+  if (user.password !== passwordconfirm.value) {
+    errorMsg.value = '兩次輸入的密碼不一致'
+    return
+  }
 
-        closeModal()
-        emit('login')
-        toast.success('登入成功')
-      } catch (e){
-        console.error(e)
-        errorMsg.value = '登入失敗，請確認帳號密碼'
-        toast.error('登入失敗，請確認帳號密碼')
-      }
-    }
+  if (!emailRule.test(user.email)) {
+    errorMsg.value = '請輸入正確的 Email 格式'
+    return
+  }
 
-    return { user, loading, errorMsg, closeModal, userLogin,goToRegister }
-  },
+  if (user.password.length < 6) {
+    errorMsg.value = '密碼至少需要 6 個字元'
+    return
+  }
+
+  try {
+    await register(user.email, user.password)
+    console.log('註冊成功', user.email)
+    closeModal()
+    emit('register')
+    toast.success('註冊成功')
+  } catch (e) {
+    console.error(e)
+    errorMsg.value = '註冊失敗，請確認帳號密碼'
+    toast.error('註冊失敗，請確認帳號密碼')
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -243,7 +233,7 @@ export default {
   }
 }
 
-.login-form {
+.register-form {
   width: 100%;
   max-width: 360px;
   display: grid;
@@ -270,13 +260,6 @@ export default {
       border-radius: 15px;
       font-size: 1rem;
       box-sizing: border-box;
-    }
-    &.remember {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      user-select: none;
-      color: $text-color;
     }
   }
 }

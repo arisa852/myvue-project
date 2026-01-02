@@ -1,0 +1,48 @@
+@use './variables' as *;
+
+:root {
+  --toastify-color-success: #{$toastify-success-color};
+  --toastify-color-error: #{$toastify-error-color};
+  --toastify-color-info: #{$toastify-info-color};
+  --toastify-color-warning: #{$toastify-warn-color};
+}
+
+/* Toast 主要容器 */
+.Toastify__toast {
+  border-radius: $radius-lg;
+  font-family: 'Noto Sans TC', sans-serif;
+  transition: all 0.2s ease-out;
+  padding: $space-sm $space-md;
+  font-weight: 500;
+  box-shadow: $shadow-md;
+  border: 1px solid $white-color;
+}
+
+/* 成功 */
+.Toastify__toast--success {
+  color: $white-color;
+}
+
+/* 失敗 */
+.Toastify__toast--error {
+  color: $white-color;
+}
+
+/* 提示 */
+.Toastify__toast--info {
+  color: $white-color;
+}
+
+/* 警告 */
+.Toastify__toast--warning {
+  color: $white-color;
+}
+
+.Toastify__close-button {
+  color: $white-color;
+  opacity: 0.7;
+}
+
+.Toastify__toast:hover {
+  opacity: 0.85;
+}
