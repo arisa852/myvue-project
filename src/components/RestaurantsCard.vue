@@ -7,9 +7,17 @@
         <p :class="item.openNow ? 'open' : 'close'">{{ item.openNow ? '營業中' : '休息' }}</p>
         <p>{{ locationMap }}</p>
       </div>
-      <div class="btn-group">
+      <div class="btn-group" v-if="showActions">
         <button type="button" class="navigate-btn">導航</button>
         <button type="button" class="detail-btn" @click="handleOpenDrawer">查看詳情</button>
+        <button
+          type="button"
+          class="favorite-btn"
+          @click="handleToFavorite"
+          :class="{ active: isFavorite }"
+        >
+          {{ isFavorite ? '已收藏' : '加入收藏' }}
+        </button>
       </div>
     </div>
     <div class="restaurants-img">
@@ -19,11 +27,22 @@
 </template>
 <script setup>
 import { computed } from 'vue'
+import { useAuth } from '@/use/useAuth'
 
-const emit = defineEmits(['open-drawer'])
+const auth = useAuth()
+
+const emit = defineEmits(['open-drawer', 'is-Favorite', 'need-login'])
 
 function handleOpenDrawer() {
   emit('open-drawer', props.item)
+}
+
+function handleToFavorite() {
+  if (!auth.user.value) {
+    emit('need-login')
+    return
+  }
+  emit('is-Favorite', props.item.id)
 }
 
 const props = defineProps({
@@ -31,6 +50,14 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  isFavorite: {
+    type: Boolean,
+    default: false,
+  },
+  showActions:{
+    type:Boolean,
+    default:false,
+  }
 })
 
 const locationMap = computed(() => {

@@ -20,6 +20,7 @@
         :key="food.id"
         :item="food"
         @open-drawer="onOpenDrawer"
+        @need-login="$emit('need-login')"
       />
     </div>
   </section>
@@ -40,7 +41,7 @@ export default {
       required: true,
     },
   },
-  emits: ['toggle-Price', 'toggle-Rate', 'open-drawer'],
+  emits: ['toggle-Price', 'toggle-Rate', 'open-drawer', 'need-login'],
 
   setup(props, { emit }) {
     const onClickprice = () => emit('toggle-Price')
