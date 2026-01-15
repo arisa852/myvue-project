@@ -78,7 +78,7 @@ export default {
     const menus = ref([
       { label: '找美食', to: '/food' },
       { label: '穿搭靈感', to: '/style' },
-      // { label: '收藏', to: '/collect' },
+      { label: '收藏', to: '/collect' },
     ])
 
     const isOpen = ref(false)

@@ -243,7 +243,10 @@ onBeforeUnmount(() => {
 }
 
 .select-button-mobile {
-  @include button-style;
+  @include button-style {
+    background-color: $white-color;
+    border: 2px solid darken($primary-color, 10%);
+  }
 }
 
 .pagination {

@@ -37,11 +37,10 @@ $shadow-md: 0 2px 6px rgba(0, 0, 0, 0.12);
 $shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.16);
 
 //toast
-$toastify-success-color:darken($primary-color,10%);
-$toastify-error-color:#e05186;
-$toastify-info-color:#6ba9c7;
-$toastify-warn-color:#edd285;
-
+$toastify-success-color: darken($primary-color, 10%);
+$toastify-error-color: #e05186;
+$toastify-info-color: #6ba9c7;
+$toastify-warn-color: #edd285;
 
 body {
   font-family: 'Noto Sans TC', sans-serif;

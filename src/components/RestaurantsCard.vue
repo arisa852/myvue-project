@@ -54,10 +54,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  showActions:{
-    type:Boolean,
-    default:false,
-  }
+  showActions: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const locationMap = computed(() => {
@@ -166,6 +166,14 @@ const locationMap = computed(() => {
       @include respond-to(mobile) {
         margin-bottom: $space-lg;
       }
+    }
+    .favorite-btn {
+      @include button-style;
+    }
+    .active {
+      background-color: $white-color;
+      border: 2px solid $primary-color;
+      color: darken($primary-color, 10%);
     }
     .detail-btn {
       @include button-style;

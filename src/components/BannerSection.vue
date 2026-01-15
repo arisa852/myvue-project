@@ -9,8 +9,12 @@
           </p>
           <slot name="cta"></slot>
         </div>
-        <div class="bn-img" v-if="bannerImg">
-          <img :src="bannerImg" alt="Banner" />
+        <div class="bn-right">
+          <slot name="right">
+            <div class="bn-img" v-if="bannerImg">
+              <img :src="bannerImg" alt="Banner" />
+            </div>
+          </slot>
         </div>
       </slot>
     </div>
@@ -47,28 +51,24 @@ export default {
   overflow: hidden;
 
   .container {
-    padding: $space-lg;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     flex-wrap: wrap;
-    max-width: 1200px;
     width: 100%;
 
     @include respond-to(pad) {
       flex-direction: column;
-      padding: $space-lg;
       max-width: 100%;
     }
     @include respond-to(mobile) {
       flex-direction: column;
-      padding: $space-lg;
       max-width: 100%;
     }
   }
 
   .bn-text {
-    width: 50%;
+    width: 60%;
     display: inline-block;
 
     @include respond-to(pad) {
@@ -91,8 +91,11 @@ export default {
     }
   }
 
-  .bn-img {
-    width: 50%;
+  .bn-right {
+    width: 40%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
 
     @include respond-to(pad) {
       width: 100%;
@@ -108,6 +111,10 @@ export default {
       height: 100%;
       display: block;
     }
+  }
+  .bn-right > * {
+    flex: 1;
+    min-height: 0;
   }
 }
 </style>

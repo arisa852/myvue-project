@@ -19,14 +19,20 @@
         v-for="food in items"
         :key="food.id"
         :item="food"
+        :show-actions="true"
+        :is-favorite="favorite.isFavorite(food.id)"
         @open-drawer="onOpenDrawer"
-        @need-login="$emit('need-login')"
+        @need-login="handleNeedLogin"
+        @is-Favorite="handleToggleFavorite"
       />
     </div>
   </section>
 </template>
 <script>
+import { onMounted } from 'vue'
 import RestaurantsCard from './RestaurantsCard.vue'
+import { useFavoriteStore } from '@/stores/useFavoriteStore'
+import { useAuth } from '@/use/useAuth'
 
 export default {
   name: 'TodayFood',
@@ -46,12 +52,34 @@ export default {
   setup(props, { emit }) {
     const onClickprice = () => emit('toggle-Price')
     const onClickrate = () => emit('toggle-Rate')
+    const favorite = useFavoriteStore()
+    const auth = useAuth()
 
     function onOpenDrawer(item) {
       emit('open-drawer', item)
     }
 
-    return { onClickprice, onClickrate, onOpenDrawer }
+    function handleToggleFavorite(id) {
+      if (!auth.user?.value) {
+        emit('need-login')
+        return
+      }
+      favorite.toggle(id)
+    }
+
+    const handleNeedLogin = () => emit('need-login')
+
+    onMounted(() => favorite.load())
+
+    return {
+      onClickprice,
+      onClickrate,
+      onOpenDrawer,
+      handleToggleFavorite,
+      handleNeedLogin,
+      favorite,
+      auth,
+    }
   },
 }
 </script>
