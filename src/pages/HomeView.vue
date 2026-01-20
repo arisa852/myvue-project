@@ -117,6 +117,7 @@ export default {
     border: 2px solid $primary-color;
     background-color: $white-color;
     color: $primary-color;
+    max-width: 150px;
 
     &:hover {
       background-color: $primary-color;

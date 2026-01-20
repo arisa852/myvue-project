@@ -124,6 +124,7 @@ export default {
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
+
 .sidebar {
   display: flex;
   align-items: flex-start;

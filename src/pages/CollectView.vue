@@ -25,8 +25,10 @@
       </div>
     </section>
     <section class="collect-favorite">
-      <div class="colllect-inner">
-        <FavoriteSection :items="allitems"></FavoriteSection>
+      <div class="collect-inner">
+        <div class="collect-panel">
+          <FavoriteSection :items="favoriteItems"></FavoriteSection>
+        </div>
       </div>
     </section>
   </div>
@@ -35,10 +37,13 @@
 import BannerSection from '@/components/BannerSection.vue'
 import FavoriteSection from '@/components/FavoriteSection.vue'
 import { useAuth } from '@/use/useAuth'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useFavoriteStore } from '@/stores/useFavoriteStore'
+import { useGetRestaurantList } from '@/use/useGetRestaurantList'
 
 const { user } = useAuth()
+const { restaurantlists, fetchRestaurantlist } = useGetRestaurantList()
+
 const favStore = useFavoriteStore()
 
 const DisplayName = computed(() => user.value?.email ?? '')
@@ -49,15 +54,23 @@ const collectText = computed(() => {
   return `已收藏 ${count} 個選擇`
 })
 
-const allitems = computed(() => favStore.favoriteIds ?? [])
+const favoriteItems = computed(() => {
+  const ids = favStore.favoriteIds.map(String)
+  return (restaurantlists.value ?? []).filter((r) => ids.includes(String(r.id)))
+})
+
+onMounted(async () => {
+  await fetchRestaurantlist()
+  favStore.load()
+})
 </script>
 <style lang="scss" scoped>
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
 .collect-page {
-  background-color: $background-color;
   min-height: 100vh;
+  background-color: $background-color;
 }
 
 .collect-inner {
@@ -67,13 +80,15 @@ const allitems = computed(() => favStore.favoriteIds ?? [])
 
 .collect-banner {
   width: 100%;
-  background-color: $primary-color;
+  background: linear-gradient(to right, $primary-color, $white-color);
+  padding: $space-lg 0;
 
   .collect-inner {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    gap: $space-md;
   }
 
   .collect-button {
@@ -81,6 +96,7 @@ const allitems = computed(() => favStore.favoriteIds ?? [])
       margin-top: $space-xl;
       background-color: $white-color;
       color: darken($tertiary-color, 10%);
+      max-width: 150px;
     }
   }
   .collect-right-wrap {
@@ -88,13 +104,13 @@ const allitems = computed(() => favStore.favoriteIds ?? [])
     display: flex;
     align-items: stretch;
     padding: $space-md;
-    background: $white-color;
 
     .collect-right-card {
       flex: 1;
       padding: 0;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
     }
 
     .user-info {

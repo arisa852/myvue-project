@@ -207,5 +207,6 @@ export function useGetRestaurantList() {
     changePage,
     fetchRestaurantlist,
     sortState,
+    restaurantlists
   }
 }

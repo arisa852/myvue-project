@@ -1,22 +1,22 @@
 <template>
   <section class="banner">
     <div class="container">
-      <slot>
-        <div class="bn-text">
+      <!------左邊內容------>
+      <div class="bn-left">
+        <slot name="left">
           <h1>{{ title }}</h1>
-          <p>
-            {{ content }}
-          </p>
+          <p>{{ content }}</p>
           <slot name="cta"></slot>
-        </div>
-        <div class="bn-right">
-          <slot name="right">
-            <div class="bn-img" v-if="bannerImg">
-              <img :src="bannerImg" alt="Banner" />
-            </div>
-          </slot>
-        </div>
-      </slot>
+        </slot>
+      </div>
+      <!------右邊內容------>
+      <div class="bn-right">
+        <slot name="right">
+          <div class="bn-img" v-if="bannerImg">
+            <img :src="bannerImg" alt="Banner" />
+          </div>
+        </slot>
+      </div>
     </div>
   </section>
 </template>
@@ -38,7 +38,6 @@ export default {
     },
   },
   setup(props) {
-    console.log(props.title)
     return { ...props }
   },
 }
@@ -54,8 +53,9 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    flex-wrap: wrap;
     width: 100%;
+    gap: $space-lg;
+    padding: 0 $space-lg;
 
     @include respond-to(pad) {
       flex-direction: column;
@@ -67,9 +67,16 @@ export default {
     }
   }
 
-  .bn-text {
+  .bn-left,
+  .bn-right {
+    min-width: 0;
+  }
+
+  .bn-left {
     width: 60%;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     @include respond-to(pad) {
       width: 100%;
@@ -82,12 +89,16 @@ export default {
     & h1 {
       @include heading-style;
       color: $title-color;
+      overflow-wrap: anywhere;
+      margin-bottom: $space-md;
     }
 
     & p {
       @include minheading-style;
       font-weight: 400;
       color: $paragraph-color;
+      overflow-wrap: anywhere;
+      margin-bottom: $space-md;
     }
   }
 
@@ -96,6 +107,11 @@ export default {
     display: flex;
     align-items: stretch;
     flex-direction: column;
+
+    & > * {
+      flex: 1;
+      min-height: 0;
+    }
 
     @include respond-to(pad) {
       width: 100%;
@@ -111,10 +127,6 @@ export default {
       height: 100%;
       display: block;
     }
-  }
-  .bn-right > * {
-    flex: 1;
-    min-height: 0;
   }
 }
 </style>
