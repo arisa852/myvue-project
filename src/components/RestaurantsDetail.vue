@@ -45,7 +45,7 @@ export default {
     },
     restaurantlist: {
       type: Object,
-      required: true,
+      default: null,
     },
     loading: {
       type: Boolean,

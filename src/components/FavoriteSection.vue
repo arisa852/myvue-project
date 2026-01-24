@@ -32,7 +32,7 @@
     <!-- Body -->
     <div class="collect-panel_body">
       <div class="fav-container">
-        <p v-if="props.items.length === 0">清單尚未載入</p>
+        <p v-if="isEmpty">清單尚未載入</p>
         <RestaurantsCard
           v-for="item in favoriteItems"
           :key="item.id"
@@ -46,17 +46,18 @@
   </section>
 </template>
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, watchEffect } from 'vue'
 import RestaurantsCard from './RestaurantsCard.vue'
 
 const props = defineProps({
   items: {
-    type: Array,
-    default: () => [],
+    type: Object,
+    default: () => ({
+      restaurants: [],
+      outfits: [],
+    }),
   },
 })
-
-console.log('FavoriteSection props.items:', props.items)
 
 const mainTabs = [
   { label: '穿的收藏', value: 'wear' },
@@ -83,7 +84,13 @@ const currentSubTabs = computed(() => {
   return activeMainTabs.value === 'wear' ? wearSubTabs : foodSubTabs
 })
 
-const favoriteItems = computed(() => props.items)
+const favoriteItems = computed(() => {
+  return activeMainTabs.value === 'food'
+    ? (props.items.restaurants ?? [])
+    : (props.items.outfits ?? [])
+})
+
+const isEmpty = computed(() => favoriteItems.value.length === 0)
 
 const currentSubValue = computed({
   get() {
@@ -105,6 +112,12 @@ watch(
   },
   { immediate: true },
 )
+
+watchEffect(() => {
+  console.log('props.items =', props.items)
+  console.log('restaurants =', props.items?.restaurants, 'len=', props.items?.restaurants?.length)
+  console.log('outfits =', props.items?.outfits, 'len=', props.items?.outfits?.length)
+})
 </script>
 <style lang="scss" scoped>
 @use '../assets/style/variables' as *;
@@ -181,7 +194,6 @@ watch(
     & .is-active {
       background-color: $second-primary-color;
       color: $white-color;
-      border-color: $second-primary-color;
       font-weight: 700;
     }
   }

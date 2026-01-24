@@ -27,7 +27,7 @@
     <section class="collect-favorite">
       <div class="collect-inner">
         <div class="collect-panel">
-          <FavoriteSection :items="favoriteItems"></FavoriteSection>
+          <FavoriteSection :restaurants="favorites.restaurants" :outfits="favorites.outfits" />
         </div>
       </div>
     </section>
@@ -37,12 +37,14 @@
 import BannerSection from '@/components/BannerSection.vue'
 import FavoriteSection from '@/components/FavoriteSection.vue'
 import { useAuth } from '@/use/useAuth'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { useFavoriteStore } from '@/stores/useFavoriteStore'
 import { useGetRestaurantList } from '@/use/useGetRestaurantList'
+import { useOutfitRandomizer } from '@/use/useOutfitRandomizer'
 
 const { user } = useAuth()
 const { restaurantlists, fetchRestaurantlist } = useGetRestaurantList()
+const { outfit, fetchAll } = useOutfitRandomizer()
 
 const favStore = useFavoriteStore()
 
@@ -54,14 +56,30 @@ const collectText = computed(() => {
   return `已收藏 ${count} 個選擇`
 })
 
-const favoriteItems = computed(() => {
-  const ids = favStore.favoriteIds.map(String)
-  return (restaurantlists.value ?? []).filter((r) => ids.includes(String(r.id)))
+const favorites = computed(() => {
+  const reIds = favStore.restaurantIds.map(String)
+  const ouIds = favStore.outfitIds.map(String)
+  const restaurants = (restaurantlists.value ?? []).filter((r) => reIds.includes(String(r.id)))
+
+  const outfits = (outfit.value ?? []).filter((o) => ouIds.includes(String(o.id)))
+
+  return {
+    restaurants,
+    outfits,
+  }
 })
 
 onMounted(async () => {
-  await fetchRestaurantlist()
   favStore.load()
+  await Promise.all([fetchRestaurantlist(), fetchAll()])
+})
+
+watchEffect(() => {
+  console.log('store.restaurantIds =', favStore.restaurantIds)
+  console.log('store.outfitIds =', favStore.outfitIds)
+  console.log('restaurantLists =', restaurantlists.value)
+  console.log('favoriteRestaurants =', favorites.value.restaurants)
+  console.log('favoriteOutfits =', favorites.value.outfits)
 })
 </script>
 <style lang="scss" scoped>

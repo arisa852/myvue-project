@@ -1,5 +1,8 @@
 <template>
   <article class="outfit-card" :class="{ 'outfit-card--hero': isHero }">
+    <button type="button" @click.stop="handleToFavorite" class="outfit-card_btn">
+      <i class="bi" :class="isFavorite ? 'bi-heart-fill' : 'bi-heart'"></i>
+    </button>
     <img
       :src="item.image"
       :alt="item.name || '服裝圖片'"
@@ -19,12 +22,21 @@ export default {
     },
     isHero: {
       type: Boolean,
-      default: null,
+      default: false,
+    },
+    isFavorite: {
+      type: Boolean,
+      required: true,
     },
   },
-  setup(props) {
+  emits: ['toggle-favorite'],
+  setup(props, { emit }) {
     console.log(props)
-    return { props }
+
+    const handleToFavorite = () => {
+      emit('toggle-favorite', props.item.id)
+    }
+    return { handleToFavorite }
   },
 }
 </script>
@@ -41,8 +53,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
+
+  &_btn {
+    align-self: flex-end;
+    @include button-style {
+      padding: 0;
+      background-color: $white-color;
+    }
+
+    .bi {
+      font-size: 1.25rem;
+      color: $primary-color;
+    }
+  }
 
   &_image {
     width: 100%;

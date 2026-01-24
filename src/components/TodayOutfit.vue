@@ -2,16 +2,28 @@
   <section class="today-outfit" v-if="top || bottom">
     <h2>今日穿搭<span>系統隨機抽</span></h2>
     <div class="outfit-row">
-      <OutfitCard :item="top" v-if="top"></OutfitCard>
-      <OutfitCard :item="bottom" v-if="bottom"></OutfitCard>
+      <OutfitCard
+        :item="top"
+        v-if="top"
+        :is-favorite="favoriteStore.isOutfitFavorite(top?.id)"
+        @toggle-favorite="onToggleFavorite"
+      ></OutfitCard>
+      <OutfitCard
+        :item="bottom"
+        v-if="bottom"
+        :is-favorite="favoriteStore.isOutfitFavorite(bottom?.id)"
+        @toggle-favorite="onToggleFavorite"
+      ></OutfitCard>
       <OutfitCard :item="hero" :is-hero="true" v-if="hero"></OutfitCard>
     </div>
     <button @click="reRoll" class="reroll-button">再抽一次</button>
   </section>
 </template>
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import OutfitCard from './OutfitCard.vue'
+import { useFavoriteStore } from '@/stores/useFavoriteStore'
+import { useAuth } from '@/use/useAuth'
 
 export default {
   name: 'tradeOutfit',
@@ -26,16 +38,31 @@ export default {
       default: null,
     },
   },
-  emits: ['reroll'],
+  emits: ['reroll', 'need-login'],
 
   setup(props, { emit }) {
     const top = computed(() => props.outfit?.top || null)
     const bottom = computed(() => props.outfit?.bottom || null)
     const reRoll = () => emit('reroll')
+    const favoriteStore = useFavoriteStore()
+    const auth = useAuth()
 
     console.log('[TodayOutfit]收到的outfit:', props.outfit)
     console.log('[TodayOutfit]收到的hero:', props.hero)
-    return { top, bottom, reRoll }
+
+    const onToggleFavorite = (id) => {
+      if (!auth.user.value) {
+        emit('need-login')
+        return
+      }
+      favoriteStore.toggleOutfit(id)
+    }
+
+    onMounted(() => {
+      favoriteStore.load()
+    })
+
+    return { top, bottom, reRoll, onToggleFavorite, favoriteStore }
   },
 }
 </script>

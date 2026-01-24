@@ -20,7 +20,7 @@
         :key="food.id"
         :item="food"
         :show-actions="true"
-        :is-favorite="favorite.isFavorite(food.id)"
+        :is-favorite="favorite.isRestaurantFavorite(food?.id)"
         @open-drawer="onOpenDrawer"
         @need-login="handleNeedLogin"
         @is-Favorite="handleToggleFavorite"
@@ -64,7 +64,7 @@ export default {
         emit('need-login')
         return
       }
-      favorite.toggle(id)
+      favorite.toggleRestaurant(id)
     }
 
     const handleNeedLogin = () => emit('need-login')

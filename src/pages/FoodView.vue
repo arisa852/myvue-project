@@ -41,6 +41,7 @@
           @toggle-Price="handleClickPrice"
           @toggle-Rate="handleClickRate"
           @open-drawer="onOpenDrawer"
+          @need-login="onOpenLoginModal"
         ></TodayFood>
         <RestaurantsDetail
           :show="showDetail"
@@ -69,6 +70,7 @@ import TodayFood from '@/components/TodayFood.vue'
 import RestaurantsDetail from '@/components/RestaurantsDetail.vue'
 import { useGetRestaurantList } from '@/use/useGetRestaurantList'
 import { computed, onMounted, watch, ref, onBeforeUnmount } from 'vue'
+import { useUiStore } from '@/stores/useUiStore'
 
 const {
   loading,
@@ -84,6 +86,8 @@ const {
   prePage,
   fetchRestaurantlist,
 } = useGetRestaurantList()
+
+const ui = useUiStore()
 
 const isMobile = ref(false)
 const isOpen = ref(false)
@@ -114,6 +118,11 @@ function handleClickPrice() {
 
 function handleClickRate() {
   toggleRatesort()
+}
+
+function onOpenLoginModal() {
+  console.log('need-login received')
+  ui.openLoginModal()
 }
 
 const showDetail = ref(false)

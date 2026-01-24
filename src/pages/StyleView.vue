@@ -41,7 +41,13 @@
           </BannerSection>
         </section>
         <section class="style-todayoutfit">
-          <TodayOutfit v-if="outfit && hero" :outfit="outfit" :hero="hero" @reroll="reroll">
+          <TodayOutfit
+            v-if="outfit"
+            :outfit="outfit"
+            :hero="hero"
+            @reroll="reroll"
+            @need-login="uiStore.openLoginModal()"
+          >
           </TodayOutfit>
         </section>
         <section class="style-inspiration">
@@ -64,9 +70,11 @@ import TodayOutfit from '@/components/TodayOutfit.vue'
 import { useOutfitRandomizer } from '@/use/useOutfitRandomizer'
 import InspirationCarousel from '@/components/InspirationCarousel.vue'
 import { useGetinspiration } from '@/use/useGetinspiration'
+import { useUiStore } from '@/stores/useUiStore'
 
-const { outfit, fetchAll, reroll, setFilters, all, hero } = useOutfitRandomizer()
+const { outfit, reroll, setFilters, all, hero, fetchAll } = useOutfitRandomizer()
 const { loading, error, inspirations, fetchInspiration } = useGetinspiration()
+const uiStore = useUiStore()
 
 const isFiltersMobile = ref(false)
 const isFiltersOpen = ref(false)
@@ -94,7 +102,9 @@ function handleFiltersChange(newFilters) {
 }
 
 function handleStart() {
-  reroll()
+  if (all.value.length > 0) {
+    reroll()
+  }
 }
 
 onMounted(async () => {
@@ -103,7 +113,7 @@ onMounted(async () => {
   //設定rwb
   mql = window.matchMedia('(max-width:1023px)')
   updateMobile()
-  console.log(mql.value)
+  console.log(mql.matches)
   if (mql.addEventListener) {
     mql.addEventListener('change', updateMobile)
   } else if (mql.addListener) {
@@ -112,7 +122,7 @@ onMounted(async () => {
 
   //取得資料
   await fetchAll()
-  fetchInspiration()
+  await fetchInspiration()
   reroll()
   console.log('[stylepage]呼叫完fetchAll', '呼叫完fetchInspiration')
 })

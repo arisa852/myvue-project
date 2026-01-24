@@ -782,8 +782,9 @@
         "sat": "09:00-21:00",
         "sun": "09:00-20:00"
       },
-      "coverImage": "",
-      "images": ["", ""]
+      "coverImage": "/restaurants/taipei-east/cafe.jpg",
+      "images": ["/restaurants/taipei-east/cafe1.jpg", "/restaurants/taipei-east/cafe2.jpg"],
+      "description": "位於東區巷弄中的靜謐咖啡館，空間溫暖舒適，適合久坐工作或與朋友輕鬆聊天，提供穩定品質的咖啡與輕食。"
     },
     {
       "id": 14,
@@ -804,8 +805,9 @@
         "sat": "11:00-22:00",
         "sun": "11:00-21:00"
       },
-      "coverImage": "",
-      "images": ["", ""]
+      "coverImage": "/restaurants/taipei-east/japan.jpg",
+      "images": ["/restaurants/taipei-east/japan1.jpg", "/restaurants/taipei-east/japan2.jpg"],
+      "description": "主打日式家常料理與定食，餐點口味清爽不膩，適合平日用餐或下班後簡單聚餐，整體氛圍自在放鬆。"
     },
     {
       "id": 15,
@@ -826,8 +828,12 @@
         "sat": "10:30-20:30",
         "sun": "10:30-20:00"
       },
-      "coverImage": "",
-      "images": ["", ""]
+      "coverImage": "/restaurants/taipei-east/lightmeat.jpg",
+      "images": [
+        "/restaurants/taipei-east/lightmeat1.jpg",
+        "/restaurants/taipei-east/lightmeat2.jpg"
+      ],
+      "description": "以清爽健康的蔬食與輕食為主，餐點配色自然、口味平衡，適合想吃得輕盈又有飽足感的日常用餐選擇。"
     },
     {
       "id": 16,
@@ -848,8 +854,9 @@
         "sat": "11:00-20:30",
         "sun": "休息"
       },
-      "coverImage": "",
-      "images": ["", ""]
+      "coverImage": "/restaurants/taipei-east/chinese.jpg",
+      "images": ["", ""],
+      "description": "提供多樣中式快餐選擇，出餐快速、價格親民，是附近上班族與居民日常外食的實用選項。"
     },
     {
       "id": 17,

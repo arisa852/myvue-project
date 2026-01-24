@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 
 const RE_KEY = 'favorite_restaurant_ids'
+const OU_KEY = 'favorite_outfit_ids'
 
 function safeParseArray(raw) {
   if (!raw) return []
@@ -18,42 +19,54 @@ function safeParseArray(raw) {
 export const useFavoriteStore = defineStore('favoriteStore', {
   state: () => {
     return {
-      favoriteIds: [],
+      restaurantIds: [],
+      outfitIds: [],
       loaded: false,
     }
   },
   getters: {
-    isFavorite: (state) => (id) => {
-      const key = String(id)
-      return state.favoriteIds.includes(key)
-    },
-    restaurantCount: (state) => state.favoriteIds.length,
+    isRestaurantFavorite: (state) => (id) => state.restaurantIds.includes(String(id)),
+    isOutfitFavorite: (state) => (id) => state.outfitIds.includes(String(id)),
+    restaurantCount: (state) => state.restaurantIds.length,
+    outfitCount: (state) => state.outfitIds.length,
     totalCount() {
-      return this.restaurantCount
+      return this.restaurantCount + this.outfitCount
     },
   },
   actions: {
     load() {
       if (this.loaded) return
-      const raw = localStorage.getItem(RE_KEY)
-      this.favoriteIds = safeParseArray(raw)
+      this.restaurantIds = safeParseArray(localStorage.getItem(RE_KEY))
+      this.outfitIds = safeParseArray(localStorage.getItem(OU_KEY))
       this.loaded = true
     },
     persist() {
-      localStorage.setItem(RE_KEY, JSON.stringify(this.favoriteIds))
+      localStorage.setItem(RE_KEY, JSON.stringify(this.restaurantIds))
+      localStorage.setItem(OU_KEY, JSON.stringify(this.outfitIds))
     },
-    toggle(id) {
+    toggleRestaurant(id) {
       this.load()
       const key = String(id)
-      if (this.favoriteIds.includes(key)) {
-        this.favoriteIds = this.favoriteIds.filter((i) => i !== id)
+      if (this.restaurantIds.includes(key)) {
+        this.restaurantIds = this.restaurantIds.filter((i) => i !== id)
       } else {
-        this.favoriteIds.push(key)
+        this.restaurantIds.push(key)
+      }
+      this.persist()
+    },
+    toggleOutfit(id) {
+      this.load()
+      const key = String(id)
+      if (this.outfitIds.includes(key)) {
+        this.outfitIds = this.outfitIds.filter((i) => i !== id)
+      } else {
+        this.outfitIds.push(key)
       }
       this.persist()
     },
     clear() {
-      this.favoriteIds = []
+      this.restaurantIds = []
+      this.outfitIds = []
       this.loaded = true
       this.persist()
     },

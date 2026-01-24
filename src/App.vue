@@ -1,40 +1,32 @@
 <script setup>
-import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import LoginModal from './components/LoginModal.vue'
 import RegisterModal from './components/RegisterModal.vue'
+import { useUiStore } from './stores/useUiStore'
+import { storeToRefs } from 'pinia'
 
 console.log('DATA_SOURCE:', import.meta.env.VITE_DATA_SOURCE)
 console.log('API_BASE:', import.meta.env.VITE_API_BASE_URL)
 
-const isLoginOpen = ref(false)
-const RegisterOpen = ref(false)
+const uiStore = useUiStore()
+
+const { loginModalOpen, registerModalOpen } = storeToRefs(uiStore)
 
 const handleSwitchToLogin = () => {
-  RegisterOpen.value = false
-  isLoginOpen.value = true
+  uiStore.openLoginModal()
 }
 
 const handleSwitchToRegister = () => {
-  isLoginOpen.value = false
-  RegisterOpen.value = true
+  uiStore.openRegisterModal()
 }
 </script>
 
 <template>
   <main>
-    <Header @open-login="isLoginOpen = true" />
-    <LoginModal
-      :open="isLoginOpen"
-      @update:open="isLoginOpen = $event"
-      @switch-to-register="handleSwitchToRegister"
-    />
-    <RegisterModal
-      :open="RegisterOpen"
-      @update:open="RegisterOpen = $event"
-      @switch-to-login="handleSwitchToLogin"
-    />
+    <Header @open-login="uiStore.openLoginModal()" />
+    <LoginModal v-model:open="loginModalOpen" @switch-to-register="handleSwitchToRegister" />
+    <RegisterModal v-model:open="registerModalOpen" @switch-to-login="handleSwitchToLogin" />
     <RouterView />
   </main>
 </template>
