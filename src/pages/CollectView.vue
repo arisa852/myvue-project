@@ -27,7 +27,7 @@
     <section class="collect-favorite">
       <div class="collect-inner">
         <div class="collect-panel">
-          <FavoriteSection :restaurants="favorites.restaurants" :outfits="favorites.outfits" />
+          <FavoriteSection :items="favorites" />
         </div>
       </div>
     </section>
@@ -44,7 +44,7 @@ import { useOutfitRandomizer } from '@/use/useOutfitRandomizer'
 
 const { user } = useAuth()
 const { restaurantlists, fetchRestaurantlist } = useGetRestaurantList()
-const { outfit, fetchAll } = useOutfitRandomizer()
+const { all, fetchAll } = useOutfitRandomizer()
 
 const favStore = useFavoriteStore()
 
@@ -61,7 +61,7 @@ const favorites = computed(() => {
   const ouIds = favStore.outfitIds.map(String)
   const restaurants = (restaurantlists.value ?? []).filter((r) => reIds.includes(String(r.id)))
 
-  const outfits = (outfit.value ?? []).filter((o) => ouIds.includes(String(o.id)))
+  const outfits = (all.value ?? []).filter((o) => ouIds.includes(String(o.id)))
 
   return {
     restaurants,

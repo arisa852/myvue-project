@@ -115,8 +115,8 @@ watch(
 
 watchEffect(() => {
   console.log('props.items =', props.items)
-  console.log('restaurants =', props.items?.restaurants, 'len=', props.items?.restaurants?.length)
-  console.log('outfits =', props.items?.outfits, 'len=', props.items?.outfits?.length)
+  console.log('restaurants =', props.items.restaurants, 'len=', props.items.restaurants.length)
+  console.log('outfits =', props.items.outfits, 'len=', props.items.outfits.length)
 })
 </script>
 <style lang="scss" scoped>
