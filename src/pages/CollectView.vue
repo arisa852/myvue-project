@@ -27,7 +27,7 @@
     <section class="collect-favorite">
       <div class="collect-inner">
         <div class="collect-panel">
-          <FavoriteSection :items="favorites" />
+          <FavoriteSection :food-favorites="favorites.restaurants"  :wear-favorites="favorites.outfits"/>
         </div>
       </div>
     </section>

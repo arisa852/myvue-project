@@ -33,29 +33,40 @@
     <div class="collect-panel_body">
       <div class="fav-container">
         <p v-if="isEmpty">清單尚未載入</p>
-        <RestaurantsCard
-          v-for="item in favoriteItems"
-          :key="item.id"
-          :item="item"
-          :show-actions="false"
-          :is-favorite="true"
-        >
-        </RestaurantsCard>
+        <template v-if="activeMainTabs === 'food'">
+          <RestaurantsCard
+            v-for="item in foodFavorites"
+            :key="`food-${item.id}`"
+            :item="item"
+            :show-actions="false"
+            :is-favorite="true"
+          >
+          </RestaurantsCard>
+        </template>
+        <template v-else>
+          <FavoriteWearCard
+            v-for="wearItem in wearFavorites"
+            :key="`wear-${wearItem.id}`"
+            :wear-item="wearItem"
+          ></FavoriteWearCard>
+        </template>
       </div>
     </div>
   </section>
 </template>
 <script setup>
-import { computed, ref, watch, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import RestaurantsCard from './RestaurantsCard.vue'
+import FavoriteWearCard from './FavoriteWearCard.vue'
 
 const props = defineProps({
-  items: {
-    type: Object,
-    default: () => ({
-      restaurants: [],
-      outfits: [],
-    }),
+  foodFavorites: {
+    type: Array,
+    required: true,
+  },
+  wearFavorites: {
+    type: Array,
+    required: true,
   },
 })
 
@@ -84,13 +95,11 @@ const currentSubTabs = computed(() => {
   return activeMainTabs.value === 'wear' ? wearSubTabs : foodSubTabs
 })
 
-const favoriteItems = computed(() => {
+const isEmpty = computed(() => {
   return activeMainTabs.value === 'food'
-    ? (props.items.restaurants ?? [])
-    : (props.items.outfits ?? [])
+    ? props.foodFavorites.length === 0
+    : props.wearFavorites.length === 0
 })
-
-const isEmpty = computed(() => favoriteItems.value.length === 0)
 
 const currentSubValue = computed({
   get() {
@@ -105,18 +114,9 @@ const currentSubValue = computed({
   },
 })
 
-watch(
-  () => props.items,
-  (newVal) => {
-    console.log('props.items changed:', newVal)
-  },
-  { immediate: true },
-)
-
 watchEffect(() => {
-  console.log('props.items =', props.items)
-  console.log('restaurants =', props.items.restaurants, 'len=', props.items.restaurants.length)
-  console.log('outfits =', props.items.outfits, 'len=', props.items.outfits.length)
+  console.log('foodFavorites len=', props.foodFavorites.length)
+  console.log('wearFavorites len=', props.wearFavorites.length)
 })
 </script>
 <style lang="scss" scoped>
