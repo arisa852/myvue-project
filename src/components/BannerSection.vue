@@ -6,6 +6,7 @@
         <slot name="left">
           <h1>{{ title }}</h1>
           <p>{{ content }}</p>
+          <slot name="left-extra"></slot>
           <slot name="cta"></slot>
         </slot>
       </div>
@@ -73,10 +74,10 @@ export default {
   }
 
   .bn-left {
-    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 1 1 0;
 
     @include respond-to(pad) {
       width: 100%;
@@ -103,15 +104,17 @@ export default {
   }
 
   .bn-right {
-    width: 40%;
+    flex: 0 1 560px;
+    max-width: 600px;
     display: flex;
-    align-items: stretch;
-    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 0;
 
-    & > * {
-      flex: 1;
-      min-height: 0;
-    }
+    // & > * {
+    //   flex: 1;
+    //   min-height: 0;
+    // }
 
     @include respond-to(pad) {
       width: 100%;
@@ -123,9 +126,8 @@ export default {
 
     & img {
       width: 100%;
-      object-fit: cover;
-      height: 100%;
-      display: block;
+      object-fit: contain;
+      height: auto;
     }
   }
 }

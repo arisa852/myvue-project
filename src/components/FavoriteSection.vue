@@ -1,5 +1,6 @@
 <template>
   <section class="fav-wrapper">
+    <p></p>
     <div class="fav-panel">
       <!-- Tabs -->
       <div class="fav-panel_tabs">
@@ -32,10 +33,10 @@
     <!-- Body -->
     <div class="collect-panel_body">
       <div class="fav-container">
-        <p v-if="isEmpty">清單尚未載入</p>
+        <p v-if="isEmpty">目前還未收錄</p>
         <template v-if="activeMainTabs === 'food'">
           <RestaurantsCard
-            v-for="item in foodFavorites"
+            v-for="item in favoriteFoodfiltered"
             :key="`food-${item.id}`"
             :item="item"
             :show-actions="false"
@@ -45,7 +46,7 @@
         </template>
         <template v-else>
           <FavoriteWearCard
-            v-for="wearItem in wearFavorites"
+            v-for="wearItem in favoriteWearfiltered"
             :key="`wear-${wearItem.id}`"
             :wear-item="wearItem"
           ></FavoriteWearCard>
@@ -97,8 +98,8 @@ const currentSubTabs = computed(() => {
 
 const isEmpty = computed(() => {
   return activeMainTabs.value === 'food'
-    ? props.foodFavorites.length === 0
-    : props.wearFavorites.length === 0
+    ? favoriteFoodfiltered.value.length === 0
+    : favoriteWearfiltered.value.length === 0
 })
 
 const currentSubValue = computed({
@@ -112,6 +113,16 @@ const currentSubValue = computed({
       activeFoodSubTab.value = v
     }
   },
+})
+
+const favoriteWearfiltered = computed(() => {
+  const current = activeWearSubTab.value
+  return props.wearFavorites.filter((item) => item.slot === current)
+})
+
+const favoriteFoodfiltered = computed(() => {
+  const currentVal = activeFoodSubTab.value
+  return props.foodFavorites.filter((item) => item.category === currentVal)
 })
 
 watchEffect(() => {
@@ -188,10 +199,10 @@ watchEffect(() => {
     color: $paragraph-color;
 
     &:hover {
-      background-color: lighten($primary-color, 30%);
-      color: $text-color;
+      background-color: darken($primary-color, 30%);
+      color: $white-color;
     }
-    & .is-active {
+    &.is-active {
       background-color: $second-primary-color;
       color: $white-color;
       font-weight: 700;

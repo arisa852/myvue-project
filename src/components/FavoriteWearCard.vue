@@ -13,13 +13,15 @@
           }}<span class="fav-wear-meta"><!-- 之後放收藏時間 --></span>
         </h4>
         <div class="fav-wear_tags">
-          <span v-for="t in wearItem.tags" :key="t" class="fav-wear_tag">{{ t }}</span>
+          <span v-for="t in displayTags" :key="t" class="fav-wear_tag">{{ t }}</span>
         </div>
       </div>
     </div>
   </article>
 </template>
 <script setup>
+import { computed } from 'vue'
+
 const props = defineProps({
   wearItem: {
     type: Object,
@@ -33,7 +35,77 @@ const handleCancel = () => {
   emit('unfavorite', props.wearItem.id)
 }
 
+const tagMaps = {
+  formal: '正式',
+  casual: '休閒',
+  street: '街頭',
+  sport: '運動',
+  fresh: '清新',
+  clean: '清爽',
+  cute: '可愛',
+  sweet: '甜美',
+  elegant: '優雅',
+  sexy: '性感',
+  energetic: '活力',
 
+  office: '通勤/上班',
+  interview: '面試',
+  party: '派對',
+  date: '約會',
+  home: '居家',
+  vacation: '度假',
+  beach: '海邊',
+
+  shirt: '襯衫',
+  tshirt: 'T恤',
+  'tank-top': '背心',
+  jacket: '外套',
+  pants: '長褲',
+  shorts: '短褲',
+  skirt: '裙子',
+  dress: '洋裝',
+  swimsuit: '泳裝',
+  bikini: '比基尼',
+  suit: '西裝',
+  tie: '領帶',
+
+  'long-sleeve': '長袖',
+  'short-sleeve': '短袖',
+  sleeveless: '無袖',
+  'one-piece': '連身',
+  cutout: '鏤空',
+  string: '繫帶',
+  versatile: '百搭',
+  warm: '保暖',
+  light: '輕盈',
+  daily: '日常',
+
+  stripe: '條紋',
+  diagonal: '斜紋',
+  smile: '笑臉',
+  ribbon: '蝴蝶結',
+
+  spring: '春',
+  summer: '夏',
+  autumn: '秋',
+  winter: '冬',
+
+  black: '黑色',
+  white: '白色',
+  gray: '灰色',
+  blue: '藍色',
+  lightblue: '淺藍',
+  navy: '深藍',
+  red: '紅色',
+  pink: '粉色',
+  orange: '橘色',
+  yellow: '黃色',
+  green: '綠色',
+  purple: '紫色',
+  teal: '藍綠色',
+}
+
+const displayTags = computed(() => props.wearItem.tags.map((t) => tagMaps[t] ?? t))
 </script>
 <style lang="scss" scoped>
 @use '../assets/style/variables' as *;
