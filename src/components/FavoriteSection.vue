@@ -35,20 +35,19 @@
       <div class="fav-container">
         <p v-if="isEmpty">目前還未收錄</p>
         <template v-if="activeMainTabs === 'food'">
-          <RestaurantsCard
-            v-for="item in favoriteFoodfiltered"
-            :key="`food-${item.id}`"
-            :item="item"
-            :show-actions="false"
-            :is-favorite="true"
+          <FavoriteFoodCard
+            v-for="foodItem in favoriteFoodfiltered"
+            :key="`food-${foodItem.id}`"
+            :food-item="foodItem"
           >
-          </RestaurantsCard>
+          </FavoriteFoodCard>
         </template>
         <template v-else>
           <FavoriteWearCard
             v-for="wearItem in favoriteWearfiltered"
             :key="`wear-${wearItem.id}`"
             :wear-item="wearItem"
+            @unfavorite="onUnfavorite"
           ></FavoriteWearCard>
         </template>
       </div>
@@ -57,8 +56,9 @@
 </template>
 <script setup>
 import { computed, ref, watchEffect } from 'vue'
-import RestaurantsCard from './RestaurantsCard.vue'
 import FavoriteWearCard from './FavoriteWearCard.vue'
+import FavoriteFoodCard from './FavoriteFoodCard.vue'
+import { useFavoriteStore } from '@/stores/useFavoriteStore'
 
 const props = defineProps({
   foodFavorites: {
@@ -124,6 +124,9 @@ const favoriteFoodfiltered = computed(() => {
   const currentVal = activeFoodSubTab.value
   return props.foodFavorites.filter((item) => item.category === currentVal)
 })
+
+const favoriteStore = useFavoriteStore()
+const onUnfavorite = (id) => favoriteStore.toggleOutfit(id)
 
 watchEffect(() => {
   console.log('foodFavorites len=', props.foodFavorites.length)

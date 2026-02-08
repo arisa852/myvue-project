@@ -42,10 +42,14 @@ router.beforeEach((to) => {
   const auth = useAuthStore()
   const ui = useUiStore()
 
+ 
+ if (auth.loading) return true
+
   if (!auth.isLoggedIn) {
     ui.openLoginModal()
     return false
   }
+
   return true
 })
 

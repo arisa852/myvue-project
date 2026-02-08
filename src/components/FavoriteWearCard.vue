@@ -2,7 +2,7 @@
   <article class="favorite-wear">
     <div class="fav-wear">
       <button type="button" @click="handleCancel" class="fav-wear_btn">
-        <i class="bi bi-heart-fill"></i>
+        <i class="bi bi-heartbreak-fill"></i>
       </button>
       <div class="fav-wear_image">
         <img :src="wearItem?.image" :alt="wearItem?.name || '未命名單品'" />

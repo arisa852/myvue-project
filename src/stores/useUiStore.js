@@ -9,6 +9,7 @@ export const useUiStore = defineStore('uistore', {
   },
   actions: {
     openLoginModal() {
+      console.trace('openLoginModal called')
       this.loginModalOpen = true
     },
     closeLoginModal() {
