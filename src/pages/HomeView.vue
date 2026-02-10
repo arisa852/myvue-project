@@ -119,11 +119,20 @@ export default {
     color: $primary-color;
     max-width: 150px;
 
-    &:hover {
-      background-color: $primary-color;
-      color: $white-color;
-      opacity: 1;
-      box-shadow: $shadow-sm;
+    /* 桌機 */
+    @media (hover: hover) {
+      &:hover {
+        background-color: $primary-color;
+        color: $white-color;
+        box-shadow: $shadow-sm;
+      }
+    }
+    /* 手機 */
+    @media (hover: hover) {
+      &:active {
+        background-color: $primary-color;
+        color: $white-color;
+      }
     }
   }
 }

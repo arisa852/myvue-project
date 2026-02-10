@@ -255,6 +255,14 @@ onBeforeUnmount(() => {
   @include button-style {
     background-color: $white-color;
     border: 2px solid darken($primary-color, 10%);
+    color: darken($primary-color, 30%);
+    max-width: 150px;
+  }
+  @include respond-to(pad) {
+    max-width: 150px;
+  }
+  @include respond-to(mobile) {
+    max-width: 150px;
   }
 }
 

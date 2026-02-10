@@ -31,7 +31,7 @@
       </div>
     </div>
     <!-- Body -->
-    <div class="collect-panel_body">
+    <div class="fav-panel_body">
       <div class="fav-container">
         <p v-if="isEmpty">目前還未收錄</p>
         <template v-if="activeMainTabs === 'food'">
@@ -39,6 +39,7 @@
             v-for="foodItem in favoriteFoodfiltered"
             :key="`food-${foodItem.id}`"
             :food-item="foodItem"
+            @unfavorite="handleUnfavorite"
           >
           </FavoriteFoodCard>
         </template>
@@ -127,6 +128,7 @@ const favoriteFoodfiltered = computed(() => {
 
 const favoriteStore = useFavoriteStore()
 const onUnfavorite = (id) => favoriteStore.toggleOutfit(id)
+const handleUnfavorite = (id) => favoriteStore.toggleRestaurant(id)
 
 watchEffect(() => {
   console.log('foodFavorites len=', props.foodFavorites.length)
@@ -231,6 +233,7 @@ watchEffect(() => {
 }
 
 .fav-panel_body {
-  padding: $space-lg;
+  padding: $space-md;
+  margin-bottom: $space-4xl;
 }
 </style>

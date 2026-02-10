@@ -78,8 +78,18 @@ footer {
           font-size: 30px;
         }
 
-        &:hover {
-          transform: scale(1.2);
+        @media (hover: hover) {
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+        @media (hover: none) {
+          &:hover {
+            transform: scale(1.2);
+          }
+          &:active {
+            transform: scale(1.2);
+          }
         }
       }
     }

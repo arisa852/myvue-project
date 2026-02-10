@@ -81,10 +81,14 @@ export default {
 
     @include respond-to(pad) {
       width: 100%;
+      justify-content: stretch;
+      padding: $space-sm;
     }
 
     @include respond-to(mobile) {
       width: 100%;
+      justify-content: stretch;
+      padding: $space-sm;
     }
 
     & h1 {
@@ -111,17 +115,16 @@ export default {
     align-items: center;
     min-width: 0;
 
-    // & > * {
-    //   flex: 1;
-    //   min-height: 0;
-    // }
-
     @include respond-to(pad) {
-      width: 100%;
+      flex: 1 1 100%;
+      max-width: 100%;
+      justify-content: center;
     }
 
     @include respond-to(mobile) {
-      width: 100%;
+      flex: 1 1 100%;
+      max-width: 100%;
+      justify-content: center;
     }
 
     & img {

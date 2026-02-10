@@ -47,21 +47,23 @@
         <span></span>
         <span></span>
       </div>
-      <div class="hamburger-menu" v-if="isOpen">
-        <ul class="navbar">
-          <li v-for="menu in menus" :key="menu.to">
-            <RouterLink :to="menu.to" @click="closeMenu">{{ menu.label }}</RouterLink>
-          </li>
-          <li class="login-icon">
-            <button @click="openLogin" aria-label="登入" v-if="!isLoggedIn">
-              <i class="bi bi-person-circle"></i>
-            </button>
-            <button v-else @click="onClickLogout" type="button">
-              <i class="bi bi-person-check-fill logged-in"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
+      <Transition name="slide-menu">
+        <div class="hamburger-menu" v-if="isOpen">
+          <ul class="navbar">
+            <li v-for="menu in menus" :key="menu.to">
+              <RouterLink :to="menu.to" @click="closeMenu">{{ menu.label }}</RouterLink>
+            </li>
+            <li class="login-icon">
+              <button @click="openLogin" aria-label="登入" v-if="!isLoggedIn">
+                <i class="bi bi-person-circle"></i>
+              </button>
+              <button v-else @click="onClickLogout" type="button">
+                <i class="bi bi-person-check-fill logged-in"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </Transition>
     </div>
   </header>
 </template>
@@ -151,34 +153,27 @@ export default {
   top: 0;
   left: 0;
   z-index: 999;
+  padding-top: env(safe-area-inset-top);
 }
 
 .wrapper {
   display: flex;
   align-items: center;
-  width: 100%;
   max-width: 1200px;
-  padding: $space-sm;
   justify-content: space-between;
+  padding: $space-sm;
   margin: 0 auto;
 
   @include respond-to(pad) {
-    padding: $space-lg;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 768px;
+    max-width: 100%;
   }
   @include respond-to(mobile) {
-    padding: $space-md $space-sm;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 600px;
+    max-width: 100%;
   }
 }
 
 .logo-container {
   width: 100px;
-  margin-right: 20px;
   justify-items: start;
 
   @include respond-to(pad) {
@@ -191,13 +186,24 @@ export default {
 
   img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     cursor: pointer;
     transition: transform 0.2s ease;
 
     &:hover {
       transform: scale(1.05);
+
+      @media (hover: hover) {
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+      @media (hover: none) {
+        &:active {
+          transform: scale(1.05);
+        }
+      }
     }
   }
 }
@@ -222,7 +228,12 @@ export default {
     font-size: 1rem;
     font-weight: 400;
   }
-  a:hover {
+
+  @media (hover: hover) {
+    color: $primary-color;
+  }
+
+  @media (hover: none) {
     color: $primary-color;
   }
 }
@@ -310,13 +321,14 @@ export default {
   box-shadow: -8px 0 16px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   padding: $space-sm $space-md;
-  transform: translateX(100%);
-  animation: slideIn 0.2s ease forwards;
   width: 80vw;
   height: calc(100vh - 65px);
+  overflow-x: hidden;
+
   @include respond-to(mobile) {
     top: 55px;
   }
+
   .navbar {
     list-style: none;
     padding: 0;
@@ -333,10 +345,35 @@ export default {
     border-radius: 8px;
     transition: background-color 0.2s ease;
   }
-  .navbar li a:hover {
-    background-color: #f5f5f5;
+
+  @media (hover: hover) {
+    .navbar li a:hover {
+      background-color: #f5f5f5;
+    }
+  }
+  @media (hover: none) {
+    .navbar li a:hover {
+      background-color: #f5f5f5;
+    }
   }
 }
+
+.slide-menu-enter-from,
+.slide-menu-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-menu-enter-to,
+.slide-menu-leave-from {
+  transform: translateX(0);
+}
+
+.slide-menu-enter-active,
+.slide-menu-leave-active {
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
 .login-icon {
   button {
     @include button-style {
@@ -360,15 +397,6 @@ export default {
       opacity: 0.8;
       transform: scale(1.2);
     }
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
   }
 }
 

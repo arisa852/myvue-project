@@ -65,6 +65,17 @@ const displaylocationTag = computed(
   border-radius: $radius-md;
   width: 100%;
   box-sizing: border-box;
+
+  @include respond-to(pad) {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+  }
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+  }
 }
 
 .left-col {
@@ -122,6 +133,13 @@ const displaylocationTag = computed(
   display: flex;
   align-items: flex-start;
   gap: $space-sm;
+
+  @include respond-to(pad) {
+    margin: $space-md 0;
+  }
+  @include respond-to(mobile) {
+    margin: $space-md 0;
+  }
 
   .favorite-btn {
     @include button-style;

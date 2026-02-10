@@ -33,10 +33,12 @@
             :bannerImg="Artboard"
           >
             <template #cta>
-              <button @click="handleStart" class="start-button">立即抽</button>
-              <button v-if="isFiltersMobile" class="filter-button-mobile" @click="toggleFilters">
-                {{ isFiltersOpen ? '關閉篩選' : '篩選條件' }}
-              </button>
+              <div class="style-btn_group">
+                <button @click="handleStart" class="start-button">立即抽</button>
+                <button v-if="isFiltersMobile" class="filter-button-mobile" @click="toggleFilters">
+                  {{ isFiltersOpen ? '關閉篩選' : '篩選條件' }}
+                </button>
+              </div>
             </template>
           </BannerSection>
         </section>
@@ -201,30 +203,51 @@ onBeforeUnmount(() => {
   padding: $space-md $space-sm;
 }
 
-.start-button {
-  @include button-style {
-    border: 1px solid $primary-color;
-    background-color: $white-color;
-    color: $primary-color;
-    max-width: 150px;
-
-    &:hover {
-      background-color: $primary-color;
-      color: $white-color;
-      opacity: 1;
-      box-shadow: $shadow-sm;
-    }
-  }
-}
-
 .style-banner {
   border-radius: 0px 0px $radius-md $radius-md;
   background: linear-gradient(to bottom, $primary-color, $white-color);
 }
 
-.filter-button-mobile {
-  @include button-style {
-    margin-left: 20px;
+.style-btn_group {
+  display: flex;
+  justify-content: flex-start;
+
+  .start-button {
+    @include button-style {
+      border: 1px solid $primary-color;
+      background-color: $white-color;
+      color: $primary-color;
+      max-width: 150px;
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: $primary-color;
+          color: $white-color;
+          box-shadow: $shadow-sm;
+        }
+      }
+      @media (hover: none) {
+        &:active {
+          background-color: $primary-color;
+          color: $white-color;
+        }
+      }
+    }
+  }
+  .filter-button-mobile {
+    @include button-style {
+      margin-left: 20px;
+      background-color: $white-color;
+      border: 2px solid lighten($title-color, 20%);
+      max-width: 150px;
+      color: darken($primary-color, 30%);
+    }
+    @include respond-to(pad) {
+      max-width: 150px;
+    }
+    @include respond-to(mobile) {
+      max-width: 150px;
+    }
   }
 }
 

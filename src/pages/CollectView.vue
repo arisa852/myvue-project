@@ -54,6 +54,11 @@
         </div>
       </div>
     </section>
+    <section class="collect-footer">
+      <div class="collect-inner">
+        <Footer></Footer>
+      </div>
+    </section>
   </div>
 </template>
 <script setup>
@@ -65,6 +70,7 @@ import { useFavoriteStore } from '@/stores/useFavoriteStore'
 import { useGetRestaurantList } from '@/use/useGetRestaurantList'
 import { useOutfitRandomizer } from '@/use/useOutfitRandomizer'
 import collectBanner from '../assets/images/collect2.png'
+import Footer from '@/components/Footer.vue'
 
 const { user } = useAuth()
 const { restaurantlists, fetchRestaurantlist } = useGetRestaurantList()
@@ -134,11 +140,6 @@ watchEffect(() => {
   background: linear-gradient(to right, $primary-color, $white-color);
   padding: 0;
 
-  .collect-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
   .user-info {
     display: flex;
     flex-direction: column;
@@ -184,7 +185,6 @@ watchEffect(() => {
   }
 
   .collect-right-wrap {
-    flex: 1;
     display: flex;
     padding: 0;
     justify-content: flex-end;
@@ -195,5 +195,10 @@ watchEffect(() => {
       display: block;
     }
   }
+}
+
+.collect-footer {
+  background-color: $text-color;
+  padding: $space-lg;
 }
 </style>
