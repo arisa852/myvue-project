@@ -56,11 +56,13 @@
 
     @media (hover: hover) {
       &:hover {
-        transform: scale(1.08);
+        transform: scale(1.2);
       }
     }
-    &:active {
-      transform: scale(0.9);
+    @media (hover: none) {
+      &:active {
+        transform: scale(0.95);
+      }
     }
 
     @include respond-to(pad) {
@@ -176,9 +178,15 @@
       font-size: 1rem;
       color: $paragraph-color;
     }
-    &:hover {
-      text-decoration: underline;
-      opacity: 1;
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    @media (hover: none) {
+      &:active {
+        color: $primary-color;
+      }
     }
   }
 }

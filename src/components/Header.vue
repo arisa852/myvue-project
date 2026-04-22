@@ -53,13 +53,10 @@
             <li v-for="menu in menus" :key="menu.to">
               <RouterLink :to="menu.to" @click="closeMenu">{{ menu.label }}</RouterLink>
             </li>
-            <li class="login-icon">
-              <button @click="openLogin" aria-label="登入" v-if="!isLoggedIn">
-                <i class="bi bi-person-circle"></i>
-              </button>
-              <button v-else @click="onClickLogout" type="button">
-                <i class="bi bi-person-check-fill logged-in"></i>
-              </button>
+            <li class="menu-devider"></li>
+            <li class="auth-item">
+              <button @click="openLogin" aria-label="登入" v-if="!isLoggedIn">登入</button>
+              <button v-else @click="onClickLogout" type="button">登出</button>
             </li>
           </ul>
         </div>
@@ -191,18 +188,14 @@ export default {
     cursor: pointer;
     transition: transform 0.2s ease;
 
-    &:hover {
-      transform: scale(1.05);
-
-      @media (hover: hover) {
-        &:hover {
-          transform: scale(1.05);
-        }
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(1.05);
       }
-      @media (hover: none) {
-        &:active {
-          transform: scale(1.05);
-        }
+    }
+    @media (hover: none) {
+      &:active {
+        transform: scale(1.05);
       }
     }
   }

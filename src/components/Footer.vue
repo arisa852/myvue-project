@@ -7,7 +7,7 @@
       </div>
 
       <div class="footer-icon">
-        <a href="https://github.com/your-github" target="_blank" rel="noopener" aria-label="GitHub">
+        <a href="https://github.com/arisa852" target="_blank" rel="noopener" aria-label="GitHub">
           <i class="bi bi-github"></i>
         </a>
         <a href="mailto:divine54679@gmail.com" aria-label="Email">
@@ -84,11 +84,8 @@ footer {
           }
         }
         @media (hover: none) {
-          &:hover {
-            transform: scale(1.2);
-          }
           &:active {
-            transform: scale(1.2);
+            transform: scale(0.95);
           }
         }
       }

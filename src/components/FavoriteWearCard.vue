@@ -125,6 +125,7 @@ const displayTags = computed(() => props.wearItem.tags.map((t) => tagMaps[t] ?? 
   width: calc(220px - 20px);
   padding: $space-xl;
   border-radius: $radius-md;
+  margin: 0 auto;
 
   &_btn {
     align-self: flex-end;

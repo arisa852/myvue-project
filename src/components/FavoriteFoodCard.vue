@@ -144,6 +144,25 @@ const displaylocationTag = computed(
   .favorite-btn {
     @include button-style;
     color: #fff;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        border: 2px solid $primary-color;
+        background-color: $white-color;
+        color: darken($primary-color, 10%);
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        opacity: 0.5;
+      }
+    }
   }
 }
 </style>

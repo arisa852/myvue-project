@@ -128,7 +128,7 @@ export default {
       }
     }
     /* 手機 */
-    @media (hover: hover) {
+    @media (hover: none) {
       &:active {
         background-color: $primary-color;
         color: $white-color;

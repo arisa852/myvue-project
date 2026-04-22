@@ -96,6 +96,19 @@ export default {
       border: 2px solid $white-color;
       background-color: $primary-color;
       margin-bottom: $space-lg;
+      transition: transform 0.2s ease,background-color 0.2s ease;
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: $white-color;
+          border: 2px solid $primary-color;
+        }
+      }
+      @media (hover: none) {
+        &:active {
+          transform: scale(0.95);
+        }
+      }
     }
   }
 }

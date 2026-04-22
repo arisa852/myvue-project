@@ -32,7 +32,10 @@
     </div>
     <!-- Body -->
     <div class="fav-panel_body">
-      <div class="fav-container">
+      <div
+        class="fav-container"
+        :class="activeMainTabs === 'wear' ? 'fav-container--wear' : 'fav-container--food'"
+      >
         <p v-if="isEmpty">目前還未收錄</p>
         <template v-if="activeMainTabs === 'food'">
           <FavoriteFoodCard
@@ -80,6 +83,7 @@ const mainTabs = [
 const wearSubTabs = [
   { label: '上衣', value: 'top' },
   { label: '下衣', value: 'bottom' },
+  { label: '全部', value: 'all' },
 ]
 
 const foodSubTabs = [
@@ -87,6 +91,7 @@ const foodSubTabs = [
   { label: '咖啡', value: 'cafe' },
   { label: '日式', value: 'japanese' },
   { label: '輕食', value: 'lightmeal' },
+  { label: '全部', value: 'all' },
 ]
 
 const activeMainTabs = ref('wear')
@@ -118,11 +123,17 @@ const currentSubValue = computed({
 
 const favoriteWearfiltered = computed(() => {
   const current = activeWearSubTab.value
+  if (current === 'all') {
+    return props.wearFavorites
+  }
   return props.wearFavorites.filter((item) => item.slot === current)
 })
 
 const favoriteFoodfiltered = computed(() => {
   const currentVal = activeFoodSubTab.value
+  if (currentVal === 'all') {
+    return props.foodFavorites
+  }
   return props.foodFavorites.filter((item) => item.category === currentVal)
 })
 
@@ -221,11 +232,24 @@ watchEffect(() => {
   width: 100%;
 }
 
-.fav-container {
+.fav-container--food {
   display: flex;
   flex-direction: column;
   gap: $space-md;
   justify-content: center;
+}
+
+.fav-container--wear {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-md;
+
+  @include respond-to(pad) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .fav-panel_tabs {

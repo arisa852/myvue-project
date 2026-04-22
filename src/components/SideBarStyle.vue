@@ -18,7 +18,7 @@
     <div class="style-group">
       <h6>{{ title2 }}</h6>
       <select v-model="filters.style">
-        <option disabled-value="">請選擇</option>
+        <option disabled value="">請選擇</option>
         <option value="formal">正式</option>
         <option value="fresh">清新</option>
         <option value="casual">休閒</option>
@@ -33,13 +33,7 @@
       <p>目前選擇：{{ displayStyle }}</p>
     </div>
     <div class="search-space">
-      <label
-        ><input
-          v-model.trim="filters.keyword"
-          type="search"
-          value="正式"
-          placeholder="請輸入關鍵字"
-      /></label>
+      <label><input v-model.trim="filters.keyword" type="search" placeholder="例如:正式" /></label>
       <p>目前搜尋：{{ filters.keyword }}</p>
     </div>
   </aside>
@@ -124,7 +118,6 @@ export default {
 @use '../assets/style/variables' as *;
 @use '../assets/style/mixin' as *;
 
-
 .sidebar {
   display: flex;
   align-items: flex-start;
@@ -146,8 +139,16 @@ export default {
   top: 0;
   transition: transform 0.2s ease;
 
-  &:hover {
-    transform: scale(1.5);
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+  @media (hover: none) {
+    &:active {
+      transform: scale(0.95);
+      opacity: 0.7;
+    }
   }
 }
 
@@ -192,11 +193,15 @@ export default {
     cursor: pointer;
     transition: border-color 0.2s ease;
     color: $text-color;
+
+    &:focus {
+      outline: none;
+    }
+    &:focus-visible {
+      outline: 2px solid $primary-color;
+    }
   }
-  &:focus {
-    outline: none;
-    border-color: $second-primary-color;
-  }
+
   p {
     @include paragraph-style;
   }
@@ -208,6 +213,14 @@ export default {
     padding: $space-sm;
     margin-bottom: $space-lg;
     font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $second-primary-color;
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 3px rgba($second-primary-color, 0.2);
+    }
   }
 }
 </style>
