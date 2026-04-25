@@ -40,7 +40,7 @@
 </template>
 <script>
 import BannerSection from '@/components/BannerSection.vue'
-import heroUrl from '@/assets/images/Artboard 1.png'
+import heroUrl from '@/assets/images/herobanner.webp'
 import FeatureSection from '@/components/FeatureSection.vue'
 import EntranceSection from '@/components/EntranceSection.vue'
 import foodImg from '@/assets/images/foodno1.png'

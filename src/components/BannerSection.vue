@@ -14,7 +14,14 @@
       <div class="bn-right">
         <slot name="right">
           <div class="bn-img" v-if="bannerImg">
-            <img :src="bannerImg" alt="Banner" />
+            <img
+              :src="bannerImg"
+              alt="Banner"
+              width="3"
+              height="2"
+              fetchpriority="high"
+              decoding="async"
+            />
           </div>
         </slot>
       </div>
