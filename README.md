@@ -26,6 +26,18 @@ Picko 是一款以 Vue 3 打造的互動式前端 SPA，
 
 展示從資料整理 → 邏輯處理 → UI 呈現的完整前端開發流程。
 
+## 效能優化（Performance Optimization）
+
+- 針對首頁關鍵渲染路徑（Critical Rendering Path）進行優化，改善 Core Web Vitals：
+  - 將首頁 Banner 圖由 PNG 轉為 WebP，降低圖片體積
+  - 補上 width / height，避免版面位移（CLS）
+  - 使用 fetchpriority="high"，提升 LCP 圖片載入優先順序
+
+- 優化結果（Mobile Lighthouse）：
+  - Performance：43 → 65
+  - LCP：約 7.2s → 5.8s
+  - CLS：0.48 → 0
+
 ## 專案特色
 
 ### 使用者登入／註冊（Firebase Authentication）
