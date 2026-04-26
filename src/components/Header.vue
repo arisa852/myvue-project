@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="logo-container">
         <RouterLink to="/">
-          <img :src="logoUrl" alt="logo" />
+          <img :src="logoUrl" alt="logo" loading="lazy" decoding="async" width="956" height="242" />
         </RouterLink>
       </div>
       <div class="list-container">
@@ -66,7 +66,7 @@
 </template>
 <script>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import logoUrl from '../assets/images/logo3.png'
+import logoUrl from '@/assets/images/logo3.webp'
 import { useAuth } from '@/use/useAuth'
 import { toast } from 'vue3-toastify'
 
@@ -187,6 +187,8 @@ export default {
     display: block;
     cursor: pointer;
     transition: transform 0.2s ease;
+    height: auto;
+    max-width: 150px;
 
     @media (hover: hover) {
       &:hover {

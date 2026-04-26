@@ -5,6 +5,14 @@
 
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
+@font-face {
+  font-family: 'bootstrap-icons';
+  src:
+    url('bootstrap-icons/font/fonts/bootstrap-icons.woff2') format('woff2'),
+    url('bootstrap-icons/font/fonts/bootstrap-icons.woff') format('woff');
+  font-display: swap;
+}
+
 html,
 body,
 #app {
@@ -12,4 +20,3 @@ body,
   padding: 0;
   height: 100%;
 }
-
