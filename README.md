@@ -28,15 +28,34 @@ Picko 是一款以 Vue 3 打造的互動式前端 SPA，
 
 ## 效能優化（Performance Optimization）
 
-- 針對首頁關鍵渲染路徑（Critical Rendering Path）進行優化，改善 Core Web Vitals：
-  - 將首頁 Banner 圖由 PNG 轉為 WebP，降低圖片體積
-  - 補上 width / height，避免版面位移（CLS）
-  - 使用 fetchpriority="high"，提升 LCP 圖片載入優先順序
+> 針對首頁進行關鍵渲染路徑（Critical Rendering Path）優化，改善 Core Web Vitals：
 
-- 優化結果（Mobile Lighthouse）：
-  - Performance：43 → 65
-  - LCP：約 7.2s → 5.8s
-  - CLS：0.48 → 0
+### ✔ 圖片優化
+
+- Banner 與首頁圖片轉為 WebP
+- 圖片品質壓縮（約 75%）
+- 非首屏圖片使用 `loading="lazy"`
+- 補上 `width / height` 預留空間，降低 CLS
+
+### ✔ LCP 優化
+
+- 首屏圖片加上 `fetchpriority="high"`
+- 避免延遲載入關鍵資源
+
+### ✔ 字體與資源優化
+
+- Google Fonts 載入策略調整（降低 render blocking）
+- Bootstrap Icons 加入 `font-display: swap`
+
+## 📊 Lighthouse（Mobile）
+
+| 指標        | 優化前 | 優化後 |
+| ----------- | ------ | ------ |
+| Performance | 40+    | 80     |
+| LCP         | 5.8s   | 3.3s   |
+| CLS         | 0.48   | 0.19   |
+
+> CLS 主要來自 Web Font 載入後字體切換（font swap），在視覺風格與效能間做取捨。
 
 ## 專案特色
 
