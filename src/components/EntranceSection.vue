@@ -2,12 +2,26 @@
   <section class="entrance">
     <div class="entrance-wrapper">
       <div class="food-space entrance-card">
-        <img :src="foodEntrance" :alt="foodAlt" />
+        <img
+          :src="foodEntrance"
+          :alt="foodAlt"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="696"
+        />
         <h4>吃</h4>
         <button @click="$emit('goto-food')" class="entrance-button">找餐廳推薦</button>
       </div>
       <div class="wear-space entrance-card">
-        <img :src="wearEntrance" :alt="wearAlt" />
+        <img
+          :src="wearEntrance"
+          :alt="wearAlt"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="696"
+        />
         <h4>穿</h4>
         <button @click="$emit('goto-wear')" class="entrance-button">找穿搭建議</button>
       </div>
@@ -81,6 +95,7 @@ export default {
     display: block;
     width: 100%;
     height: auto;
+    max-width: 600px;
   }
   & h4 {
     @include subheading-style;
@@ -96,7 +111,9 @@ export default {
       border: 2px solid $white-color;
       background-color: $primary-color;
       margin-bottom: $space-lg;
-      transition: transform 0.2s ease,background-color 0.2s ease;
+      transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
 
       @media (hover: hover) {
         &:hover {

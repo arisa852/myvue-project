@@ -3,17 +3,38 @@
     <h1>幫你選、少猶豫</h1>
     <div class="wrapper">
       <div class="picko-feat">
-        <img :src="pickofeatImg1" alt="resolve" />
+        <img
+          :src="pickofeatImg1"
+          alt="resolve"
+          loading="lazy"
+          decoding="async"
+          width="300"
+          height="299"
+        />
         <h6>不再猶豫</h6>
         <p>快速給出建議，幫你選出最適合的選項。</p>
       </div>
       <div class="picko-feat">
-        <img :src="pickofeatImg2" alt="pick" />
+        <img
+          :src="pickofeatImg2"
+          alt="pick"
+          loading="lazy"
+          decoding="async"
+          width="1024"
+          height="1024"
+        />
         <h6>操作簡單</h6>
         <p>滑一下、點一下，立刻得到答案。</p>
       </div>
       <div class="picko-feat">
-        <img :src="pickofeatImg3" alt="answer" />
+        <img
+          :src="pickofeatImg3"
+          alt="answer"
+          loading="lazy"
+          decoding="async"
+          width="300"
+          height="285"
+        />
         <h6>快速有解</h6>
         <p>即選即出結果，不再浪費時間想破頭。</p>
       </div>
@@ -21,9 +42,9 @@
   </section>
 </template>
 <script>
-import pickofeatImg1 from '@/assets/images/no1.png'
-import pickofeatImg2 from '@/assets/images/no2.png'
-import pickofeatImg3 from '@/assets/images/9611342.png'
+import pickofeatImg1 from '@/assets/images/no1.webp'
+import pickofeatImg2 from '@/assets/images/no2.webp'
+import pickofeatImg3 from '@/assets/images/no3.webp'
 
 export default {
   name: 'FeatureSection',
@@ -94,12 +115,12 @@ export default {
       }
       & img {
         width: 100%;
-        max-width: 120px;
-        overflow: hidden;
-        object-fit: cover;
+        max-width: 200px;
+        object-fit: contain;
         display: block;
         margin: 0 auto;
         margin-bottom: $space-xl;
+        height: auto;
 
         @include respond-to(pad) {
           width: 200px;
